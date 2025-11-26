@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<table name="ford_mustang_v8_supercar" type="table">
+    <parameters>
+        <parameter name="ID" type="string" value="ID_Ford_Mustang_V8_Supercar"/>
+        <parameter name="ActorFile" type="string" value="ford_mustang_v8_supercar_actor.xml"/>
+        <parameter name="DriverFile" type="string" value="$data/vehicles/Ford_Mustang_GT4_2024/driver/driver_Ford_Mustang_GT4_2024.i3d"/>
+        <parameter name="TiresFile" type="string" value="$data/vehicles/Ford_Mustang_GT4_2024/data/Ford_Mustang_GT4_2024_tires.xml"/>
+		<parameter name="Manufacturer" type="string" value="Ford"/>
+        <parameter name="Name" type="string" value="Mustang V8 Supercar"/>
+		<parameter name="VehiclePath" type="string" value="Ford_Mustang_V8_Supercar"/>
+		<parameter name="Material_Body" type="string" value="ford_mus_gt4_carbon_body,ford_mus_gt4_plastic_gloss_body,ford_mus_gt4_plastic_rough_body,ford_mus_gt4_carbon_body_dam,ford_mus_gt4_plastic_gloss_body_dam,ford_mus_gt4_plastic_rough_body_dam"/>
+		<parameter name="Material_Glass" type="string" value="ford_mus_gt4_windshield_glass_dam,ford_mus_gt4_windshield_glass_dam"/>
+		<parameter name="Material_Glass_Interior" type="string" value="ford_mus_gt4_windshield_int_refl_wsc_dam,ford_mus_gt4_windshield_int_refl_wsc_dam"/>
+        <parameter name="VehicleClass" type="string" value="V8 Supercars"/>
+        <parameter name="TorqueNM" type="number" value="580"/>
+        <parameter name="WeightKG" type="number" value="1390"/>
+        <parameter name="Transmission" type="string" value="6-Speed Paddle"/>
+        <parameter name="PowerBHP" type="number" value="500"/>
+        <parameter name="FuelCapacityLitres" type="number" value="0"/>
+        <parameter name="Layout" type="string" value="Front Engine - RWD"/>
+        <parameter name="EngineName" type="string" value="5.0L V8"/>
+		<parameter name="Active" type="boolean" value="true"/>
+		<paramerer name="Price" type="number" value="178000"/>
+		<parameter name="Region" type="string" value="Americas"/>
+		<parameter name="Author" type="string" value="Straight4 Studios"/>
+		<parameter name="Year" type="string" value="2024"/>
+    </parameters>
+</table>

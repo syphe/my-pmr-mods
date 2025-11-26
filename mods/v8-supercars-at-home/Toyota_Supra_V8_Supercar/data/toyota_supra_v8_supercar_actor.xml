@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- desc version defines the min feature set of the game needed to run the mod -->
+<actor actor_type="vehicleActor">
+    <wheels layout="type2">
+        <wheel side="L" position="F" node="TIRE_LF"/>
+        <wheel side="R" position="F" node="TIRE_RF"/>
+        <wheel side="L" position="R" node="TIRE_LR"/>
+        <wheel side="R" position="R" node="TIRE_RR"/>
+    </wheels>
+	<cockpitAnims>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_R_ARM_CPIT"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.1"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_R_PIVOT_CPIT"/>
+            <string name="controlParams" value="speed=0,rumble=0"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_L_ARM_CPIT"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.1"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_L_PIVOT_CPIT"/>
+            <string name="controlParams" value="speed=0,rumble=0"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Bonnet"/>
+            <string name="controlParams" value="revs=0.75,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.1"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.5"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+
+	<table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Mirror_L"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.1,0.0"/>
+        </table>
+
+		<table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Mirror_R"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.1,0.0"/>
+        </table>
+
+		<table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Mirror_C"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.1,0.1"/>
+        </table>
+
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Wires01"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,1.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Wires01"/>
+            <string name="axisScaler" value="0.0,0.1,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Wires02"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=1"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.2"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Wires02"/>
+            <string name="axisScaler" value="0.0,0.0,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Wires03"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,1.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Wires03"/>
+            <string name="axisScaler" value="0.0,0.1,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Wires04"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,1.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Wires04"/>
+            <string name="axisScaler" value="0.0,0.1,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>
+                <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Net01"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.2"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.5"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Net01"/>
+            <string name="axisScaler" value="0.0,0.04,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>
+		
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Net02"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.2"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.5"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Net02"/>
+            <string name="axisScaler" value="0.0,0.04,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>
+		
+        <number name="vibrationFreqencyMin" value="50"/>
+        <number name="vibrationFreqencyMax" value="85"/>
+    </cockpitAnims>
+	
+    <components>
+        <component type="i3dComponent" name="car">
+            <i3dFile file="$data/vehicles/Toyota_Supra_GT4/Toyota_Supra_GT4_Evo.i3d"/>
+            <i3dMappings>
+                <i3dMapping id="vehicle.steeringwheel" node="2>0|0|13"/>
+                <i3dMapping id="vehicle.seat" node="3>"/>
+                <i3dMapping id="vehicle.bodyModel" node="0>0|4"/>
+                <i3dMapping id="vehicle.collisions" node="0>1|0"/>
+				<i3dMapping id="vehicle.glassModel" node="0>0|6"/>
+			</i3dMappings>
+        </component>
+        <component type="HadronComponent" name="Hadron">
+            <vehicleSourceFilePath value="Toyota_GR_Supra_V8_Supercar.veh.hadron"/>
+            <drivetrainFilePath value="$data/vehicles/_shared/physics/support/drivetrains/drivetrainGT4_MidTurbo.xml"/>
+            <assistFilePath value="$data/vehicles/_shared/physics/support/assists/assistGT4.xml"/>
+            <inputFilePath value="$data/vehicles/_shared/physics/support/genericInput.xml"/>
+            <outputFilePath value="$data/vehicles/_shared/physics/support/genericOutput.xml"/>
+            <debugFilePath value="$data/vehicles/_shared/physics/support/debugVisualisation.xml"/>
+            <smoothingFilePath value="$data/vehicles/_shared/physics/support/genericSmoothing.xml"/>
+            <defaultNumSetupSteps value="50"/>
+            <wheelTurnsLockToLock value="1.667"/>
+            <collisionMapping>
+                <collision shape="COL_CHASSIS" material="CAR_STEEL" />
+                <collision shape="COL_BONNET" material="CAR_CARBON" />
+                <collision shape="COL_BUMPER_F" material="CAR_PLASTIC" />
+                <collision shape="COL_BUMPER_R" material="CAR_PLASTIC" />
+                <collision shape="COL_CANOPY" material="CAR_STEEL" />
+                <collision shape="COL_WING" material="CAR_CARBON" />
+            </collisionMapping>
+            <detachableParts>
+                <part collision="COL_BUMPER_F" aero="front">
+                    <node name="TOY_SUP_GT4_EVO_BUMPER_F"/>
+                    <node name="TOY_SUP_GT4_EVO_BUMPER_F_ALPHA"/>
+                    <node name="TOY_SUP_GT4_EVO_BUMPER_F_GLASS"/>
+                    <cpit name="TOY_SUP_GT4_EVO_BUMPER_F_CPIT"/>
+                </part>
+                <!--<part collision="COL_BONNET">
+                    <node name="TOY_SUP_GT4_EVO_BONNET"/>
+                    <node name="TOY_SUP_GT4_EVO_BONNET_ALPHA"/>
+                    <cpit name="TOY_SUP_GT4_EVO_BONNET_CPIT"/>
+                </part> -->
+                <part collision="COL_BUMPER_R">
+                    <node name="TOY_SUP_GT4_EVO_BUMPER_R"/>
+                    <node name="TOY_SUP_GT4_EVO_BUMPER_R_ALPHA"/>
+                    <node name="TOY_SUP_GT4_EVO_BUMPER_R_GLASS"/>
+                </part>
+                <part collision="COL_WING" aero="rear">
+                    <node name="TOY_SUP_GT4_EVO_WING"/>
+                    <node name="TOY_SUP_GT4_EVO_WING_ALPHA"/>
+                    <cpit name="TOY_SUP_GT4_EVO_WING_CPIT"/>
+                </part>
+            </detachableParts>
+        </component>
+        <component type="cameraManagerComponent" name="cams" componentRef="car" camerasNode="cameras">
+          <profiles>
+                <profile name="default" nearEnd="1" farStart="1000" farEnd="1400" maxRotation="30" cameraRotationSpeed="140"/>
+                <profile name="chase" stiffness="0.1" maxRotation="180"/>
+                <profile name="internal" nearEnd="0.0001" farStart="1000" farEnd="1400"/>
+                <profile name="fixed" nearEnd="1" farStart="1000" farEnd="1400" maxRotation="45" cameraRotationSpeed="140"/>
+          </profiles>
+          <cameraConfig value="$data/vehicles/_shared/gameplay/cameras/cockpitCameraHANS.xml"/>
+        </component>
+        <component type="AIComponent" name="AIComp"/>
+        <component type="VehicleAudioComponent" name="AudioComp">
+            <audioConfig value="Toyota_Supra_V8_Supercar_audioConfig.xml"/>
+        </component>
+        <component type="MotecComponent" name="motec">
+            <!-- dashBackground R G B must be kept in sync with the background colour defined in the motec shader -->
+            <default componentRef="car" font="DDU10"  maxFlash="true"
+                r="1.0" g="1.0" b="1.0"
+                rh="1.0" gh="0.4" bh="0.4"
+                rl="0.3" gl="0.3" bl="1.0"
+                maxR="1.0" maxG="0.0" maxB="0.0"
+                shiftGI="15000" shiftGIOn="15000"
+                displayGI="30" displayGIOn="30"
+                digitsEmissive="1500" digitsEmissiveOn="1500"
+                dashBackgroundR="0.01" dashBackgroundG="0.01" dashBackgroundB="0.025"
+                paletteBindingId="pageSpecific"
+            />
+            <togglePagesWithPopup/>
+            <pages>
+                <topPage>
+                    <widgets>
+                        <widget name="backlight" type="backlight" rOn="0.01" gOn="0.01" bOn="0.05" vehicleParam="lights"/>
+
+                        <widget name="gear_digits" type="digits" bindingId="numbersGear" vehicleParam="gear"/>
+                        <widget name="speed_digits" type="digits" bindingId="numbersSpeed" vehicleParam="speed" numDigits="3"/>
+
+                        <widget name="revs" type="palShaderslider" sParam="0_0_3" r="1.0" g="1.0" b="1.0" rh="1.0" gh="0.05" bh="0.05" minValue="0" maxValue ="8000" highThreshold="6600" rateTransT="1400" vehicleParam="revs"/>
+                        <widget name="oiltemp" type="palShaderslider" sParam="3_3_1" r="0.6" g="1.0" b="0.6" rh="1.0" gh="0.05" bh="0.05" minValue="60" maxValue ="160" highThreshold="150" vehicleParam="oil_temp"/>
+                        <widget name="watertemp" type="palShaderslider" sParam="0_3_1" r="0.6" g="1.0" b="0.6" rh="1.0" gh="0.05" bh="0.05" minValue="60" maxValue ="100" highThreshold="115" vehicleParam="water_temp"/>
+                        <widget name="fuel" type="palShaderslider" sParam="2_3_3" r="0.6" g="1.0" b="0.6" rl="1.0" gl="0.05" bl="0.05" minValue="0" maxValue ="120" lowThreshold="10" vehicleParam="fuel"/>
+                        <widget name="fuel_digits" type="digits" bindingId="numbersFuelStatus" lowThreshold="10" vehicleParam="fuel" numDigits="4" format="dL"/>
+
+                        <widget name="shift_lights0" type="shiftlights" bindingId="TOY_SUP_GT4_EVO_DISPLAY_LIGHT_RPM_00" sParam="0_3_0" r="0.3" g="0.3" b="0.3" greenT="0/4" vehicleParam="revs"/>
+                        <widget name="shift_lights1" type="shiftlights" bindingId="TOY_SUP_GT4_EVO_DISPLAY_LIGHT_RPM_01" sParam="0_3_0" r="0.3" g="0.3" b="0.3" greenT="1/4" vehicleParam="revs"/>
+                        <widget name="shift_lights2" type="shiftlights" bindingId="TOY_SUP_GT4_EVO_DISPLAY_LIGHT_RPM_02" sParam="0_3_0" r="0.3" g="0.3" b="0.3" amberT="2/4" vehicleParam="revs"/>
+                        <widget name="shift_lights3" type="shiftlights" bindingId="TOY_SUP_GT4_EVO_DISPLAY_LIGHT_RPM_03" sParam="0_3_0" r="0.3" g="0.3" b="0.3" amberT="3/4" vehicleParam="revs"/>
+                        <widget name="shift_lights4" type="shiftlights" bindingId="TOY_SUP_GT4_EVO_DISPLAY_LIGHT_RPM_04" sParam="0_3_0" r="0.3" g="0.3" b="0.3" redT="4/4" vehicleParam="revs"/>
+
+                        <widget name="shift_lightsL" type="shiftlights" bindingId="TOY_SUP_GT4_EVO_DISPLAY_WARNING_LIGHT_L" sParam="0_3_0" r="0.3" g="0.3" b="0.3" vehicleParam="revs"/>
+                        <widget name="shift_lightsR" type="shiftlights" bindingId="TOY_SUP_GT4_EVO_DISPLAY_WARNING_LIGHT_R" sParam="0_3_0" r="0.3" g="0.3" b="0.3" vehicleParam="revs"/>
+                    </widgets>
+                </topPage>
+
+                <page name="Page1">
+                    <pagedefault paletteBindingId="TOY_SUP_GT4_EVO_DISPLAY1"/>
+                    <widgets>
+                        <widget name="fuel_prev_digits" type="digits" bindingId="FuelLastLap" vehicleParam="previousFuelDelta" numDigits="5" format="f2L"/>
+                        <widget name="fuel_lap_digits" type="digits" bindingId="FuelUsed" vehicleParam="fuelDelta" numDigits="5" format="f2L"/>
+
+                        <widget name="brakeb_digits" type="digits" bindingId="numbersBrakeBias" r="0.2" g="0.6" b="1.0" vehicleParam="brakebias" numDigits="5" format="f1"/>
+
+                        <widget name="best_lap_digits" type="digits" bindingId="numbersBestTime" vehicleParam="bestLap" numDigits="7"/>
+                        <widget name="lap_time_digits" type="digits" bindingId="numbersActualTime" vehicleParam="lapTime" numDigits="7" align="center"/>
+                        <widget name="predic_lap_digits" type="digits" bindingId="numbersPredictTime" vehicleParam="predictedLap" updateF="1" numDigits="7" align="left"/>
+
+                        <widget name="delta_digits" type="digits" bindingId="numbersTimeDiff" r="1.0" g="0.0" b="0.0" rl="0.0" gl="1.0" bl="0.0" lowThreshold="0.00001" vehicleParam="lapDelta" numDigits="7" updateF="1"/>
+                        <widget name="gainlose" type="palShaderslider" sParam="3_0_3" r="0.6" g="1.0" b="0.6" minValue="-3" maxValue ="3" vehicleParam="lapDelta"/>
+
+                        <widget name="oilt_digits" type="digits" bindingId="OilTemp" highThreshold="150" vehicleParam="oil_temp" numDigits="5" format="d!C" align="center"/>
+                        <widget name="watert_digits" type="digits" bindingId="WaterTemp" highThreshold="115" vehicleParam="water_temp" numDigits="5" format="d!C" align="center"/>
+
+                        <widget name="tyreP_LF_digits" type="digits" bindingId="numbersTyrePresFL" vehicleParam="wheel1.tyre_pressure" numDigits="4" format="f2" align="right"/>
+                        <widget name="tyreP_RF_digits" type="digits" bindingId="numbersTyrePresFR" vehicleParam="wheel2.tyre_pressure" numDigits="4" format="f2" align="left"/>
+                        <widget name="tyreP_LR_digits" type="digits" bindingId="numbersTyrePresRL" vehicleParam="wheel3.tyre_pressure" numDigits="4" format="f2" align="right"/>
+                        <widget name="tyreP_RR_digits" type="digits" bindingId="numbersTyrePresRR" vehicleParam="wheel4.tyre_pressure" numDigits="4" format="f2" align="left"/>
+
+                        <widget name="pws_digits" type="digits" bindingId="numbersPwrStr" setLabel="0"/>
+                        <widget name="thr_digits" type="digits" bindingId="numbersThrottle" setLabel="0"/>
+
+                        <widget name="abs_digits" type="digits" bindingId="numbersABS" vehicleParam="abs"/>
+                        <widget name="tc_digits" type="digits" bindingId="numbersTC" vehicleParam="tcs"/>
+
+                    </widgets>
+                </page>
+
+                <page name="Page2">
+                    <pagedefault paletteBindingId="TOY_SUP_GT4_EVO_DISPLAY2" pageRootNode="Page2"/>
+                    <widgets>
+                        <widget name="oilt_digits" type="digits" bindingId="OilTemp" vehicleParam="oil_temp" numDigits="5" format="d!C" align="left"/>
+                        <widget name="watert_digits" type="digits" bindingId="WaterTemp" vehicleParam="water_temp" numDigits="5" format="d!C" align="left"/>
+                        <widget name="geart_digits" type="digits" bindingId="GearbTemp" vehicleParam="gearbox_temp" numDigits="5" format="d!C" align="left"/>
+                        <widget name="difft_digits" type="digits" bindingId="DiffTemp" vehicleParam="diff_temp" numDigits="5" format="d!C" align="left"/>
+
+                        <widget name="oilp_digits" type="digits" bindingId="OilPres" vehicleParam="oil_pressure"  numDigits="5" format="f2"/>
+                        <widget name="brakep_digits" type="digits" bindingId="BrakePresF" vehicleParam="brake_press"  numDigits="5" format="f2"/>
+                        <widget name="fuelp_digits" type="digits" bindingId="FuelPres" vehicleParam="fuel_pressure"  numDigits="5" format="f2"/>
+
+                        <widget name="enginet_digits" type="digits" bindingId="EngTemp" vehicleParam="engine_temp" numDigits="5" format="d!C" align="center"/>
+                        <widget name="enginetemp" type="palShaderslider" sParam="3_1_0" r="0.6" g="1.0" b="0.6" minValue="60" maxValue ="158" highThreshold="115" vehicleParam="engine_temp"/>
+
+                        <widget name="lap_time_digits" type="digits" bindingId="LapTime" vehicleParam="lapTime" numDigits="7"/>
+                    </widgets>
+                </page>
+                <page name="Page3">
+                    <pagedefault paletteBindingId="TOY_SUP_GT4_EVO_DISPLAY3" pageRootNode="Page3"/>
+                    <widgets>
+                        <widget name="oilt_digits" type="digits" bindingId="OilTemp" vehicleParam="oil_temp" numDigits="5" format="d!C" align="center"/>
+                        <widget name="watert_digits" type="digits" bindingId="WaterTemp" vehicleParam="water_temp" numDigits="5" format="d!C" align="center"/>
+
+                        <widget name="brakeT_FL_digits" type="digits" bindingId="BrakeTempFL" lowThreshold="200" highThreshold="650" vehicleParam="wheel1.brake_temp" numDigits="5" format="d!C" align="left"/>
+                        <widget name="brakeT_FR_digits" type="digits" bindingId="BrakeTempFR" lowThreshold="200" highThreshold="650" vehicleParam="wheel2.brake_temp" numDigits="5" format="d!C"/>
+                        <widget name="brakeT_RL_digits" type="digits" bindingId="BrakeTempRL" lowThreshold="200" highThreshold="650" vehicleParam="wheel3.brake_temp" numDigits="5" format="d!C" align="left"/>
+                        <widget name="brakeT_RR_digits" type="digits" bindingId="BrakeTempRR" lowThreshold="200" highThreshold="650" vehicleParam="wheel4.brake_temp" numDigits="5" format="d!C"/>
+
+                        <widget name="brakeT_LF" type="palShaderslider" sParam="1_3_1" r="0.6" g="0.6" b="1.0" minValue="100" maxValue ="800" vehicleParam="wheel1.brake_temp"/>
+                        <widget name="brakeT_RF" type="palShaderslider" sParam="3_3_0" r="0.6" g="0.6" b="1.0" minValue="100" maxValue ="800" vehicleParam="wheel2.brake_temp"/>
+                        <widget name="brakeT_LR" type="palShaderslider" sParam="1_0_3" r="0.6" g="0.6" b="1.0" minValue="100" maxValue ="800" vehicleParam="wheel3.brake_temp"/>
+                        <widget name="brakeT_RR" type="palShaderslider" sParam="3_0_1" r="0.6" g="0.6" b="1.0" minValue="100" maxValue ="800" vehicleParam="wheel4.brake_temp"/>
+
+                        <widget name="tyreT_FL_digits" type="digits" bindingId="TyreTempFL" lowThreshold="75" highThreshold="105" vehicleParam="wheel1.tyre_temp" numDigits="5" format="d!C"/>
+                        <widget name="tyreT_FR_digits" type="digits" bindingId="TyreTempFR" lowThreshold="75" highThreshold="105" vehicleParam="wheel2.tyre_temp" numDigits="5" format="d!C" align="left"/>
+                        <widget name="tyreT_RL_digits" type="digits" bindingId="TyreTempRL" lowThreshold="75" highThreshold="105" vehicleParam="wheel3.tyre_temp" numDigits="5" format="d!C"/>
+                        <widget name="tyreT_RR_digits" type="digits" bindingId="TyreTempRR" lowThreshold="75" highThreshold="105" vehicleParam="wheel4.tyre_temp" numDigits="5" format="d!C" align="left"/>
+
+                        <widget name="tyreP_LF" type="palShaderslider" sParam="2_3_2" r="0.6" g="0.6" b="1.0" minValue="50" maxValue ="120" vehicleParam="wheel1.tyre_temp"/>
+                        <widget name="tyreP_RF" type="palShaderslider" sParam="3_3_2" r="0.6" g="0.6" b="1.0" minValue="50" maxValue ="120" vehicleParam="wheel2.tyre_temp"/>
+                        <widget name="tyreP_LR" type="palShaderslider" sParam="1_2_3" r="0.6" g="0.6" b="1.0" minValue="50" maxValue ="120" vehicleParam="wheel3.tyre_temp"/>
+                        <widget name="tyreP_RR" type="palShaderslider" sParam="3_1_0" r="0.6" g="0.6" b="1.0" minValue="50" maxValue ="120" vehicleParam="wheel4.tyre_temp"/>
+
+                    </widgets>
+                </page>
+                <popupparent name="Pop-ups">
+                    <pagedefault pageRootNode="Pop-ups"/>
+                    <widgets>
+                        <widget name="oilt_digits" type="digits" bindingId="OilTemp" vehicleParam="oil_temp" numDigits="5" format="d!C" align="left"/>
+                        <widget name="watert_digits" type="digits" bindingId="WaterTemp" vehicleParam="water_temp" numDigits="5" format="d!C" align="left"/>
+                        <widget name="geart_digits" type="digits" bindingId="GearbTemp" vehicleParam="gearbox_temp" numDigits="5" format="d!C" align="left"/>
+                        <widget name="difft_digits" type="digits" bindingId="DiffTemp" vehicleParam="diff_temp" numDigits="5" format="d!C" align="left"/>
+
+                        <widget name="oilp_digits" type="digits" bindingId="OilPres" vehicleParam="oil_pressure"  numDigits="5" format="f2"/>
+                        <widget name="brakep_digits" type="digits" bindingId="BrakePresF" vehicleParam="brake_press"  numDigits="5" format="f2"/>
+                        <widget name="fuelp_digits" type="digits" bindingId="FuelPres" vehicleParam="fuel_pressure"  numDigits="5" format="f2"/>
+
+                        <widget name="enginet_digits" type="digits" bindingId="EngTemp" vehicleParam="engine_temp" numDigits="5" format="d!C" align="center"/>
+                    </widgets>
+                </popupparent>
+                <popup name="Popup1-Limiter">
+                    <pagedefault paletteBindingId="TOY_SUP_GT4_EVO_POPUP1" pageRootNode="Popup1-Limiter"/>
+                    <widgets>
+                        <widget name="enginetemp" type="palShaderslider" sParam="3_1_0" r="0.6" g="1.0" b="0.6" minValue="60" maxValue ="158" highThreshold="155" vehicleParam="engine_temp"/>
+                        <widget name="pit_time_digits" type="digits" bindingId="PitTime" vehicleParam="pitLimitTime" numDigits="7"/>
+                    </widgets>
+                </popup>
+                <popup name="Popup2-BrakeBias">
+                    <pagedefault paletteBindingId="TOY_SUP_GT4_EVO_POPUP2" pageRootNode="Popup2-BrakeBias"/>
+                    <widgets>
+                        <widget name="brakeb_label" type="digits" bindingId="BrakeBias" r="0.2" g="0.6" b="1.0" vehicleParam="brakebiasdelta" align="center" format="+f1%" numDigits="6"/>
+                        <widget name="enginetemp" type="palShaderslider" sParam="3_1_0" r="0.6" g="1.0" b="0.6" minValue="60" maxValue ="158" highThreshold="155" vehicleParam="engine_temp"/>
+                    </widgets>
+                </popup>
+            </pages>
+        </component>
+        <component type="FxComponent" name="fx">
+            <fxFilePath value="$data/vehicles/_shared/art/vfx/vehicleFX.xml"/>
+			<fxFilePath value="$data/vehicles/_shared/art/vfx/vehicleFX_Backfire_LMP.xml"/>
+        </component>
+		<component type="GearStickComponent" name="gears">
+  <shiftType type="paddles" />
+</component>
+    </components>
+	
+	<outsideCockpitMeshes>
+        <mesh name="TOY_SUP_GT4_EVO_BODY_CPIT"/>
+        <mesh name="TOY_SUP_GT4_EVO_BODY_GLASS_CPIT"/>
+        <mesh name="TOY_SUP_GT4_EVO_BONNET_CPIT"/>
+        <mesh name="TOY_SUP_GT4_EVO_BUMPER_F_CPIT"/>
+        <mesh name="TOY_SUP_GT4_EVO_CHASSIS_CPIT"/>
+        <mesh name="TOY_SUP_GT4_EVO_EXTANIM_CPIT"/>
+        <mesh name="TOY_SUP_GT4_EVO_MIRROR_L_CPIT"/>
+        <mesh name="TOY_SUP_GT4_EVO_MIRROR_R_CPIT"/>
+        <mesh name="WIPER_CPIT"/>
+    </outsideCockpitMeshes>
+	
+	<mirrorMeshes>
+        <mesh name="TOY_SUP_GT4_EVO_MIRROR_C" type="centre"/>
+        <mesh name="TOY_SUP_GT4_EVO_MIRROR_L_CPIT" type="left"/>
+        <mesh name="TOY_SUP_GT4_EVO_MIRROR_R_CPIT" type="right"/>
+    </mirrorMeshes>
+	
+</actor>

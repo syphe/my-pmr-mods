@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- desc version defines the min feature set of the game needed to run the mod -->
+<modDesc titleId="pmr1" descVersion="0">
+
+    <name>V8 Supercars at home</name>
+    <type>Vehicle</type>
+
+    <vehicles>
+        <vdef path="Ford_Mustang_V8_Supercar/data/ford_mustang_v8_supercar.vdef" />
+        <vdef path="Chevrolet_Camaro_V8_Supercar/data/chevrolet_camaro_v8_supercar.vdef" />
+        <vdef path="Toyota_Supra_V8_Supercar/data/toyota_supra_v8_supercar.vdef" />
+    </vehicles>
+
+    <vehicleClass>
+		<class name="V8 Supercars" image="icons/classIcon_trackDay.png"/>
+	</vehicleClass>
+
+    <!-- defines the mod author -->
+    <author>syphe</author>
+
+    <!-- defines the current version-->
+    <version>1.0.0.0</version>
+
+    <!-- defines if mod is supported multiplayer -->
+    <multiplayer supported="true" />
+
+    <!-- defines the mod title shown ingame. multilanguage support using the shortcuts like fr, es, cz, jp, etc -->
+    <title>
+        <en>V8 Supercars at home</en>
+    </title>
+
+    <!-- defines the mod description shown ingame. multilanguage support using the shortcuts like fr, es, cz, jp, etc -->
+    <description>
+        <en>
+            Me: Can we have V8 Supercars.
+            Mum: Don't we have V8 Supercars at home?
+        </en>
+    </description>
+
+    <!-- defines the icon shown ingame (path relative to mod base folder) -->
+    <iconFilename>icon_helloWorld.png</iconFilename>
+
+    <!-- <sourceFiles>
+        <sourceFile filename="scripts/helloWorld.lua"/>
+    </sourceFiles> -->
+</modDesc>

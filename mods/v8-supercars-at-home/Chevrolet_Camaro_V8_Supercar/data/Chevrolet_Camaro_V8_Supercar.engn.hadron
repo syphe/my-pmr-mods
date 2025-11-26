@@ -1,0 +1,84 @@
+#Ford Mustang 5.4L V8 GT3  516hp @7250  max 8200rpm
+INCLUDE "Engine/engine.1.hadron"
+INCLUDE "Engine/generic_cam.0.hadron"
+INCLUDE "Engine/generic_throttle.0.hadron"
+
+# This should be deprecated after correct telemetry hub plumbing
+Entity stub_engine_for_throttle legacy_engine
+	name "legacy_engine"
+	engine:throttle 1.0
+	engine:crank_shaft dummy_crank_shaft
+	engine:rev_limit 8200.0
+	engine:torque_curve "3,
+			0	,	0.0	,	0.0	"
+
+Entity FORD_V8_morph_adapted_from_legacy l_splat_vec3
+	splat:vec3 "
+0	,	-12.40	,	-15.00	,0
+250	,	-40.00	,	90.00	,0
+500	,	-70.70	,	200.00	,0
+1000	,	-110.00	,	330.00	,0
+1250	,	-112.50	,	390.00	,0
+1500	,	-115.00	,	400.00	,0
+1750	,	-117.50	,	420.00	,0
+2000	,	-120.00	,	440.00	,0
+2500	,	-125.00	,	500.00	,0
+3000	,	-130.00	,	540.00	,0
+3500	,	-135.00	,	580.00	,0
+4000	,	-140.00	,	600.00	,0
+4500	,	-145.00	,	630.00	,0
+5000	,	-150.00	,	664.00	,0
+5500	,	-155.00	,	660.00	,0
+6000	,	-160.00	,	640.00	,0
+6500	,	-165.00	,	615.00	,0
+7000	,	-170.00	,	574.00	,0
+7500	,	-175.00	,	535.00	,0
+8000	,	-180.00	,	485.00	,0
+8200	,	-182.50	,	430.00	,0
+8400	,	-185.00	,	-0.00	,0
+8750	,	-187.50	,	-180.00	,0
+9000	,	-190.00	,	-230.00	,0
+
+	"
+
+Entity crank_shaft l_driveline_shaft_forced
+	sim:mass 0.20
+	sim:root true # engine easier to deal with if not reversed
+
+Entity cam_shaft l_driveline_shaft_forced
+	sim:mass 0.01
+
+Entity cam_drive torsion_spring
+	soft:a crank_shaft
+	soft:b cam_shaft
+	mat:stiffness 1.0e6
+	mat:damping 1.0e4
+	driveline:left_gear 1
+	driveline:right_gear 2
+
+Entity * l_bearing
+	bearing:shaft crank_shaft
+	#bearing:visc 1.0e-2
+	bearing:friction 5.0
+
+Entity morph_1 l_morpher
+	morph:curve FORD_V8_morph_adapted_from_legacy
+	morph:scale 1.0
+	driveline:shaft solver_crank_shaft_1
+
+Entity * l_action
+	event:action "
+	(P (get 'solver_crank_shaft_1.sim:power') )
+	(set 'legacy_engine.sim:power' P)
+	"
+
+Entity * l_action
+	event:action "
+	(T (get 'legacy_engine.engine:throttle'))
+	(set 'morph_1.engine:throttle' T)
+	"
+
+Entity solver_crank_shaft_1 l_gas_solver_shaft
+	driveline:shaft		crank_shaft
+	gas:periods			1.0
+

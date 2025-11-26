@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- desc version defines the min feature set of the game needed to run the mod -->
+<actor actor_type="vehicleActor">
+    <wheels layout="type2">
+        <wheel side="L" position="F" node="TIRE_LF"/>
+        <wheel side="R" position="F" node="TIRE_RF"/>
+        <wheel side="L" position="R" node="TIRE_LR"/>
+        <wheel side="R" position="R" node="TIRE_RR"/>
+    </wheels>
+	
+	<cockpitAnims>
+
+		<table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_L_PIVOT_CPIT"/>
+            <string name="controlParams" value="speed=0.7,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.1,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_R_PIVOT_CPIT"/>
+            <string name="controlParams" value="speed=1.5,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.25,0.0"/>
+        </table>
+		
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Bonnet"/>
+            <string name="controlParams" value="revs=0.75,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.1"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.5"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+
+		<table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Mirror_L"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.2,0.0"/>
+        </table>
+
+		<table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Mirror_R"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.2,0.0"/>
+        </table>
+
+		<table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Mirror_C"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.1,0.1"/>
+        </table>
+
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Net01"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,1.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Net01"/>
+            <string name="axisScaler" value="0.0,0.1,0.0"/>
+            <number name="stiffness" value="10"/>
+            <number name="damping" value="5"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Net02"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,1.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Net02"/>
+            <string name="axisScaler" value="0.0,0.1,0.0"/>
+            <number name="stiffness" value="10"/>
+            <number name="damping" value="5"/>
+        </table>
+		
+        <number name="vibrationFreqencyMin" value="50"/>
+        <number name="vibrationFreqencyMax" value="85"/>
+    </cockpitAnims>
+    <components>
+        <component type="i3dComponent" name="car">
+            <i3dFile file="$data/vehicles/Chevrolet_Camaro_ZL-1_GT4_2017/Chevrolet_Camaro_ZL-1_GT4_2017.i3d"/>
+            <i3dMappings>
+                <i3dMapping id="vehicle.steeringwheel" node="0>0|0|18"/>
+                <i3dMapping id="vehicle.seat" node="2>"/>
+                <i3dMapping id="vehicle.bodyModel" node="1>0|0"/>
+                <i3dMapping id="vehicle.collisions" node="1>1|0"/>
+				<i3dMapping id="vehicle.glassModel" node="1>0|1"/>
+				<i3dMapping id="vehicle.glassModelInterior" node="0>0|0|19"/>
+            </i3dMappings>
+        </component>
+        <component type="HadronComponent" name="Hadron">
+            <vehicleSourceFilePath value="Chevrolet_Camaro_V8_Supercar.veh.hadron"/>
+            <drivetrainFilePath value="$data/vehicles/_shared/physics/support/drivetrains/drivetrainGT4.xml"/>
+            <assistFilePath value="$data/vehicles/_shared/physics/support/assists/assistGT4.xml"/>
+            <inputFilePath value="$data/vehicles/_shared/physics/support/genericInput.xml"/>
+            <outputFilePath value="$data/vehicles/_shared/physics/support/genericOutput.xml"/>
+            <debugFilePath value="$data/vehicles/_shared/physics/support/debugVisualisation.xml"/>
+            <smoothingFilePath value="$data/vehicles/_shared/physics/support/genericSmoothing.xml"/>
+            <defaultNumSetupSteps value="50"/>
+            <wheelTurnsLockToLock value="1.667"/>
+            <collisionMapping>
+                <collision shape="COL_CHASSIS" material="CAR_STEEL" />
+                <collision shape="COL_BONNET" material="CAR_CARBON" />
+                <collision shape="COL_BUMPER_F" material="CAR_PLASTIC" />
+                <collision shape="COL_BUMPER_R" material="CAR_PLASTIC" />
+                <collision shape="COL_CHASSIS_2" material="CAR_STEEL" />
+                <collision shape="COL_REARWING" material="CAR_CARBON" />
+            </collisionMapping>
+            <detachableParts>
+                <part collision="COL_BONNET">
+                    <node name="CHE_CAM_ZL1_GT4_BONNET"/>
+                    <node name="CHE_CAM_ZL1_GT4_BONNET_ALPHA"/>
+                    <cpit name="CHE_CAM_ZL1_GT4_BONNET_CPIT"/>
+                    <cpit name="CHE_CAM_ZL1_GT4_BONNET_ALPHA_CPIT"/>
+                </part>
+                <part collision="COL_BUMPER_F" aero="front">
+                    <node name="CHE_CAM_ZL1_GT4_BUMPER_F"/>
+                    <node name="CHE_CAM_ZL1_GT4_BUMPER_F_LIVERY"/>
+                    <cpit name="CHE_CAM_ZL1_GT4_BUMPER_F_CPIT"/>
+                </part>
+                <part collision="COL_BUMPER_R">
+                    <node name="CHE_CAM_ZL1_GT4_BUMPER_R"/>
+                </part>
+                <part collision="COL_REARWING" aero="rear">
+                    <node name="CHE_CAM_ZL1_GT4_REARWING"/>
+                    <node name="CHE_CAM_ZL1_GT4_REARWING_ALPHA"/>
+                    <cpit name="CHE_CAM_ZL1_GT4_REARWING_CPIT"/>
+                </part>
+            </detachableParts>
+        </component>
+        <component type="cameraManagerComponent" name="cams" componentRef="car" camerasNode="cameras">
+            <profiles>
+                <profile name="default" nearEnd="1" farStart="1000" farEnd="1400" maxRotation="30" cameraRotationSpeed="140"/>
+                <profile name="chase" stiffness="0.1" maxRotation="180"/>
+                <profile name="internal" nearEnd="0.0001" farStart="1000" farEnd="1400"/>
+                <profile name="fixed" nearEnd="1" farStart="1000" farEnd="1400" maxRotation="45" cameraRotationSpeed="140"/>
+            </profiles>
+            <cameraConfig value="$data/vehicles/_shared/gameplay/cameras/cockpitCameraHANS.xml"/>
+        </component>
+        <component type="AIComponent" name="AIComp"/>
+        <component type="VehicleAudioComponent" name="AudioComp">
+            <audioConfig value="$data/vehicles/Chevrolet_Camaro_ZL-1_GT4_2017/data/Chevrolet_Camaro_ZL-1_GT4_2017_audioConfig.xml"/>
+        </component>
+		 <component type="MotecComponent" name="motec">
+           <default componentRef="car"
+                r="0.78" g="0.78" b="0.78"
+				font="motecgenuineitalic" maxFlash="true"
+                maxR="1.0" maxG="0.0" maxB="0.0"				
+				paletteBindingId="pageSpecific"
+                shiftGI="15000"
+                shiftGIOn="15000"				
+                displayGI="30"
+                displayGIOn="30"				
+                digitsEmissive="3000"	
+                digitsEmissiveOn="3000"		
+            />
+		 <togglePagesWithPopup/>
+             <pages>
+                <topPage>
+                    <widgets>
+                        <widget name="backlight" type="backlight" vehicleParam="lights"/>
+                        <widget name="revs" type="palShaderslider" sParam="2_1_3" r="0.26" g="0.8" b="0.0" minValue="0000" maxValue ="8400" rateTransT="4000" rateTransV="0.7" vehicleParam="revs"/>
+                        <!--widget name="overlay" type="colorcontrol" r="0.0" g="0.0" b="0.0" sParam="3_3_0"/-->
+
+						<widget name="gear_digits" type="digits" bindingId="numbersGear" vehicleParam="gear" zeroNeutral="false" font="motecgenuine"/>
+                        <widget name="speed_digits" type="digits" bindingId="numbersSpeed" vehicleParam="speed" numDigits="3"/>
+                        <widget name="rev_digits" type="digits" bindingId="numbersRev" vehicleParam="revs" numDigits="4"/>
+						
+						<widget name="shift_lights0" type="togglevis" bindingId="RPM_Light00_Status" maxT="0/4" limiterFlash="true" vehicleParam="revs"/>
+                        <widget name="shift_lights1" type="togglevis" bindingId="RPM_Light01_Status" maxT="1/4" limiterFlash="true" vehicleParam="revs"/>
+						<widget name="shift_lights2" type="togglevis" bindingId="RPM_Light02_Status" maxT="2/4" limiterFlash="true" vehicleParam="revs"/>
+						<widget name="shift_lights3" type="togglevis" bindingId="RPM_Light03_Status" maxT="3/4" limiterFlash="true" vehicleParam="revs"/>
+						<widget name="shift_lights4" type="togglevis" bindingId="RPM_Light04_Status" maxT="4/4" limiterFlash="true" vehicleParam="revs"/>
+						
+				        <widget name="shift_lights0Gi" type="backlight" bindingId="shift_lights0" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+				        <widget name="shift_lights1Gi" type="backlight" bindingId="shift_lights1" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+ 				        <widget name="shift_lights2Gi" type="backlight" bindingId="shift_lights2" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+				        <widget name="shift_lights3Gi" type="backlight" bindingId="shift_lights3" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+				        <widget name="shift_lights4Gi" type="backlight" bindingId="shift_lights4" giOn="30000" giOff="30000" emissiveClass="lights" vehicleParam="lights"/>
+
+						<widget name="warning_1" type="togglevis" bindingId="Warning_1" maxThreshold="5" vehicleParam="oil_pressure"/>
+					    <widget name="warning_1Gi" type="backlight" bindingId="Warning_1" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+						
+						<widget name="warning_2" type="togglevis" bindingId="Warning_2" maxThreshold="5" vehicleParam="fuel"/>
+					    <widget name="warning_2Gi" type="backlight" bindingId="Warning_2" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+						
+						<widget name="warning_3" type="togglevis" bindingId="Warning_3" maxThreshold="5" vehicleParam="lock"/>
+					    <widget name="warning_3Gi" type="backlight" bindingId="Warning_3" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+						
+						<widget name="status_light1" type="togglevis" bindingId="Status_Lights" maxThreshold="1" vehicleParam="on"/>
+					    <widget name="status_light1Gi" type="backlight" bindingId="Status_Lights" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+											
+                    </widgets>
+                </topPage>
+
+                <page name="Page1">
+                    <pagedefault paletteBindingId="CHE_CAM_ZL1_GT4_DISPLAY_1"/>
+                    <widgets>
+						
+						<widget name="oilt_digits" type="digits" bindingId="numbersOilT" highThreshold="150" rh="1.0" gh="0.0" bh="0.0" vehicleParam="oil_temp" numDigits="3"/>
+						<widget name="lap_digits" type="digits" bindingId="numbersLap" vehicleParam="lap" numDigits="3"/>
+						<widget name="pos_digits" type="digits" bindingId="numbersPos" vehicleParam="pos" numDigits="2"/>
+						<widget name="laptime_digits" type="digits" bindingId="numbersLapTime" vehicleParam="lapTime" numDigits="7" format="m:s.h"/>
+						<widget name="fuel_digits" type="digits" bindingId="numbersFuelStatus" lowThreshold="10" rl="1.0" gl="0.0" bl="0.0" vehicleParam="fuel" numDigits="4" format="d"/>
+						<widget name="brakebias_digits" type="digits" bindingId="numbersBrakeBias" vehicleParam="brakebias" numDigits="5" format="f1"/>
+						<widget name="tyreT_LF_digits" type="digits" bindingId="numbersTyreT_LF" highThreshold="105" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel1.tyre_temp" numDigits="3"/>
+						<widget name="tyreT_RF_digits" type="digits" bindingId="numbersTyreT_RF" highThreshold="105" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel2.tyre_temp" numDigits="3"/>
+						<widget name="tyreT_LR_digits" type="digits" bindingId="numbersTyreT_LR" highThreshold="105" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel3.tyre_temp" numDigits="3"/>
+						<widget name="tyreT_RR_digits" type="digits" bindingId="numbersTyreT_RR" highThreshold="105" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel4.tyre_temp" numDigits="3"/>
+						
+						<widget name="israce" type="stateindicator" bindingId="Race" vehicleParam="israce"/>
+                        <widget name="isqualy" type="stateindicator" bindingId="Qualy" vehicleParam="isqualifying"/>
+                        <widget name="ispractice" type="stateindicator" bindingId="Practice" vehicleParam="ispractice"/>
+
+                        <widget name="race_digits" type="digits" bindingId="Race" font="motecgenuine" setLabel="RACE"/>
+                        <widget name="qualy_digits" type="digits" bindingId="Qualy" font="motecgenuine" setLabel="QUALIFY"/>
+                        <widget name="practice_digits" type="digits" bindingId="Practice" font="motecgenuine" setLabel="PRACTICE"/>
+                     <!--
+                        <widget name="speed" type="rotator" bindingId="rpmNeedleRot" minAngle="0 73.505 90.279" maxAngle="-180 73.505 90.279" minValue="0" maxValue="20" vehicleParam="speed"/>
+                        -->
+                    </widgets>
+                </page>
+
+                <page name="Page2">
+                    <pagedefault paletteBindingId="CHE_CAM_ZL1_GT4_DISPLAY_2"/>
+                    <widgets>
+                        <widget name="oilp_digits" type="digits" bindingId="numbersOilP" vehicleParam="oil_pressure" numDigits="4" format="f1"/>
+                        <widget name="fuelp_digits" type="digits" bindingId="numbersFuelP" vehicleParam="fuel_pressure"  numDigits="4" format="f1"/>
+						<widget name="fuelused_digits" type="digits" bindingId="numbersFuelUsed" vehicleParam="fuelDelta" numDigits="5" format="f2"/>
+						<widget name="watert_digits" type="digits" bindingId="numbersWaterT" highThreshold="115" rh="1.0" gh="0.0" bh="0.0" vehicleParam="water_temp" numDigits="3"/>
+						<widget name="geart_digits" type="digits" bindingId="numbersGearT" vehicleParam="gearbox_temp" numDigits="3"/>
+						<widget name="brakeT_F_digits" type="digits" bindingId="numbersBrakeTempF" rh="1.0" gh="0.0" bh="0.0" highThreshold="650" vehicleParam="front.brake_temp" numDigits="5" format="d!C"/>
+						<widget name="tyreP_LF_digits" type="digits" bindingId="numbersTyreP_LF" lowThreshold="1.5" rl="1.0" gl="0.0" bl="0.0" vehicleParam="wheel1.tyre_pressure" numDigits="4" format="f2"/>
+						<widget name="tyreP_RF_digits" type="digits" bindingId="numbersTyreP_RF" lowThreshold="1.5" rl="1.0" gl="0.0" bl="0.0" vehicleParam="wheel2.tyre_pressure" numDigits="4" format="f2"/>
+						<widget name="tyreP_LR_digits" type="digits" bindingId="numbersTyreP_LR" lowThreshold="1.5" rl="1.0" gl="0.0" bl="0.0" vehicleParam="wheel3.tyre_pressure" numDigits="4" format="f2"/>
+						<widget name="tyreP_RR_digits" type="digits" bindingId="numbersTyreP_RR" lowThreshold="1.5" rl="1.0" gl="0.0" bl="0.0" vehicleParam="wheel4.tyre_pressure" numDigits="4" format="f2"/>
+						
+						
+                    </widgets>
+                </page>
+						
+										
+
+                <page name="Page3">
+                    <pagedefault paletteBindingId="CHE_CAM_ZL1_GT4_DISPLAY_3"/>
+                    <widgets>
+					    <widget name="lap2_digits" type="digits" bindingId="numbersLap2" vehicleParam="lap" numDigits="3"/>
+						<widget name="pos2_digits" type="digits" bindingId="numbersPos2" vehicleParam="pos" numDigits="2"/>
+					    <widget name="delta_digits" type="digits" bindingId="numbersLapTimeDiff" r="1.0" g="0.0" b="0.0" rl="0.0" gl="0.6" bl="0.0" lowThreshold="0.00001" vehicleParam="lapDelta" updateF="1" numDigits="4" format="+s.t"/>
+						<widget name="bestlap_digits" type="digits" bindingId="numbersBestLap" vehicleParam="bestLap" numDigits="7" format="m:s.h"/>
+						<widget name="laptime2_digits" type="digits" bindingId="numbersLapTime2" vehicleParam="lapTime" numDigits="7" format="m:s.h"/>
+						<widget name="totalsessiontime_digits" type="digits" bindingId="numbersSessionTime" vehicleParam="totalSessionTime" numDigits="7" format="m:s.h"/>
+						<widget name="predictedlaptime_digits" type="digits" bindingId="numbersPredictedLap" vehicleParam="predictedLap" numDigits="7" format="m:s.h"/>
+						<widget name="referenecelap_digits" type="digits" bindingId="numbersReferenceLap" vehicleParam="predictedLap" numDigits="7" format="m:s.h"/>
+						<widget name="lastlap_digits" type="digits" bindingId="numbersLastLap" vehicleParam="lastLap" numDigits="7" format="m:s.h"/>
+						
+						<widget name="israce" type="stateindicator" bindingId="Race2" vehicleParam="israce"/>
+                        <widget name="isqualy" type="stateindicator" bindingId="Qualy2" vehicleParam="isqualifying"/>
+                        <widget name="ispractice" type="stateindicator" bindingId="Practice2" vehicleParam="ispractice"/>
+
+                        <widget name="race2_digits" type="digits" bindingId="Race2" setLabel="RACE"/>
+                        <widget name="qualy2_digits" type="digits" bindingId="Qualy2" setLabel="QUALIFY"/>
+                        <widget name="practice2_digits" type="digits" bindingId="Practice2" setLabel="PRACTICE"/>
+
+                    </widgets>
+                </page>			
+						
+				
+				
+				
+				<popup name="Popup1">
+                    <pagedefault paletteBindingId="CHE_CAM_ZL1_GT4_DISPLAY_4"/>
+                    <widgets>
+					 <widget name="lap3_digits" type="digits" bindingId="numbersLap3" vehicleParam="lap" numDigits="3"/>
+				   </widgets>
+                </popup>
+				
+				<popup name="Popup2">
+                    <pagedefault paletteBindingId="CHE_CAM_ZL1_GT4_DISPLAY_5"/>
+                    <widgets>
+					 <widget name="lap4_digits" type="digits" bindingId="numbersLap4" vehicleParam="lap" numDigits="3"/>
+					 <widget name="brakebias2_digits" type="digits" bindingId="numbersBrakeBias2" vehicleParam="brakebiasdelta" font="motecgenuine" r="0.051" g="0.051" b="0.051" numDigits="6" format="+f2"/>
+				   </widgets>
+                </popup>
+
+            </pages>
+        </component>
+        <component type="FxComponent" name="fx">
+            <fxFilePath value="$data/vehicles/_shared/art/vfx/vehicleFX.xml"/>
+			<fxFilePath value="$data/vehicles/_shared/art/vfx/vehicleFX_Backfire_LMP.xml"/>
+        </component>
+		<component type="GearStickComponent" name="gears">
+  <shiftType type="paddles" />
+</component>
+    </components>
+	<outsideCockpitMeshes>
+        <mesh name="CHE_CAM_ZL1_GT4_BODY_CPIT"/>
+        <mesh name="CHE_CAM_ZL1_GT4_BODY_GLASS_CPIT"/>
+        <mesh name="CHE_CAM_ZL1_GT4_BONNET_ALPHA_CPIT"/>
+        <mesh name="CHE_CAM_ZL1_GT4_BONNET_CPIT"/>
+        <mesh name="CHE_CAM_ZL1_GT4_BONNET_LIVERY_CPIT"/>
+        <mesh name="CHE_CAM_ZL1_GT4_BUMPER_F_CPIT"/>
+        <mesh name="CHE_CAM_ZL1_GT4_CHASSIS_ALPHA_CPIT"/>
+		<mesh name="CHE_CAM_ZL1_GT4_CHASSIS_CPIT"/>
+        <mesh name="CHE_CAM_ZL1_GT4_EXTANIM_CPIT"/>
+        <mesh name="CHE_CAM_ZL1_GT4_MIRROR_L_CPIT"/>
+		<mesh name="CHE_CAM_ZL1_GT4_MIRROR_R_CPIT"/>
+		<mesh name="CHE_CAM_ZL1_GT4_REARWING_CPIT"/>
+		<mesh name="WIPER_CPIT"/>
+	</outsideCockpitMeshes>
+	
+	<mirrorMeshes>
+        <mesh name="CHE_CAM_ZL1_GT4_MIRROR_C" type="centre"/>
+        <mesh name="CHE_CAM_ZL1_GT4_MIRROR_L_CPIT" type="left"/>
+        <mesh name="CHE_CAM_ZL1_GT4_MIRROR_R_CPIT" type="right"/>
+    </mirrorMeshes>
+</actor>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<table name="toyota_supra_v8_supercar" type="table">
+    <parameters>
+        <parameter name="ID" type="string" value="ID_Toyota_Supra_V8_Supercar"/>
+        <parameter name="ActorFile" type="string" value="toyota_supra_v8_supercar_actor.xml"/>	
+        <parameter name="DriverFile" type="string" value="$data/vehicles/Toyota_Supra_GT4/driver/driver_Toyota_Supra_GT4.i3d"/>
+        <parameter name="TiresFile" type="string" value="$data/vehicles/Toyota_Supra_GT4/data/Toyota_Supra_GT4_tires.xml"/>
+		<parameter name="Manufacturer" type="string" value="Toyota"/>
+        <parameter name="Name" type="string" value="GR Supra V8 Supercar"/>
+		<parameter name="VehiclePath" type="string" value="Toyota_Supra_V8_Supercar"/>
+		<parameter name="Material_Body" type="string" value="toy_sup_gt4_evo_carbon_body_dam,toy_sup_gt4_evo_carbon_body"/>
+		<parameter name="Material_Glass" type="string" value="toy_sup_gt4_evo_windshield_glass_dam,toy_sup_gt4_evo_windshield_glass_dam"/>
+		<parameter name="VehicleClass" type="string" value="V8 Supercars"/>
+        <parameter name="TorqueNM" type="number" value="585"/>
+        <parameter name="WeightKG" type="number" value="1370"/>
+        <parameter name="Transmission" type="string" value="6-Speed Paddle"/>
+        <parameter name="PowerBHP" type="number" value="430"/>
+        <parameter name="FuelCapacityLitres" type="number" value="0"/>
+        <parameter name="Layout" type="string" value="Front Engine - RWD"/>
+        <parameter name="EngineName" type="string" value="3.0L L6 Twin Turbo"/>
+		<parameter name="Active" type="boolean" value="true"/>
+		<paramerer name="Price" type="number" value="180000"/>
+		<parameter name="Region" type="string" value="Europe"/>
+		<parameter name="Author" type="string" value="Straight4 Studios"/>
+		<parameter name="Year" type="string" value="2023"/>
+    </parameters>
+</table>

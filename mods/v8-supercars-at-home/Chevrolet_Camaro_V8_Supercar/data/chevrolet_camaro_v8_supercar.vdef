@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<table name="chevrolet_camaro_v8_supercar" type="table">
+    <parameters>
+        <parameter name="ID" type="string" value="ID_Chevrolet_Camaro_V8_Supercar"/>
+        <parameter name="ActorFile" type="string" value="chevrolet_camaro_v8_supercar_actor.xml"/>
+        <parameter name="DriverFile" type="string" value="$data/vehicles/Chevrolet_Camaro_ZL-1_GT4_2017/driver/driver_Chevrolet_Camaro_ZL-1_GT4_2017.i3d"/>
+        <parameter name="TiresFile" type="string" value="$data/vehicles/Chevrolet_Camaro_ZL-1_GT4_2017/data/Chevrolet_Camaro_ZL-1_GT4_2017_tires.xml"/>
+		<parameter name="Manufacturer" type="string" value="Chevrolet"/>
+        <parameter name="Name" type="string" value="Camaro V8 Supercar"/>
+		<parameter name="VehiclePath" type="string" value="Chevrolet_Camaro_V8_Supercar"/>
+		<parameter name="Material_Body" type="string" value="che_cam_gt4_carbon_body,che_cam_gt4_plastic_body,che_cam_gt4_plastic2_body,che_cam_gt4_carbon_body_dam,che_cam_gt4_plastic_body_dam,che_cam_gt4_plastic2_body_dam"/>
+		<parameter name="Material_Glass" type="string" value="che_cam_gt4_windscreen_glass_dam,che_cam_gt4_windscreen_glass_dam"/>
+		<parameter name="Material_Glass_Interior" type="string" value="che_cam_gt4_windscreen_refl_glass_dam,che_cam_gt4_windscreen_refl_glass_dam"/>
+        <parameter name="VehicleClass" type="string" value="V8 Supercars"/>
+        <parameter name="TorqueNM" type="number" value="575"/>
+        <parameter name="WeightKG" type="number" value="1470"/>
+        <parameter name="Transmission" type="string" value="6-Speed Paddle"/>
+        <parameter name="PowerBHP" type="number" value="440"/>
+        <parameter name="FuelCapacityLitres" type="number" value="0"/>
+        <parameter name="Layout" type="string" value="Front Engine - RWD"/>
+        <parameter name="EngineName" type="string" value="6.2L V8"/>
+		<parameter name="Active" type="boolean" value="true"/>
+		<paramerer name="Price" type="number" value="155000"/>
+		<parameter name="Region" type="string" value="Americas"/>
+		<parameter name="Author" type="string" value="Straight4 Studios"/>
+		<parameter name="Year" type="string" value="2017"/>
+    </parameters>
+</table>

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- desc version defines the min feature set of the game needed to run the mod -->
+<actor actor_type="vehicleActor">
+    <wheels layout="type2">
+        <wheel side="L" position="F" node="TIRE_LF"/>
+        <wheel side="R" position="F" node="TIRE_RF"/>
+        <wheel side="L" position="R" node="TIRE_LR"/>
+        <wheel side="R" position="R" node="TIRE_RR"/>
+    </wheels>
+	
+	<cockpitAnims>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_R_ARM_CPIT"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.2"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_R_PIVOT_CPIT"/>
+            <string name="controlParams" value="speed=0,rumble=0"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_L_ARM_CPIT"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.2"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="WIPER_L_PIVOT_CPIT"/>
+            <string name="controlParams" value="speed=0,rumble=0"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Bonnet"/>
+            <string name="controlParams" value="revs=0.75,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.1"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.5"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+
+	<table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Mirror_L"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.15,0.0"/>
+        </table>
+
+		<table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Mirror_R"/>
+            <string name="controlParams" value="speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,0.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.15,0.0"/>
+        </table>
+
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Wires01"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,1.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Wires01"/>
+            <string name="axisScaler" value="0.0,0.1,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Wires02"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,1.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Wires02"/>
+            <string name="axisScaler" value="0.0,0.1,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>	
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Net01"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,1.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Net01"/>
+            <string name="axisScaler" value="0.0,0.1,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>	
+        <table>
+            <string name="type" value="vibration"/>
+            <string name="nodeName" value="CPIT_Net02"/>
+            <string name="controlParams" value="revs=0.5,speed=1,rumble=2"/>
+            <string name="minVibratePos_mm" value="0.0,0.0,0.4"/>
+            <string name="maxVibratePos_mm" value="0.0,0.0,1.0"/>
+            <string name="minVibrateRot_deg" value="0.0,0.0,0.0"/>
+            <string name="maxVibrateRot_deg" value="0.0,0.0,0.0"/>
+        </table>
+        <table>
+            <string name="type" value="gforce"/>
+            <string name="nodeName" value="CPIT_Net02"/>
+            <string name="axisScaler" value="0.0,0.1,0.0"/>
+            <number name="stiffness" value="5"/>
+            <number name="damping" value="1"/>
+        </table>
+		
+        <number name="vibrationFreqencyMin" value="50"/>
+        <number name="vibrationFreqencyMax" value="85"/>
+    </cockpitAnims>
+	
+    <components>
+        <component type="i3dComponent" name="car">
+            <i3dFile file="$data/vehicles/Ford_Mustang_GT4_2024/Ford_Mustang_GT4_2024.i3d"/>
+            <i3dMappings>
+                <i3dMapping id="vehicle.steeringwheel" node="0>0|0|17"/>
+                <i3dMapping id="vehicle.seat" node="2>"/>
+                <i3dMapping id="vehicle.bodyModel" node="1>0|0"/>
+                <i3dMapping id="vehicle.collisions" node="1>1|0"/>
+				<i3dMapping id="vehicle.glassModel" node="1>0|2"/>
+				<i3dMapping id="vehicle.glassModelInterior" node="0>0|0|18"/>
+            </i3dMappings>
+        </component>
+        <component type="HadronComponent" name="Hadron">
+            <vehicleSourceFilePath value="Ford_Mustang_V8_Supercar.veh.hadron"/>
+            <drivetrainFilePath value="$data/vehicles/_shared/physics/support/drivetrains/drivetrainGT4.xml"/>
+            <assistFilePath value="$data/vehicles/_shared/physics/support/assists/assistGT4.xml"/>
+            <inputFilePath value="$data/vehicles/_shared/physics/support/genericInput.xml"/>
+            <outputFilePath value="$data/vehicles/_shared/physics/support/genericOutput.xml"/>
+            <debugFilePath value="$data/vehicles/_shared/physics/support/debugVisualisation.xml"/>
+            <smoothingFilePath value="$data/vehicles/_shared/physics/support/genericSmoothing.xml"/>
+            <defaultNumSetupSteps value="50"/>
+            <wheelTurnsLockToLock value="1.667"/>
+            <collisionMapping>
+                <collision shape="COL_CHASSIS" material="CAR_STEEL" />
+                <collision shape="COL_BUMPER_F" material="CAR_PLASTIC" />
+                <collision shape="COL_BUMPER_R" material="CAR_PLASTIC" />
+                <collision shape="COL_CHASSIS_CANOPY" material="CAR_STEEL" />
+                <collision shape="COL_HOOD" material="CAR_CARBON" />
+                <collision shape="COL_REARWING" material="CAR_CARBON" />
+            </collisionMapping>
+            <detachableParts>
+                <part collision="COL_BUMPER_F" aero="front">
+                    <node name="FORD_MUSTANG_GT4_BUMPER_F"/>
+                    <node name="FORD_MUSTANG_GT4_BUMPER_F_ALPHA"/>
+                    <node name="FORD_MUSTANG_GT4_BUMPER_F_GLASS"/>
+                    <cpit name="FORD_MUSTANG_GT4_BUMPER_F_CPIT"/>
+                </part>
+                <!--<part collision="COL_HOOD">
+                    <node name="FORD_MUSTANG_GT4_HOOD"/>
+                    <node name="FORD_MUSTANG_GT4_HOOD_ALPHA"/>
+                    <cpit name="FORD_MUSTANG_GT4_HOOD_CPIT"/>
+                    <cpit name="FORD_MUSTANG_GT4_HOOD_ALPHA_CPIT"/>
+                </part> -->
+                <part collision="COL_BUMPER_R">
+                    <node name="FORD_MUSTANG_GT4_BUMPER_R"/>
+                    <node name="FORD_MUSTANG_GT4_BUMPER_R_ALPHA"/>
+                    <node name="FORD_MUSTANG_GT4_BUMPER_R_GLASS"/>
+                    <cpit name="FORD_MUSTANG_GT4_BUMPER_R_CPIT"/>
+                </part>
+                <part collision="COL_REARWING" aero="rear">
+                    <node name="FORD_MUSTANG_GT4_REARWING"/>
+                    <node name="FORD_MUSTANG_GT4_REARWING_ALPHA"/>
+                    <cpit name="FORD_MUSTANG_GT4_REARWING_CPIT"/>
+                </part>
+            </detachableParts>
+        </component>
+        <component type="cameraManagerComponent" name="cams" componentRef="car" camerasNode="cameras">
+            <profiles>
+                <profile name="default" nearEnd="1" farStart="1000" farEnd="1400" maxRotation="30" cameraRotationSpeed="140"/>
+                <profile name="chase" stiffness="0.1" maxRotation="180"/>
+                <profile name="internal" nearEnd="0.0001" farStart="1000" farEnd="1400"/>
+                <profile name="fixed" nearEnd="1" farStart="1000" farEnd="1400" maxRotation="45" cameraRotationSpeed="140"/>
+            </profiles>
+            <cameraConfig value="$data/vehicles/_shared/gameplay/cameras/cockpitCameraHANS.xml"/>
+        </component>
+        <component type="AIComponent" name="AIComp"/>
+        <component type="VehicleAudioComponent" name="AudioComp">
+            <audioConfig value="$data/vehicles/Ford_Mustang_GT4_2024/data/Ford_Mustang_GT4_2024_audioConfig.xml"/>
+        </component>
+        <component type="MotecComponent" name="motec">
+            <!-- dashBackground R G B must be kept in sync with the background colour defined in the motec shader -->
+            <default componentRef="car" font="motecgenuineitalic" maxThreshold="8100"
+                r="1.0" g="1.0" b="1.0" maxFlash="true"
+                rh="1.0" gh="0.0" bh="0.0"
+                rl="0.0" gl="0.05" bl="1.0"
+                maxR="1.0" maxG="0.0" maxB="0.0"
+                shiftGI="15000"
+                shiftGIOn="15000"				
+                displayGI="30"
+                displayGIOn="30"	
+                digitsEmissive="1500"	
+                digitsEmissiveOn="1500"	
+                dashBackgroundR="0.01" dashBackgroundG="0.01" dashBackgroundB="0.025"
+                paletteBindingId="pageSpecific"
+            />
+            <pages>
+                <topPage>
+                    <widgets>
+
+                        <widget name="backlight" type="backlight" vehicleParam="lights"/>
+                        <!--widget name="revs" type="palShaderslider" sParam="2_1_3" r="0.05" g="0.25" b="1.0" maxR="0.05" minValue="1000" maxValue ="9000" highThreshold="10000" rateTransT="5000" rateTransV="0.70" vehicleParam="revs"/-->
+						
+                        <widget name="shift_lights0" type="shiftlights" bindingId="FORD_MUSTANG_GT4_RPM_LIGHT_00" sParam="0_3_0" greenT="0/4" r="0.2" g="0.2" b="0.2" limiterFlash="true" vehicleParam="revs"/>
+                        <widget name="shift_lights1" type="shiftlights" bindingId="FORD_MUSTANG_GT4_RPM_LIGHT_01" sParam="0_3_0" greenT="1/4" r="0.2" g="0.2" b="0.2" limiterFlash="true" vehicleParam="revs"/>
+                        <widget name="shift_lights2" type="shiftlights" bindingId="FORD_MUSTANG_GT4_RPM_LIGHT_02" sParam="0_3_0" amberT="2/4" r="0.2" g="0.2" b="0.2" limiterFlash="true" vehicleParam="revs"/>
+                        <widget name="shift_lights3" type="shiftlights" bindingId="FORD_MUSTANG_GT4_RPM_LIGHT_03" sParam="0_3_0" amberT="3/4" r="0.2" g="0.2" b="0.2" limiterFlash="true" vehicleParam="revs"/>
+                        <widget name="shift_lights4" type="shiftlights" bindingId="FORD_MUSTANG_GT4_RPM_LIGHT_04" sParam="0_3_0" redT="4/4" r="0.2" g="0.2" b="0.2" limiterFlash="true" vehicleParam="revs"/>
+
+ 						<widget name="FORD_MUSTANG_GT4_FRONT_TC_LIGHTS" type="togglevis" bindingId="FRONT_TC_LIGHTS_STATUS" maxThreshold="1" vehicleParam="frontLocked"/>
+                        <widget name="Slip_Lights_FGi" type="backlight" bindingId="FORD_MUSTANG_GT4_FRONT_TC_LIGHTS" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+ 						<widget name="FORD_MUSTANG_GT4_REAR_TC_LIGHTS" type="togglevis" bindingId="REAR_TC_LIGHTS_STATUS" maxThreshold="1" vehicleParam="rearLocked"/>
+                        <widget name="Slip_Lights_FGi" type="backlight" bindingId="FORD_MUSTANG_GT4_REAR_TC_LIGHTS" giOn="15000" giOff="15000" emissiveClass="lights" vehicleParam="lights"/>
+
+                  </widgets>
+                </topPage>
+
+                <page name="P1">
+                    <pagedefault paletteBindingId="FORD_MUSTANG_GT4_DISPLAY1_CPIT"/>
+                    <widgets>
+					    <widget name="revs" type="palShaderslider" sParam="2_1_3" r="0.05" g="0.25" b="1.0" maxR="0.05" minValue="1000" maxValue ="9000" highThreshold="10000" rateTransT="5000" rateTransV="0.70" vehicleParam="revs"/>
+						
+			            <widget name="gear_digits" type="digits" bindingId="numbersGear" font="LICENSE_PLATE_CZ" vehicleParam="gear"/>
+                        <widget name="speed_digits" type="digits" bindingId="numbersSpeed" vehicleParam="speed" numDigits="3" align="center"/>
+                        <widget name="lap_time_digits" type="digits" bindingId="numbersLapTime" vehicleParam="lapTime" numDigits="7" align="right"/>						
+                        <widget name="fuel_digits" type="digits" bindingId="numbersFuel" lowThreshold="10" rl="1.0" gl="0.0" bl="0.0" vehicleParam="fuel"  numDigits="5" format="f1" align="center"/>
+                        <widget name="oilt_digits" type="digits" bindingId="OilT" highThreshold="150" rh="1.0" gh="0.0" bh="0.0" vehicleParam="oil_temp" numDigits="3" align="center"/>
+                        <widget name="geart_digits" type="digits" bindingId="GearT" vehicleParam="gearbox_temp" numDigits="3" align="center"/>
+                        <widget name="oilp_digits" type="digits" bindingId="numbersOilP" vehicleParam="oil_pressure" numDigits="4" format="f1" align="center"/>
+						
+                        <widget name="israce" type="stateindicator" bindingId="Race" vehicleParam="israce"/>
+                        <widget name="isqualy" type="stateindicator" bindingId="Qualy" vehicleParam="isqualifying"/>
+                        <widget name="ispractice" type="stateindicator" bindingId="Practice" vehicleParam="ispractice"/>
+
+                        <widget name="race_digits" type="digits" bindingId="Race" r="0.8" g="0.8" b="0.8" setLabel="RACE"/>
+                        <widget name="qualy_digits" type="digits" bindingId="Qualy" r="0.8" g="0.8" b="0.8" setLabel="QUALIFY"/>
+                        <widget name="practice_digits" type="digits" bindingId="Practice" r="0.8" g="0.8" b="0.8" setLabel="PRACTICE"/>		
+
+                    </widgets>
+                </page>
+				
+				
+                <page name="P2">
+                    <pagedefault paletteBindingId="FORD_MUSTANG_GT4_DISPLAY1_CPIT2"/>
+                    <widgets>
+					 
+                        <widget name="revs" type="palShaderslider" sParam="2_1_3" r="0.05" g="0.25" b="1.0" maxR="0.05" minValue="1000" maxValue ="9000" highThreshold="10000" rateTransT="5000" rateTransV="0.70" vehicleParam="revs"/>
+						<widget name="numbers" type="colorcontrol" r="0.028" g="0.028" b="0.028" sParam="0_3_3"/>
+			            <widget name="gear2_digits" type="digits" bindingId="numbersGear2" font="LICENSE_PLATE_CZ" vehicleParam="gear"/>
+                             
+                        <widget name="oilt2_digits" type="digits" bindingId="numbersOilT2" highThreshold="150" rh="1.0" gh="0.0" bh="0.0" vehicleParam="oil_temp" numDigits="3" align="center"/>
+                        <widget name="oilp2_digits" type="digits" bindingId="numbersOilP2" vehicleParam="oil_pressure" numDigits="4" format="f1" align="center"/>
+						<widget name="revs_digit" type="digits" bindingId="numbers_revs" vehicleParam="revs" numDigits="4" align="center"/>
+						<widget name="pos_digits" type="digits" bindingId="numbersPos" vehicleParam="pos" r="0.8" g="0.8" b="0.8" numDigits="2" align="center"/>
+						<widget name="lap_digit" type="digits" bindingId="numbers_Lap" vehicleParam="lap" r="0.8" g="0.8" b="0.8" numDigits="2" align="center"/>
+						<widget name="watert_digits" type="digits" bindingId="numbersWaterT" highThreshold="115" rh="1.0" gh="0.0" bh="0.0" vehicleParam="water_temp" numDigits="3" align="center"/>
+						<widget name="brakebias_digit" type="digits" bindingId="numbers_BrakeBias" vehicleParam="brakebias" numDigits="5" format="f1" align="right"/>
+						
+                        <widget name="israce2" type="stateindicator" bindingId="Race2" vehicleParam="israce"/>
+                        <widget name="isqualy2" type="stateindicator" bindingId="Qualy2" vehicleParam="isqualifying"/>
+                        <widget name="ispractice2" type="stateindicator" bindingId="Practice2" vehicleParam="ispractice"/>
+
+                        <widget name="race2_digits" type="digits" bindingId="Race2" r="0.8" g="0.8" b="0.8" setLabel="RACE"/>
+                        <widget name="qualy2_digits" type="digits" bindingId="Qualy2" r="0.8" g="0.8" b="0.8" setLabel="QUALIFY"/>
+                        <widget name="practice2_digits" type="digits" bindingId="Practice2" r="0.8" g="0.8" b="0.8" setLabel="PRACTICE"/>
+
+                        <widget name="T_brakeLF_digit" type="digits" bindingId="numbersT_brakeLF" highThreshold="650" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel1.brake_temp" numDigits="3" align="center"/>
+                        <widget name="T_brakeRF_digit" type="digits" bindingId="numbersT_brakeRF" highThreshold="650" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel2.brake_temp" numDigits="3" align="center"/>
+                        <widget name="T_brakeLR_digit" type="digits" bindingId="numbersT_brakeLR" highThreshold="650" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel3.brake_temp" numDigits="3" align="center"/>
+                        <widget name="T_brakeRR_digit" type="digits" bindingId="numbersT_brakeRR" highThreshold="650" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel4.brake_temp" numDigits="3" align="center"/>
+
+						<widget name="tyret_lf_digits" type="digits" bindingId="TyreT_LF" highThreshold="105" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel1.tyre_temp" numDigits="3" align="center"/>
+                        <widget name="tyret_rf_digits" type="digits" bindingId="TyreT_RF" highThreshold="105" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel2.tyre_temp" numDigits="3" align="center"/>
+                        <widget name="tyret_lr_digits" type="digits" bindingId="TyreT_LR" highThreshold="105" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel3.tyre_temp" numDigits="3" align="center"/>
+                        <widget name="tyret_rr_digits" type="digits" bindingId="TyreT_RR" highThreshold="105" rh="1.0" gh="0.0" bh="0.0" vehicleParam="wheel4.tyre_temp" numDigits="3" align="center"/>
+
+                        <widget name="tyrep_lf_digits" type="digits" bindingId="TyreP_LF" lowThreshold="1.5" rl="1.0" gl="0.0" bl="0.0" vehicleParam="wheel1.tyre_pressure" numDigits="4" format="f2" align="center"/>
+                        <widget name="tyrep_rf_digits" type="digits" bindingId="TyreP_RF" lowThreshold="1.5" rl="1.0" gl="0.0" bl="0.0" vehicleParam="wheel2.tyre_pressure" numDigits="4" format="f2" align="center"/>
+                        <widget name="tyrep_lr_digits" type="digits" bindingId="TyreP_LR" lowThreshold="1.5" rl="1.0" gl="0.0" bl="0.0" vehicleParam="wheel3.tyre_pressure" numDigits="4" format="f2" align="center"/>
+                        <widget name="tyrep_rr_digits" type="digits" bindingId="TyreP_RR" lowThreshold="1.5" rl="1.0" gl="0.0" bl="0.0" vehicleParam="wheel4.tyre_pressure" numDigits="4" format="f2" align="center"/>
+                    </widgets>
+                </page>
+				
+				 <page name="P3">
+                    <pagedefault paletteBindingId="FORD_MUSTANG_GT4_DISPLAY1_CPIT3"/>
+                    <widgets>
+					    <widget name="revs" type="palShaderslider" sParam="2_1_3" r="0.05" g="0.25" b="1.0" maxR="0.05" minValue="1000" maxValue ="9000" highThreshold="10000" rateTransT="5000" rateTransV="0.70" vehicleParam="revs"/>
+						<widget name="numbers" type="colorcontrol" r="0.028" g="0.028" b="0.028" sParam="0_3_3"/>
+			            <widget name="gear3_digits" type="digits" bindingId="numbersGear3" font="LICENSE_PLATE_CZ" vehicleParam="gear"/>
+                        <widget name="speed2_digits" type="digits" bindingId="numbersSpeed2" vehicleParam="speed" numDigits="3" align="center"/>
+                        <widget name="lap_time2_digits" type="digits" bindingId="numbersLapTime2" vehicleParam="lapTime" numDigits="7" align="right"/>
+						<widget name="bestlap_digit" type="digits" bindingId="numbersBestLap" vehicleParam="bestLap" numDigits="7" align="right"/>
+						<widget name="last_lap_digit" type="digits" bindingId="numbersLastLap" vehicleParam="lastLap" numDigits="7"  align="right"/>
+                        <widget name="fuel2_digits" type="digits" bindingId="numbersFuel2" lowThreshold="10" rl="1.0" gl="0.0" bl="0.0" vehicleParam="fuel"  numDigits="5" format="f1" align="center"/>
+                        <widget name="revs2_digit" type="digits" bindingId="numbers_revs2" vehicleParam="revs" numDigits="4" align="center"/>
+						<widget name="previousFuelDelta_digit" type="digits" bindingId="numberspreviousFuelDelta" vehicleParam="previousFuelDelta"  numDigits="5" format="f1" align="center"/>
+						<widget name="fuelDelta_digit" type="digits" bindingId="numbersfuelDelta" vehicleParam="fuelDelta" numDigits="4" format="f1" align="center"/>
+						<widget name="pos2_digits" type="digits" bindingId="numbersPos2" vehicleParam="pos" r="0.8" g="0.8" b="0.8" numDigits="2" align="center"/>
+						<widget name="lap2_digit" type="digits" bindingId="numbers_Lap2" vehicleParam="lap" r="0.8" g="0.8" b="0.8" numDigits="2" align="center"/>
+						
+                        <widget name="israce3" type="stateindicator" bindingId="Race3" vehicleParam="israce"/>
+                        <widget name="isqualy3" type="stateindicator" bindingId="Qualy3" vehicleParam="isqualifying"/>
+                        <widget name="ispractice3" type="stateindicator" bindingId="Practice3" vehicleParam="ispractice"/>
+
+                        <widget name="race_digits3" type="digits" bindingId="Race3" r="0.8" g="0.8" b="0.8" setLabel="RACE"/>
+                        <widget name="qualy_digits3" type="digits" bindingId="Qualy3" r="0.8" g="0.8" b="0.8" setLabel="QUALIFY"/>
+                        <widget name="practice_digits3" type="digits" bindingId="Practice3" r="0.8" g="0.8" b="0.8" setLabel="PRACTICE"/>		
+
+                    </widgets>
+					 </page>
+					
+					<popup name="PopUp1_limiter">
+                    <pagedefault paletteBindingId="FORD_MUSTANG_GT4_POPUP1_LIMITER"/>
+                    <widgets>
+					  <widget name="pitlimittime_digits" type="digits" bindingId="numbersPitLimitTime" vehicleParam="pitLimitTime" r="0.028" g="0.028" b="0.028" numDigits="7" align="right" format="m:s.h"/>
+                      <widget name="targetspeed_digits" type="digits" bindingId="numbersTargetSpeed" vehicleParam="targetSpeed" r="0.028" g="0.028" b="0.028" numDigits="6" align="center"/>
+				   </widgets>
+                </popup>
+			    <popup name="PopUp2_brakebias">
+                    <pagedefault paletteBindingId="FORD_MUSTANG_GT4_POPUP2_BRAKEBIAS"/>
+                    <widgets>
+                        <widget name="brakebiasdelta_digits" type="digits" bindingId="numbersBrakeBiasDelta" vehicleParam="brakebiasdelta" r="0.028" g="0.028" b="0.028" align="center" format="+f2" numDigits="5"/>
+				   </widgets>
+			  </popup>
+                
+
+
+                <!--page name="Page2">
+                    <pagedefault paletteBindingId="MERC_AMG_GT4_DISPLAY_BACKGROUND2_CPIT"/>
+                    <widgets>
+                        <widget name="watert_digits" type="digits" bindingId="WaterT" vehicleParam="water_temp" numDigits="3"/>
+                        <widget name="battv_digits" type="digits" bindingId="BattV" vehicleParam="batt_v" numDigits="4" format="f1"/>
+
+                        <widget name="t_water" type="colorcontrol" sParam="3_2_3" lowThreshold="60" highThreshold="108" vehicleParam="water_temp"/>
+                        <widget name="t_oil" type="colorcontrol" sParam="2_3_3" lowThreshold="60" highThreshold="108" vehicleParam="oil_temp"/>
+                        <widget name="t_gear" type="colorcontrol" sParam="3_3_3" lowThreshold="60" highThreshold="128" vehicleParam="gearbox_temp"/>
+
+                        <widget name="lap_time_digits2" type="digits" bindingId="LapTime" vehicleParam="lapTime" numDigits="7"/>
+                    </widgets>
+                </page>
+                <page name="Page3">
+                    <pagedefault paletteBindingId="MERC_AMG_GT4_DISPLAY_BACKGROUND3_CPIT" pageRootNode="Page3"/>
+                    <widgets>
+                        <widget name="lastlapbox" type="colorcontrol" sParam="3_2_3"/>
+
+                        <widget name="lap_time_digits3" type="digits" bindingId="LapTime" vehicleParam="lapTime" numDigits="7"/>
+                        <widget name="last_lap_digits" type="digits" bindingId="LastLap" vehicleParam="lastLap" numDigits="7"/>
+                        <widget name="best_lap_digits" type="digits" bindingId="BestLap" vehicleParam="bestLap" numDigits="7"/>
+                    </widgets>
+                </page>
+                <popup name="Popup1-Limiter">
+                    <pagedefault paletteBindingId="MERC_AMG_GT4_POPUP1_LIMITER" pageRootNode="Popup1-Limiter"/>
+                    <widgets>
+                        <widget name="backlight" type="backlight" rOn="0.01" gOn="0.01" bOn="0.05" giOn="1000" giOff = "1500" vehicleParam="lights"/>
+                        <widget name="popup1_box" type="colorcontrol" r="0.0" g="0.05" b="1.0" sParam="3_0_2"/>
+                        <widget name="popup1_frame" type="colorcontrol" r="1.0" g="1.0" b="1.0" sParam="3_3_0"/>
+
+                        <widget name="pit_time_digits" type="digits" bindingId="PitTime" vehicleParam="pitLimitTime" numDigits="7"/>
+
+                    </widgets>
+                </popup>
+                <popup name="Popup2-BrakeBias">
+                    <pagedefault paletteBindingId="MERC_AMG_GT4_POPUP2_BRAKEBIAS" pageRootNode="Popup2-BrakeBias"/>
+                    <widgets>
+                        <widget name="backlight" type="backlight" rOn="0.01" gOn="0.01" bOn="0.05" giOn="1000" giOff = "1500" vehicleParam="lights"/>
+                        <widget name="popup2_box" type="colorcontrol" r="0.0" g="0.7" b="0.0" sParam="3_0_1"/>
+                        <widget name="popup2_frame" type="colorcontrol" r="1.0" g="1.0" b="1.0" sParam="3_3_0"/>
+
+                        <widget name="brakeb_label" type="digits" bindingId="BrakeBias" vehicleParam="brakebias" numDigits="6" format="+f2"/>
+
+                    </widgets>
+                </popup!-->
+
+            </pages>
+        </component>		
+        <component type="FxComponent" name="fx">
+            <fxFilePath value="$data/vehicles/_shared/art/vfx/vehicleFX.xml"/>
+			<fxFilePath value="$data/vehicles/_shared/art/vfx/vehicleFX_Backfire_LMP.xml"/>
+        </component>
+		<component type="GearStickComponent" name="gears">
+  <shiftType type="paddles" />
+</component>
+    </components>
+	<outsideCockpitMeshes>
+        <mesh name="FORD_MUSTANG_GT4_BODY_ALPHA_CPIT"/>
+        <mesh name="FORD_MUSTANG_GT4_BODY_CPIT"/>
+        <mesh name="FORD_MUSTANG_GT4_BODY_GLASS_CPIT"/>
+        <mesh name="FORD_MUSTANG_GT4_BONNET_ALPHA_CPIT"/>
+        <mesh name="FORD_MUSTANG_GT4_BONNET_CPIT"/>
+        <mesh name="FORD_MUSTANG_GT4_BUMPER_F_CPIT"/>
+        <mesh name="FORD_MUSTANG_GT4_BUMPER_R_CPIT"/>
+		<mesh name="FORD_MUSTANG_GT4_CHASSIS_CPIT"/>
+        <mesh name="FORD_MUSTANG_GT4_EXTANIM_CPIT"/>
+        <mesh name="FORD_MUSTANG_GT4_MIRROR_L_CPIT"/>
+		<mesh name="FORD_MUSTANG_GT4_MIRROR_R_CPIT"/>
+		<mesh name="FORD_MUSTANG_GT4_REARWING_CPIT"/>
+		<mesh name="WIPER_CPIT"/>
+	</outsideCockpitMeshes>
+	
+	<mirrorMeshes>
+        <mesh name="FORD_MUSTANG_GT4_MIRROR_L_CPIT" type="left"/>
+        <mesh name="FORD_MUSTANG_GT4_MIRROR_R_CPIT" type="right"/>
+    </mirrorMeshes>
+</actor>

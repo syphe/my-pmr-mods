@@ -1,0 +1,80 @@
+
+SETROOT "../../../.."
+
+BADFORM_IF MARK:Player
+Entity * l_action
+	event:action "(print 'Player')"
+BADFORM_ENDIF
+
+BADFORM_IF MARK:AI
+Entity * l_action
+	event:action "(print 'AI')"
+BADFORM_ENDIF
+
+BADFORM_IF MARK:AI
+VEHICLE_TIRES="Tire_AI/GT4_standard_AI.tire.hadron"
+BADFORM_ELSE
+VEHICLE_TIRES="Tire/GT4_standard.tire.hadron"
+BADFORM_ENDIF
+
+VEHICLE_CHASSIS="Toyota_GR_Supra_GT4_Evo_2023.chas.hadron"
+
+VEHICLE_SUSPENSION="Toyota_GR_Supra_GT4_Evo_2023.susp.hadron"
+
+VEHICLE_AERO="Toyota_GR_Supra_GT4_Evo_2023.aero.hadron"
+
+VEHICLE_ENGINE="Toyota_GR_Supra_V8_Supercar.engn.hadron"
+
+VEHICLE_GEARBOX="Toyota_GR_Supra_GT4_Evo_2023.gbox.hadron"
+
+VEHICLE_DIFF="Driveline/Diff/clutch_lsd_GT4.diff.hadron"
+
+VEHICLE_AXLE="Driveline/Axle/flex_shaft.axle.hadron"
+
+VEHICLE_STEERING="Chassis/steering_rack.0.hadron"
+#VEHICLE_STEERING="Chassis/steering_hack.0.hadron"
+
+#VEHICLE_FFB="Chassis/ffb.tire.eval"
+VEHICLE_FFB="Chassis/ffb.rack.eval"
+
+#VEHICLE_BRAKES="Driveline/falloff_brakes.hadron"
+#VEHICLE_BRAKES="Driveline/falloff_brakes_on_stubs.hadron"
+VEHICLE_BRAKES="Driveline/grab_wobble_brakes.hadron"
+BRAKE_GRAB=0.01
+BRAKE_WOBBLE=4.0
+
+COLLISION_OVERRIDE="Chassis/collision.2.hadron"
+COLLISION_WIDTH_H = 0.900
+
+COLLISION_FSKIRT_S  = 0.510
+COLLISION_FSKIRT_L  = 1.020
+COLLISION_FSENSOR_S = 1.100
+COLLISION_FSENSOR_L = 1.360
+COLLISION_FSENSOR_D = 2.12
+
+COLLISION_RSKIRT_S  = 0.493
+COLLISION_RSKIRT_L  = 0.985
+COLLISION_RSENSOR_S = 1.065
+COLLISION_RSENSOR_L = 1.334
+
+#############################################################
+# TEMPORARY
+FFB_GAIN = 1.1
+FFB_SMOOTHING = 0.1
+RACK_STIFFNESS = 3.0e7
+TIE_ROD_STIFFNESS = 3.0e7
+TIE_ROD_DAMPING = 3.0e5
+BRAKE_BIAS = 0.66
+MAX_BRAKE_PRESSURE=27000.0
+HALF_RACK_STOP=0.05
+
+BADFORM_IF MARK:AI
+BRAKE_PRESSURE_DEFAULT_SCALE=1.00
+BADFORM_ELSE
+BRAKE_PRESSURE_DEFAULT_SCALE=1.00
+BADFORM_ENDIF
+
+BODY_OFFSET=-0.330  # lowers or raises the car body relative to the wheels/tires
+BODY_PITCH=0.0
+INCLUDE "Include/platform.A.hadron"
+
