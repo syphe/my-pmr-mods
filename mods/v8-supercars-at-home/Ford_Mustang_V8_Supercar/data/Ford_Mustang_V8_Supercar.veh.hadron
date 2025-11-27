@@ -19,7 +19,7 @@ BADFORM_ENDIF
 
 VEHICLE_CHASSIS="Ford_Mustang_GT4_2024.chas.hadron"
 
-VEHICLE_SUSPENSION="Ford_Mustang_GT4_2024.susp.hadron"
+VEHICLE_SUSPENSION="Ford_Mustang_V8_Supercar.susp.hadron"
 
 VEHICLE_AERO="Ford_Mustang_GT4_2024.aero.hadron"
 

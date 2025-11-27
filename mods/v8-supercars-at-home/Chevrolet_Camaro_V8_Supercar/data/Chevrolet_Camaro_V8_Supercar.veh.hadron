@@ -19,7 +19,7 @@ BADFORM_ENDIF
 
 VEHICLE_CHASSIS="Chevrolet_Camaro_ZL-1_GT4_2017.chas.hadron"
 
-VEHICLE_SUSPENSION="Chevrolet_Camaro_ZL-1_GT4_2017.susp.hadron"
+VEHICLE_SUSPENSION="Chevrolet_Camaro_V8_Supercar.susp.hadron"
 
 VEHICLE_AERO="Chevrolet_Camaro_ZL-1_GT4_2017.aero.hadron"
 
