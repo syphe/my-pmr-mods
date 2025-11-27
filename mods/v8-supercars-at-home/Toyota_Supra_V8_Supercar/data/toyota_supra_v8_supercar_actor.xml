@@ -251,7 +251,7 @@
         </component>
         <component type="AIComponent" name="AIComp"/>
         <component type="VehicleAudioComponent" name="AudioComp">
-            <audioConfig value="Toyota_Supra_V8_Supercar_audioConfig.xml"/>
+            <audioConfig value="$data/vehicles/Ford_Mustang_GT3_2023/data/Ford_Mustang_GT3_2023_audioConfig.xml"/>
         </component>
         <component type="MotecComponent" name="motec">
             <!-- dashBackground R G B must be kept in sync with the background colour defined in the motec shader -->
