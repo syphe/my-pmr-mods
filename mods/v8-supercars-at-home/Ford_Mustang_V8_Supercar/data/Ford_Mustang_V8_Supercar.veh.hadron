@@ -25,7 +25,7 @@ VEHICLE_AERO="Ford_Mustang_GT4_2024.aero.hadron"
 
 VEHICLE_ENGINE="Ford_Mustang_V8_Supercar.engn.hadron"
 
-VEHICLE_GEARBOX="Ford_Mustang_GT4_2024.gbox.hadron"
+VEHICLE_GEARBOX="Ford_Mustang_V8_Supercar.gbox.hadron"
 
 VEHICLE_DIFF="Driveline/Diff/clutch_lsd.diff.hadron"
 

@@ -25,7 +25,7 @@ VEHICLE_AERO="Chevrolet_Camaro_ZL-1_GT4_2017.aero.hadron"
 
 VEHICLE_ENGINE="Chevrolet_Camaro_V8_Supercar.engn.hadron"
 
-VEHICLE_GEARBOX="Chevrolet_Camaro_ZL-1_GT4_2017.gbox.hadron"
+VEHICLE_GEARBOX="Chevrolet_Camaro_V8_Supercar.gbox.hadron"
 
 VEHICLE_DIFF="Driveline/Diff/clutch_lsd.diff.hadron"
 

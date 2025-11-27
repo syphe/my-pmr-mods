@@ -120,7 +120,7 @@
         <component type="HadronComponent" name="Hadron">
             <vehicleSourceFilePath value="Chevrolet_Camaro_V8_Supercar.veh.hadron"/>
             <drivetrainFilePath value="$data/vehicles/_shared/physics/support/drivetrains/drivetrainGT4.xml"/>
-            <assistFilePath value="$data/vehicles/_shared/physics/support/assists/assistGT4.xml"/>
+            <assistFilePath value="$data/vehicles/_shared/physics/support/assists/assistGT.xml"/>
             <inputFilePath value="$data/vehicles/_shared/physics/support/genericInput.xml"/>
             <outputFilePath value="$data/vehicles/_shared/physics/support/genericOutput.xml"/>
             <debugFilePath value="$data/vehicles/_shared/physics/support/debugVisualisation.xml"/>
@@ -319,8 +319,8 @@
 			<fxFilePath value="$data/vehicles/_shared/art/vfx/vehicleFX_Backfire_LMP.xml"/>
         </component>
 		<component type="GearStickComponent" name="gears">
-  <shiftType type="paddles" />
-</component>
+            <shiftType type="paddles" />
+        </component>
     </components>
 	<outsideCockpitMeshes>
         <mesh name="CHE_CAM_ZL1_GT4_BODY_CPIT"/>
