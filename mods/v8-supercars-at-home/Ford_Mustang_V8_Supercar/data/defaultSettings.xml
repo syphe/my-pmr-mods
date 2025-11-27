@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<table name="VehicleSettings" type="table">
+    <parameters>
+        <table name="ffb" type="table">
+            <parameters>
+                <param name="damping" type="number" value="0.5"/>
+                <param name="lowforceboost" type="number" value="1"/>
+                <param name="perCarStrength" type="number" value="1"/>
+                <param name="crashingefects" type="number" value="1"/>
+                <param name="kerbefects" type="number" value="1"/>
+            </parameters>
+        </table name="ffb" type="table">
+        <table name="cockpit" type="table">
+            <parameters>
+                <param name="defaultCamera" type="string" value=""/>
+                <param name="centreMirrorYawOffset" type="number" value="0"/>
+                <param name="seatPosOffsetZ" type="number" value="0"/>
+                <param name="rightMirrorPitchOffset" type="number" value="0"/>
+                <param name="leftMirrorPitchOffset" type="number" value="0"/>
+                <param name="seatPitchOffset" type="number" value="0.02554140368772192"/>
+                <param name="leftMirrorYawOffset" type="number" value="0"/>
+                <param name="seatPosOffsetX" type="number" value="-0.03465346534653463"/>
+                <param name="seatPosOffsetY" type="number" value="0.012376237623762387"/>
+                <param name="fovDegs" type="number" value="55"/>
+                <param name="centreMirrorPitchOffset" type="number" value="0"/>
+                <param name="rightMirrorYawOffset" type="number" value="0"/>
+            </parameters>
+        </table name="cockpit" type="table">
+        <table name="cam" type="table">
+            <parameters>
+                <param name="speedSensitiveShake" type="number" value="0.4"/>
+                <param name="steerLook" type="number" value="0.6"/>
+                <param name="gforceMovement" type="number" value="0.4"/>
+                <param name="horizontalLock" type="boolean" value="true"/>
+            </parameters>
+        </table name="cam" type="table">
+    </parameters>
+</table name="VehicleSettings" type="table">

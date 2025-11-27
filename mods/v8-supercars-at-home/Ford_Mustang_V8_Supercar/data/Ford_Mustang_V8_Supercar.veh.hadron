@@ -17,11 +17,11 @@ BADFORM_ELSE
 VEHICLE_TIRES="Tire/GT4_standard.tire.hadron"
 BADFORM_ENDIF
 
-VEHICLE_CHASSIS="Ford_Mustang_GT4_2024.chas.hadron"
+VEHICLE_CHASSIS="Ford_Mustang_V8_Supercar.chas.hadron"
 
 VEHICLE_SUSPENSION="Ford_Mustang_V8_Supercar.susp.hadron"
 
-VEHICLE_AERO="Ford_Mustang_GT4_2024.aero.hadron"
+VEHICLE_AERO="Ford_Mustang_V8_Supercar.aero.hadron"
 
 VEHICLE_ENGINE="Ford_Mustang_V8_Supercar.engn.hadron"
 

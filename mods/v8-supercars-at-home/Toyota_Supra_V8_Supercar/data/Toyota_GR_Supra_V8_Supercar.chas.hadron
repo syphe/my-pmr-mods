@@ -1,0 +1,57 @@
+
+
+Entity chassis:root rbd_arbitrary
+	sim:mass 1140.0  #Sprung mass only (SRO bop1360 +80kg driver +20kg ballast -unsprung mass))
+	rigid:dynamic true
+	rigid:inertiaAxial	"350.0	1538.0	1778.0"
+	frame:zyx "0 0 0"
+	# UP: 0.437 - 0.288 = 0.149
+	spc:at "0.032 0.0 0.065"
+Entity driver rbd_arbitrary
+	name "driver"
+	sim:mass 80.0
+	rigid:dynamic true
+	rigid:inertiaAxial	"16.0 16.0	23.0"
+	frame:zyx "0 0 0"
+	 #UP: 0.440 - 0.288 = 0.152
+	spc:at "0.100 0.3 0.152"
+Entity * l_fixed_joint
+	relation:a chassis:root
+	relation:b driver
+
+Entity fuel_cell rbd_arbitrary
+	name "fuel cell"
+	sim:mass 37.0
+	rigid:dynamic true
+	rigid:inertiaAxial	"16.0	15.0	13.0"
+	frame:zyx "0 0 0"
+	 #UP: 0.440 - 0.288 = 0.152
+	spc:at "1.140 0.0 0.250"
+Entity * l_fixed_joint
+	relation:a chassis:root
+	relation:b fuel_cell
+
+Entity ballast rbd_arbitrary
+	name "ballast"
+	sim:mass 50.0
+	rigid:dynamic true
+	rigid:inertiaAxial	"13.0 13.0 16.0"
+	frame:zyx "0 0 0"
+	# UP: 0.150 - 0.288 = -0.138
+	spc:at "0.250 -0.180 -0.138"
+Entity * l_fixed_joint
+	relation:a chassis:root
+	relation:b ballast
+
+#Entity engine rbd_arbitrary
+#	name "engine"
+#	sim:mass 230.0
+#	rigid:dynamic true
+#	rigid:inertiaAxial	"31.03	35.91	56.31"
+#	frame:zyx "0 0 0"
+	# UP: 0.370 - 0.288 = 0.082
+#	spc:at "-1.080 0.0  0.082"
+#Entity * l_fixed_joint
+#	relation:a body
+#	relation:b engine
+

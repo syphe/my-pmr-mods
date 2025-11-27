@@ -17,11 +17,11 @@ BADFORM_ELSE
 VEHICLE_TIRES="Tire/GT4_standard.tire.hadron"
 BADFORM_ENDIF
 
-VEHICLE_CHASSIS="Chevrolet_Camaro_ZL-1_GT4_2017.chas.hadron"
+VEHICLE_CHASSIS="Chevrolet_Camaro_V8_Supercar.chas.hadron"
 
 VEHICLE_SUSPENSION="Chevrolet_Camaro_V8_Supercar.susp.hadron"
 
-VEHICLE_AERO="Chevrolet_Camaro_ZL-1_GT4_2017.aero.hadron"
+VEHICLE_AERO="Chevrolet_Camaro_V8_Supercar.aero.hadron"
 
 VEHICLE_ENGINE="Chevrolet_Camaro_V8_Supercar.engn.hadron"
 

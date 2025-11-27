@@ -17,11 +17,11 @@ BADFORM_ELSE
 VEHICLE_TIRES="Tire/GT4_standard.tire.hadron"
 BADFORM_ENDIF
 
-VEHICLE_CHASSIS="Toyota_GR_Supra_GT4_Evo_2023.chas.hadron"
+VEHICLE_CHASSIS="Toyota_GR_Supra_V8_Supercar.chas.hadron"
 
 VEHICLE_SUSPENSION="Toyota_GR_Supra_V8_Supercar.susp.hadron"
 
-VEHICLE_AERO="Toyota_GR_Supra_GT4_Evo_2023.aero.hadron"
+VEHICLE_AERO="Toyota_GR_Supra_V8_Supercar.aero.hadron"
 
 VEHICLE_ENGINE="Toyota_GR_Supra_V8_Supercar.engn.hadron"
 
