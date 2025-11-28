@@ -50,10 +50,10 @@ Entity final_drive torsion_spring
 	soft:b ring_gear
 	mat:stiffness 1.0e6
 	mat:damping 1.0e4
-#	driveline:left_gear 9			#Combined ratio of 4.3 from 20/26 bevel gear and 13/43 final drive
-#	driveline:right_gear 43
-	driveline:left_gear 9
-	driveline:right_gear 35
+	driveline:left_gear 9			#Combined ratio of 4.3 from 20/26 bevel gear and 13/43 final drive
+	driveline:right_gear 43
+#	driveline:left_gear 9
+#	driveline:right_gear 35
 
 Entity gearbox_losses l_bearing
 	bearing:shaft	drive_shaft

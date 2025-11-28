@@ -38,7 +38,7 @@
     </description>
 
     <!-- defines the icon shown ingame (path relative to mod base folder) -->
-    <iconFilename>icon_helloWorld.png</iconFilename>
+    <iconFilename>icon.png</iconFilename>
 
     <!-- <sourceFiles>
         <sourceFile filename="scripts/helloWorld.lua"/>

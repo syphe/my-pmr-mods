@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<table type="table">
+    <parameters>
+        <parameter name="ID" type="string" value="Chevrolet_Camaro_V8_Supercar_livery2"/>
+		<parameter name="Name" type="string" value="Livery 2"/>
+		<parameter name="MaterialSwap" type="string" value="t_chevrolet_camaro_gt4_livery_12"/>
+		<parameter name="BannerSwap" type="string" value="t_chevrolet_camaro_gt4_livery12_banner"/>
+		<parameter name="BannerSwapInterior" type="string" value="t_chevrolet_camaro_gt4_livery12_banner"/>
+	
+		<table name="AIDriverData" type="table">
+			<parameter name="Name" type="string" value="Alex Tremblay"/>
+			<parameter name="Nationality"	type="string" value="canada" />
+ 			<parameter name="Aggression_Min" 	type="number" 	value=" 15" />
+ 			<parameter name="Aggression_Max" 	type="number" 	value=" 30" />
+ 			<parameter name="Consistency_Min" 	type="number" 	value=" 90" />
+ 			<parameter name="Consistency_Max" 	type="number" 	value=" 100" />
+ 			<parameter name="Qualifying_Min" 	type="number" 	value=" 87" />
+ 			<parameter name="Qualifying_Max" 	type="number" 	value=" 99" />
+ 			<parameter name="Finishing_Min" 	type="number" 	value=" 80" />
+ 			<parameter name="Finishing_Max" 	type="number" 	value=" 99" />
+ 			<parameter name="StartReactions_Min" 	type="number" 	value=" 90" />
+ 			<parameter name="StartReactions_Max" 	type="number" 	value=" 100" />
+ 			<parameter name="Strength_Min" 	type="number" 	value=" 89" />
+ 			<parameter name="Strength_Max" 	type="number" 	value=" 98" />
+		</table>
+	</parameters>
+</table>

@@ -200,7 +200,7 @@
         </component>
         <component type="HadronComponent" name="Hadron">
             <vehicleSourceFilePath value="Toyota_GR_Supra_V8_Supercar.veh.hadron"/>
-            <drivetrainFilePath value="$data/vehicles/_shared/physics/support/drivetrains/drivetrainGT4.xml"/>
+            <drivetrainFilePath value="$data/vehicles/_shared/physics/support/drivetrains/drivetrainGT4_MidTurbo.xml"/>
             <assistFilePath value="$data/vehicles/_shared/physics/support/assists/assistGT.xml"/>
             <inputFilePath value="$data/vehicles/_shared/physics/support/genericInput.xml"/>
             <outputFilePath value="$data/vehicles/_shared/physics/support/genericOutput.xml"/>
