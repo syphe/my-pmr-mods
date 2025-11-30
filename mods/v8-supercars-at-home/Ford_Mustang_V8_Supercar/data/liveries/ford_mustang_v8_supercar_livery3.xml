@@ -3,11 +3,13 @@
     <parameters>
         <parameter name="ID" type="string" value="ford_mustang_v8_supercar_livery3"/>
 		<parameter name="Name" type="string" value="Livery 3"/>
-		<parameter name="MaterialSwap" type="string" value="t_ford_mustang_gt4_livery49"/>
-		<parameter name="BannerSwap" type="string" value="t_ford_mustang_gt4_banner"/>
-		<parameter name="BannerSwapInterior" type="string" value="t_ford_mustang_gt4_banner"/>
-		<!-- <parameter name="ThumbnailPath" type="string" value="../thumbnails/"/>
-		<parameter name="BannerBasePath" type="string" value="../../liveries/" /> -->
+		<parameter name="MaterialSwap" type="string" value="ford_mustang_v8_supercar_livery3"/>
+		<parameter name="BannerSwap" type="string" value="ford_mustang_v8_supercar_livery3_banner"/>
+		<parameter name="BannerSwapInterior" type="string" value="ford_mustang_v8_supercar_livery3_banner"/>
+		<!-- <parameter name="ThumbnailPath" type="string" value="../thumbnails/"/> -->
+		<parameter name="MaterialBasePath" type="string" value="../../liveries/" />
+		<parameter name="BannerBasePath" type="string" value="../../liveries/" />
+		<parameter name="TexturesBasePath" type="string" value="$data/vehicles/Ford_Mustang_GT4_2024/Textures" />
 		
 		<table name="AIDriverData" type="table">
 			<parameter name="Name" type="string" value="Jack Withers"/>

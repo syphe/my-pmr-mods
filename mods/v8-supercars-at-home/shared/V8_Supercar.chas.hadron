@@ -1,0 +1,57 @@
+
+
+Entity chassis:root rbd_arbitrary
+	sim:mass 1210.0  #sprung mass only (1490kg min +80kg driver +35kg ballast -unsprung mass)
+	rigid:dynamic true
+	rigid:inertiaAxial	"365.0	1746.0	1903.0" #
+	frame:zyx "0 0 0"
+	# UP: 0.437 - 0.288 = 0.149
+	spc:at "-0.078 0.0 0.065"    #Sprung mass : CG 47.1% rear bias, 0.394 height from ground. *Jussi: CG height not adjusted
+
+Entity driver rbd_arbitrary
+	name "driver"
+	sim:mass 80.0
+	rigid:dynamic true
+	rigid:inertiaAxial	"20.0 24.0 32.0"
+	frame:zyx "0 0 0"
+	 #UP: 0.440 - 0.288 = 0.152
+	spc:at "-0.100 0.3 0.152"
+Entity * l_fixed_joint
+	relation:a chassis:root
+	relation:b driver
+
+	Entity fuel_cell rbd_arbitrary
+	name "fuel cell"
+	sim:mass 37.0
+	rigid:dynamic true
+	rigid:inertiaAxial	"16.0	15.0	13.0"
+	frame:zyx "0 0 0"
+	 #UP: 0.440 - 0.288 = 0.152
+	spc:at "-0.300 0.0 0.250"
+Entity * l_fixed_joint
+	relation:a chassis:root
+	relation:b fuel_cell
+
+Entity ballast rbd_arbitrary
+	name "ballast"
+	sim:mass 35.0
+	rigid:dynamic true
+	rigid:inertiaAxial	"35.49 35.49 37.8"
+	frame:zyx "0 0 0"
+	spc:at "0.200 -0.180 -0.138"
+Entity * l_fixed_joint
+	relation:a chassis:root
+	relation:b ballast
+
+#Entity engine rbd_arbitrary
+#	name "engine"
+#	sim:mass 185.0
+#	rigid:dynamic true
+#	rigid:inertiaAxial	"25.46	25.46	44.40"
+#	frame:zyx "0 0 0"
+	# UP: 0.370 - 0.288 = 0.082
+#	spc:at "-1.080 0.0  0.082"
+#Entity * l_fixed_joint
+#	relation:a body
+#	relation:b engine
+

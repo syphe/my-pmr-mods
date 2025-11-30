@@ -3,13 +3,14 @@
     <parameters>
         <parameter name="ID" type="string" value="Chevrolet_Camaro_V8_Supercar_livery2"/>
 		<parameter name="Name" type="string" value="Livery 2"/>
-		<parameter name="MaterialSwap" type="string" value="t_chevrolet_camaro_gt4_livery_12"/>
-		<parameter name="BannerSwap" type="string" value="t_chevrolet_camaro_gt4_livery12_banner"/>
-		<parameter name="BannerSwapInterior" type="string" value="t_chevrolet_camaro_gt4_livery12_banner"/>
+		<parameter name="MaterialSwap" type="string" value="chevrolet_camaro_v8_supercar_livery2"/>
+		<parameter name="BannerSwap" type="string" value="chevrolet_camaro_v8_supercar_livery2_banner"/>
+		<parameter name="BannerSwapInterior" type="string" value="chevrolet_camaro_v8_supercar_livery2_banner"/>
+		<parameter name="TexturesBasePath" type="string" value="$data/vehicles/Chevrolet_Camaro_ZL-1_GT4_2017/Textures" />
 	
 		<table name="AIDriverData" type="table">
-			<parameter name="Name" type="string" value="Alex Tremblay"/>
-			<parameter name="Nationality"	type="string" value="canada" />
+			<parameter name="Name" type="string" value="Ward Perry"/>
+			<parameter name="Nationality"	type="string" value="australia" />
  			<parameter name="Aggression_Min" 	type="number" 	value=" 15" />
  			<parameter name="Aggression_Max" 	type="number" 	value=" 30" />
  			<parameter name="Consistency_Min" 	type="number" 	value=" 90" />

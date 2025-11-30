@@ -4,12 +4,13 @@
         <parameter name="ID" type="string" value="toyota_supra_v8_supercar_livery3"/>
 		<parameter name="Name" type="string" value="Livery 3"/>
 
-		<parameter name="MaterialSwap" type="string" value="t_toy_sup_gt4_evo_livery68"/>
-		<parameter name="BannerSwap" type="string" value="t_toy_sup_gt4_evo_banner_livery3368"/>
+		<parameter name="MaterialSwap" type="string" value="toy_sup_v8_supercar_livery3"/>
+		<parameter name="BannerSwap" type="string" value="toy_sup_v8_supercar_livery2_banner"/>
+		<parameter name="TexturesBasePath" type="string" value="$data/vehicles/Toyota_Supra_GT4/Textures" />
 				
 		<table name="AIDriverData" type="table">
-			<parameter name="Name" type="string" value="Masato Kuroda"/>
-			<parameter name="Nationality"	type="string" value="japan" />
+			<parameter name="Name" type="string" value="Bennie Jensen"/>
+			<parameter name="Nationality"	type="string" value="australia" />
  			<parameter name="Aggression_Min" 	type="number" 	value=" 15" />
  			<parameter name="Aggression_Max" 	type="number" 	value=" 30" />
  			<parameter name="Consistency_Min" 	type="number" 	value=" 90" />

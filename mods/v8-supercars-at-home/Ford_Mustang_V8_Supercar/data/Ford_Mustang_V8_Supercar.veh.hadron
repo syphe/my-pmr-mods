@@ -17,15 +17,15 @@ BADFORM_ELSE
 VEHICLE_TIRES="Tire/GT4_standard.tire.hadron"
 BADFORM_ENDIF
 
-VEHICLE_CHASSIS="Ford_Mustang_V8_Supercar.chas.hadron"
+VEHICLE_CHASSIS="../../shared/V8_Supercar.chas.hadron"
 
-VEHICLE_SUSPENSION="Ford_Mustang_V8_Supercar.susp.hadron"
+VEHICLE_SUSPENSION="../../shared/V8_Supercar.susp.hadron"
 
-VEHICLE_AERO="Ford_Mustang_V8_Supercar.aero.hadron"
+VEHICLE_AERO="../../shared/V8_Supercar.aero.hadron"
 
-VEHICLE_ENGINE="Ford_Mustang_V8_Supercar.engn.hadron"
+VEHICLE_ENGINE="../../shared/V8_Supercar.engn.hadron"
 
-VEHICLE_GEARBOX="Ford_Mustang_V8_Supercar.gbox.hadron"
+VEHICLE_GEARBOX="../../shared/V8_Supercar.gbox.hadron"
 
 VEHICLE_DIFF="Driveline/Diff/clutch_lsd.diff.hadron"
 

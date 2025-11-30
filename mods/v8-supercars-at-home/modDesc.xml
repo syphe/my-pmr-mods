@@ -12,7 +12,7 @@
     </vehicles>
 
     <vehicleClass>
-		<class name="V8 Supercars" image="icons/classIcon_trackDay.png"/>
+		<class name="V8 Supercars" image="icons/classIcon_v8_supercars.png"/>
 	</vehicleClass>
 
     <!-- defines the mod author -->
