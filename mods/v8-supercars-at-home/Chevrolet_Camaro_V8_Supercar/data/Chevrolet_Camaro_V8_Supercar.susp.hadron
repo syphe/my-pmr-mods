@@ -34,8 +34,8 @@ PUSHROD_ON_BODY =	"	1.367	$(LAT)0.550	0.220	"
 PUSHROD_ON_B_ARM =	"	1.417	$(LAT)0.697	-0.133	"
 
 #INCLINATION =               0.069 # -3.0 deg Camber
-CAMBER =					-2.7
-TOE	=						-0.1 #degrees per wheel. + is toe in. - is toe out (1mm toe = .8 deg toe across 20")
+CAMBER =					-2.5
+TOE	=						-0.2 #degrees per wheel. + is toe in. - is toe out (1mm toe = .8 deg toe across 20")
 
 #FRONT SETUP
 CAMBER_RANGE =				"-4.0 0 0.1"
@@ -49,18 +49,18 @@ BUMPSTOP_STIFFNESS_RANGE = "100000 900000 100000"
 BUMPSTOP_SIZE_RANGE = "0.0 0.060 0.005"
 
 # FRONT SPRING DAMPER
-STIFFNESS =                 250000             # Pure Spring rate in N/m+
-SLOW_BUMP =                 20000            #Damping rate in N/m/s+
-SLOW_REBOUND =          20000           #Damping rate in N/m/s+
-FAST_BUMP =                 7000               #Damping rate in N/m/s range is 5600-10,000+
-FAST_REBOUND =          9000              #Damping rate in N/m/s+
+STIFFNESS =                 230000             # Pure Spring rate in N/m+
+SLOW_BUMP =                 16000            #Damping rate in N/m/s+
+SLOW_REBOUND =          17000           #Damping rate in N/m/s+
+FAST_BUMP =                 7500               #Damping rate in N/m/s range is 5600-10,000+
+FAST_REBOUND =          7500              #Damping rate in N/m/s+
 KNEE_BUMP =					0.05                # Meters/sec bump damper switches to FAST damping (the valve blow-off)
 KNEE_REBOUND =			0.05               # Meters/sec rebound damper switches to FAST damping (the valve blow-off)
 COMPRESSION_TRAVEL =    0.065        #Meters of bump travel. Free travel is this - bumpstop length.
 EXTENSION_TRAVEL =          0.060         #Meters of rebound travel
 BUMPSTOP_STIFFNESS =     200000  #Spring Rate N/M
 BUMPSTOP_DAMPING =      11000        # N/m/s
-BUMPSTOP_SIZE =   0.020         #length in meters.
+BUMPSTOP_SIZE =   0.010         #length in meters.
 
 #UPRIGHT_MASS =				23.0
 UPRIGHT_MASS =				50.0   #Kg
@@ -111,18 +111,18 @@ BUMPSTOP_STIFFNESS_RANGE = "100000 900000 100000"
 BUMPSTOP_SIZE_RANGE = "0.0 0.060 0.005"
 
 # REAR SPRING DAMPER
-STIFFNESS =                 180000
+STIFFNESS =                 190000
 SLOW_BUMP =                 14000
-SLOW_REBOUND =              18000
+SLOW_REBOUND =              16000
 FAST_BUMP =                 7000    #range is 5600-10,000
-FAST_REBOUND =              10000 #range is 7200-16,500
+FAST_REBOUND =              6000 #range is 7200-16,500
 KNEE_BUMP =					0.05
 KNEE_REBOUND =			    0.05
 COMPRESSION_TRAVEL =        0.075
 EXTENSION_TRAVEL =          0.070
-BUMPSTOP_STIFFNESS =        200000
+BUMPSTOP_STIFFNESS =        300000
 BUMPSTOP_DAMPING =          11000
-BUMPSTOP_SIZE =   0.020
+BUMPSTOP_SIZE =   0.010
 
 #UPRIGHT_MASS =				26.0
 UPRIGHT_MASS =				55.0
@@ -152,7 +152,7 @@ Y_ARB =			0.764
 Z_ARB =			0.2
 X_ARB_LINK =	1.448
 Z_ARB_LINK =	-0.153
-ARB_STIFFNESS =	7.0e4
+ARB_STIFFNESS =	5.0e4
 ARB_DAMPING =   1.0e3
 ARB_RANGE = "1.0e4 20.0e4 1.0e4"
 INCLUDE "Suspension/antirollbar.2.hadron"
@@ -164,7 +164,7 @@ Y_ARB =			0.733
 Z_ARB =			0.2
 X_ARB_LINK =	-1.466
 Z_ARB_LINK =	-0.153
-ARB_STIFFNESS =	2.0e4
+ARB_STIFFNESS =	5.0e4
 ARB_DAMPING =   1.0e3
 ARB_RANGE = "1.0e4 20.0e4 1.0e4"
 INCLUDE "Suspension/antirollbar.2.hadron"
@@ -183,9 +183,9 @@ Entity * l_range_channel_filter_w_binding
 Entity * l_range_channel_filter_w_binding
 	channel:range "-0.03 0.03 0.001"
 	channel:name "RL-spring-platform"
-	channel:initial 0.0
+	channel:initial 0.002
 
 Entity * l_range_channel_filter_w_binding
 	channel:range "-0.03 0.03 0.001"
 	channel:name "RR-spring-platform"
-	channel:initial 0.0	
+	channel:initial 0.0	02

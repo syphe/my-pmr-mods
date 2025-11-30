@@ -191,7 +191,7 @@
         <component type="i3dComponent" name="car">
             <i3dFile file="$data/vehicles/Toyota_Supra_GT4/Toyota_Supra_GT4_Evo.i3d"/>
             <i3dMappings>
-                <i3dMapping id="vehicle.steeringwheel" node="2>0|0|13"/>
+                <i3dMapping id="vehicle.steeringwheel" node="2>0|0|14"/>
                 <i3dMapping id="vehicle.seat" node="3>"/>
                 <i3dMapping id="vehicle.bodyModel" node="0>0|4"/>
                 <i3dMapping id="vehicle.collisions" node="0>1|0"/>
@@ -406,8 +406,8 @@
 			<fxFilePath value="$data/vehicles/_shared/art/vfx/vehicleFX_Backfire_LMP.xml"/>
         </component>
 		<component type="GearStickComponent" name="gears">
-            <shiftType type="paddles" />
-        </component>
+  <shiftType type="paddles" />
+</component>
     </components>
 	
 	<outsideCockpitMeshes>

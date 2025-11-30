@@ -319,8 +319,8 @@
 			<fxFilePath value="$data/vehicles/_shared/art/vfx/vehicleFX_Backfire_LMP.xml"/>
         </component>
 		<component type="GearStickComponent" name="gears">
-            <shiftType type="paddles" />
-        </component>
+  <shiftType type="paddles" />
+</component>
     </components>
 	<outsideCockpitMeshes>
         <mesh name="CHE_CAM_ZL1_GT4_BODY_CPIT"/>
