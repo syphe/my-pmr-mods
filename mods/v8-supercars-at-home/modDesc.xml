@@ -32,8 +32,16 @@
     <!-- defines the mod description shown ingame. multilanguage support using the shortcuts like fr, es, cz, jp, etc -->
     <description>
         <en>
-            Me: Can we have V8 Supercars.
-            Mum: Don't we have V8 Supercars at home?
+            <![CDATA[This mod contains a new class of cars based on the in-game GT4 Camaro, Mustang and Supra.
+            
+            The aim of this mod is to provide a class that mimic's the V8 Supercars while we wait for this class to appear officially.
+            
+            - Each car shares the same engine, drivetrain, and aero parameters
+            - The engine is tuned to roughly 600hp @ 7500rpm
+            - The drivetrain and aero parameters are currently the same as the GT4 Mustang that this mod is based on
+            - The Supra now sounds like a V8
+            - Each car is using the older GT car set of assists (to better mimic the sequential setup of these cars)
+            - Liveries are currently placeholders]]>
         </en>
     </description>
 
