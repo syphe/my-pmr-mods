@@ -19,7 +19,7 @@ BADFORM_ENDIF
 
 VEHICLE_CHASSIS="../../shared/V8_Supercar.chas.hadron"
 
-VEHICLE_SUSPENSION="../../shared/V8_Supercar.susp.hadron"
+VEHICLE_SUSPENSION="Chevrolet_Camaro_V8_Supercar.susp.hadron"
 
 VEHICLE_AERO="../../shared/V8_Supercar.aero.hadron"
 

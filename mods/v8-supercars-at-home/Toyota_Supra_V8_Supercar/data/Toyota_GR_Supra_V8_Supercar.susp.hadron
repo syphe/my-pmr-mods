@@ -1,9 +1,4 @@
-#Ford Mustang GT3
-#Front motion ratio= .800
-#Rear motion ratio= .800
-#wheelbase= 2.720 (1.360)
-#front track= 1.703 (0.851)
-#rear track= 1.660 (0.830)
+# Toyota Supra V8 Supercar
 
 #   Hadron and ISO 8855
 #   +x = forward
@@ -69,7 +64,7 @@ UPRIGHT_INERTIA =			"0.310	0.310	0.290"
 UPRIGHT_LOCATION =		"1.360   $(LAT)0.831    0.0" #Center of upright , or Hub face ?
 
 WHEEL_MASS =				22.0   #Kg
-WHEEL_LOCATION =		"1.360   $(LAT)0.851    0.0" #should be 1/2 the wheel base (X) and 1/2 the track (Y).
+WHEEL_LOCATION =		"1.235   $(LAT)0.753    0.0" #should be 1/2 the wheel base (X) and 1/2 the track (Y).
 WHEEL_INERTIA =				"0.724	1.292	0.724"
 
 #############################################################
@@ -131,7 +126,7 @@ UPRIGHT_INERTIA =			"0.380	0.380	0.350"
 UPRIGHT_LOCATION =			"-1.360   $(LAT)0.825    0.0"
 
 WHEEL_MASS =				24.0
-WHEEL_LOCATION =			"-1.360   $(LAT)0.845    0.0"
+WHEEL_LOCATION =			"-1.235   $(LAT)0.765    0.0"
 WHEEL_INERTIA =				"0.875	1.446	0.875"
 
 #############################################################
