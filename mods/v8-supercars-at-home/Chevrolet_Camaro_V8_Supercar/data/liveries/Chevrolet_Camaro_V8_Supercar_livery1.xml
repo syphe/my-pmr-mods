@@ -3,7 +3,7 @@
     <parameters>
         <parameter name="ID" type="string" value="Chevrolet_Camaro_V8_Supercar_livery1"/>
 		<parameter name="Name" type="string" value="Livery 1"/>
-		<parameter name="MaterialSwap" type="string" value="t_chevrolet_camaro_v8_supercar_livery"/>
+		<parameter name="MaterialSwap" type="string" value="t_chevrolet_camaro_gt4_presentation_livery"/>
 		<parameter name="BannerSwap" type="string" value="t_chevrolet_camaro_gt4_presentation_livery_banner"/>
 		<parameter name="BannerSwapInterior" type="string" value="t_chevrolet_camaro_gt4_presentation_livery_banner"/>
 	
