@@ -12,9 +12,9 @@ Entity * l_action
 BADFORM_ENDIF
 
 BADFORM_IF MARK:AI
-VEHICLE_TIRES="Tire_AI/GT4_standard_AI.tire.hadron"
+VEHICLE_TIRES="Tire_AI/NGT_Standard_AI.tire.hadron"
 BADFORM_ELSE
-VEHICLE_TIRES="Tire/GT4_standard.tire.hadron"
+VEHICLE_TIRES="Tire/NGT_Standard.tire.hadron"
 BADFORM_ENDIF
 
 VEHICLE_CHASSIS="../../shared/V8_Supercar.chas.hadron"
