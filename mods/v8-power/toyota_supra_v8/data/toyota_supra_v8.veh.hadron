@@ -17,27 +17,25 @@ BADFORM_ELSE
 VEHICLE_TIRES="Tire/NGT_Standard.tire.hadron"
 BADFORM_ENDIF
 
-VEHICLE_CHASSIS="../../shared/V8_Supercar.chas.hadron"
+VEHICLE_CHASSIS="../../shared/chas.hadron"
 
-VEHICLE_SUSPENSION="Chevrolet_Camaro_V8_Supercar.susp.hadron"
+VEHICLE_SUSPENSION="toyota_supra_v8.susp.hadron"
 
-VEHICLE_AERO="../../shared/V8_Supercar.aero.hadron"
+VEHICLE_AERO="../../shared/aero.hadron"
 
-VEHICLE_ENGINE="../../shared/V8_Supercar.engn.hadron"
+VEHICLE_ENGINE="../../shared/engn.hadron"
 
-VEHICLE_GEARBOX="../../shared/V8_Supercar.gbox.hadron"
+VEHICLE_GEARBOX="../../shared/gbox.hadron"
 
-VEHICLE_DIFF="Driveline/Diff/clutch_lsd.diff.hadron"
+VEHICLE_DIFF="Driveline/Diff/clutch_lsd_GT4.diff.hadron"
 
 VEHICLE_AXLE="Driveline/Axle/flex_shaft.axle.hadron"
 
 VEHICLE_STEERING="Chassis/steering_rack.0.hadron"
-#VEHICLE_STEERING="Chassis/reverse_steering_rack.0.hadron"
+#VEHICLE_STEERING="Chassis/steering_hack.0.hadron"
 
 #VEHICLE_FFB="Chassis/ffb.tire.eval"
 VEHICLE_FFB="Chassis/ffb.rack.eval"
-
-#INCLUDE "Inspector/connect_to_dyno.hadron"
 
 #VEHICLE_BRAKES="Driveline/falloff_brakes.hadron"
 #VEHICLE_BRAKES="Driveline/falloff_brakes_on_stubs.hadron"
@@ -45,26 +43,32 @@ VEHICLE_BRAKES="Driveline/grab_wobble_brakes.hadron"
 BRAKE_GRAB=0.01
 BRAKE_WOBBLE=4.0
 
-COLLISION_OVERRIDE="Chassis/collision.1.hadron"
-COLLISION_WIDTH_H = 0.84
-COLLISION_SKIRT_L = 1.09
-COLLISION_SKIRT_S = 0.54
-COLLISION_SENSOR_L = 1.37
-COLLISION_SENSOR_S = 0.92
-COLLISION_SENSOR_D = 2.01
+COLLISION_OVERRIDE="Chassis/collision.2.hadron"
+COLLISION_WIDTH_H = 0.900
+
+COLLISION_FSKIRT_S  = 0.510
+COLLISION_FSKIRT_L  = 1.020
+COLLISION_FSENSOR_S = 1.100
+COLLISION_FSENSOR_L = 1.360
+COLLISION_FSENSOR_D = 2.12
+
+COLLISION_RSKIRT_S  = 0.493
+COLLISION_RSKIRT_L  = 0.985
+COLLISION_RSENSOR_S = 1.065
+COLLISION_RSENSOR_L = 1.334
 
 #############################################################
 # TEMPORARY
-FFB_GAIN = 1.00
+FFB_GAIN = 1.1
 FFB_SMOOTHING = 0.1
 RACK_STIFFNESS = 3.0e7
 TIE_ROD_STIFFNESS = 3.0e7
 TIE_ROD_DAMPING = 3.0e5
 BRAKE_BIAS = 0.66
-MAX_BRAKE_PRESSURE=30000.0
+MAX_BRAKE_PRESSURE=27000.0
 HALF_RACK_STOP=0.05
-DEFAULT_TIRE_PRESSURE_F=141000.0
-DEFAULT_TIRE_PRESSURE_R=141000.0
+DEFAULT_TIRE_PRESSURE_F=143000.0
+DEFAULT_TIRE_PRESSURE_R=143000.0
 
 BODY_OFFSET=-0.330  # lowers or raises the car body relative to the wheels/tires
 BODY_PITCH=0.0

@@ -199,7 +199,7 @@
 			</i3dMappings>
         </component>
         <component type="HadronComponent" name="Hadron">
-            <vehicleSourceFilePath value="Toyota_GR_Supra_V8_Supercar.veh.hadron"/>
+            <vehicleSourceFilePath value="toyota_supra_v8.veh.hadron"/>
             <drivetrainFilePath value="$data/vehicles/_shared/physics/support/drivetrains/drivetrainGT4.xml"/>
             <assistFilePath value="$data/vehicles/_shared/physics/support/assists/assistGT.xml"/>
             <inputFilePath value="$data/vehicles/_shared/physics/support/genericInput.xml"/>

@@ -118,7 +118,7 @@
             </i3dMappings>
         </component>
         <component type="HadronComponent" name="Hadron">
-            <vehicleSourceFilePath value="Chevrolet_Camaro_V8_Supercar.veh.hadron"/>
+            <vehicleSourceFilePath value="chevrolet_camaro_v8.veh.hadron"/>
             <drivetrainFilePath value="$data/vehicles/_shared/physics/support/drivetrains/drivetrainGT4.xml"/>
             <assistFilePath value="$data/vehicles/_shared/physics/support/assists/assistGT.xml"/>
             <inputFilePath value="$data/vehicles/_shared/physics/support/genericInput.xml"/>

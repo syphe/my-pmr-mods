@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<table name="chevrolet_camaro_v8_supercar" type="table">
+<table name="chevrolet_camaro_v8" type="table">
     <parameters>
-        <parameter name="ID" type="string" value="ID_Chevrolet_Camaro_V8_Supercar"/>
-        <parameter name="ActorFile" type="string" value="chevrolet_camaro_v8_supercar_actor.xml"/>
+        <parameter name="ID" type="string" value="id_chevrolet_camaro_v8"/>
+        <parameter name="ActorFile" type="string" value="chevrolet_camaro_v8_actor.xml"/>
         <parameter name="DriverFile" type="string" value="$data/vehicles/Chevrolet_Camaro_ZL-1_GT4_2017/driver/driver_Chevrolet_Camaro_ZL-1_GT4_2017.i3d"/>
         <parameter name="TiresFile" type="string" value="$data/vehicles/Chevrolet_Camaro_ZL-1_GT4_2017/data/Chevrolet_Camaro_ZL-1_GT4_2017_tires.xml"/>
 		<parameter name="Manufacturer" type="string" value="Chevrolet"/>
-        <parameter name="Name" type="string" value="Camaro V8 Supercar"/>
+        <parameter name="Name" type="string" value="Camaro V8"/>
 		<parameter name="VehiclePath" type="string" value="chevrolet_camaro_v8"/>
 		<parameter name="Material_Body" type="string" value="che_cam_gt4_carbon_body,che_cam_gt4_plastic_body,che_cam_gt4_plastic2_body,che_cam_gt4_carbon_body_dam,che_cam_gt4_plastic_body_dam,che_cam_gt4_plastic2_body_dam"/>
 		<parameter name="Material_Glass" type="string" value="che_cam_gt4_windscreen_glass_dam,che_cam_gt4_windscreen_glass_dam"/>

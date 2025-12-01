@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<table name="toyota_supra_v8_supercar" type="table">
+<table name="toyota_supra_v8" type="table">
     <parameters>
-        <parameter name="ID" type="string" value="ID_Toyota_Supra_V8_Supercar"/>
-        <parameter name="ActorFile" type="string" value="toyota_supra_v8_supercar_actor.xml"/>	
+        <parameter name="ID" type="string" value="id_toyota_supra_v8"/>
+        <parameter name="ActorFile" type="string" value="toyota_supra_v8_actor.xml"/>	
         <parameter name="DriverFile" type="string" value="$data/vehicles/Toyota_Supra_GT4/driver/driver_Toyota_Supra_GT4.i3d"/>
         <parameter name="TiresFile" type="string" value="$data/vehicles/Toyota_Supra_GT4/data/Toyota_Supra_GT4_tires.xml"/>
 		<parameter name="Manufacturer" type="string" value="Toyota"/>
-        <parameter name="Name" type="string" value="GR Supra V8 Supercar"/>
+        <parameter name="Name" type="string" value="Supra v8"/>
 		<parameter name="VehiclePath" type="string" value="toyota_supra_v8"/>
 		<parameter name="Material_Body" type="string" value="toy_sup_gt4_evo_carbon_body_dam,toy_sup_gt4_evo_carbon_body"/>
 		<parameter name="Material_Glass" type="string" value="toy_sup_gt4_evo_windshield_glass_dam,toy_sup_gt4_evo_windshield_glass_dam"/>
