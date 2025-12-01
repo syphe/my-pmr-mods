@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <table type="table">
     <parameters>
-        <parameter name="ID" type="string" value="toyota_supra_v8_supercar_livery2"/>
+        <parameter name="ID" type="string" value="toyota_supra_v8_livery2"/>
 		<parameter name="Name" type="string" value="Livery 2"/>
 
-		<parameter name="MaterialSwap" type="string" value="toy_sup_v8_supercar_livery2"/>
-		<parameter name="BannerSwap" type="string" value="toy_sup_v8_supercar_livery2_banner"/>
+		<parameter name="MaterialSwap" type="string" value="toyota_supra_v8_livery2"/>
+		<parameter name="BannerSwap" type="string" value="toyota_supra_v8_livery2_banner"/>
 		<parameter name="TexturesBasePath" type="string" value="$data/vehicles/Toyota_Supra_GT4/Textures" />
 				
 		<table name="AIDriverData" type="table">
