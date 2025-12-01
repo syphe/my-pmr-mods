@@ -7,7 +7,7 @@
         <parameter name="TiresFile" type="string" value="$data/vehicles/Chevrolet_Camaro_ZL-1_GT4_2017/data/Chevrolet_Camaro_ZL-1_GT4_2017_tires.xml"/>
 		<parameter name="Manufacturer" type="string" value="Chevrolet"/>
         <parameter name="Name" type="string" value="Camaro V8 Supercar"/>
-		<parameter name="VehiclePath" type="string" value="Chevrolet_Camaro_V8_Supercar"/>
+		<parameter name="VehiclePath" type="string" value="chevrolet_camaro_v8"/>
 		<parameter name="Material_Body" type="string" value="che_cam_gt4_carbon_body,che_cam_gt4_plastic_body,che_cam_gt4_plastic2_body,che_cam_gt4_carbon_body_dam,che_cam_gt4_plastic_body_dam,che_cam_gt4_plastic2_body_dam"/>
 		<parameter name="Material_Glass" type="string" value="che_cam_gt4_windscreen_glass_dam,che_cam_gt4_windscreen_glass_dam"/>
 		<parameter name="Material_Glass_Interior" type="string" value="che_cam_gt4_windscreen_refl_glass_dam,che_cam_gt4_windscreen_refl_glass_dam"/>

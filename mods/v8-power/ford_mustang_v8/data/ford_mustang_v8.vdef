@@ -7,7 +7,7 @@
         <parameter name="TiresFile" type="string" value="$data/vehicles/Ford_Mustang_GT4_2024/data/Ford_Mustang_GT4_2024_tires.xml"/>
 		<parameter name="Manufacturer" type="string" value="Ford"/>
         <parameter name="Name" type="string" value="Mustang V8 Supercar"/>
-		<parameter name="VehiclePath" type="string" value="Ford_Mustang_V8_Supercar"/>
+		<parameter name="VehiclePath" type="string" value="ford_mustang_v8"/>
 		<parameter name="Material_Body" type="string" value="ford_mus_gt4_carbon_body,ford_mus_gt4_plastic_gloss_body,ford_mus_gt4_plastic_rough_body,ford_mus_gt4_carbon_body_dam,ford_mus_gt4_plastic_gloss_body_dam,ford_mus_gt4_plastic_rough_body_dam"/>
 		<parameter name="Material_Glass" type="string" value="ford_mus_gt4_windshield_glass_dam,ford_mus_gt4_windshield_glass_dam"/>
 		<parameter name="Material_Glass_Interior" type="string" value="ford_mus_gt4_windshield_int_refl_wsc_dam,ford_mus_gt4_windshield_int_refl_wsc_dam"/>

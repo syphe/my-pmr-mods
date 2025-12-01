@@ -6,13 +6,13 @@
     <type>Vehicle</type>
 
     <vehicles>
-        <vdef path="Ford_Mustang_V8_Supercar/data/ford_mustang_v8_supercar.vdef" />
-        <vdef path="Chevrolet_Camaro_V8_Supercar/data/chevrolet_camaro_v8_supercar.vdef" />
-        <vdef path="Toyota_Supra_V8_Supercar/data/toyota_supra_v8_supercar.vdef" />
+        <vdef path="ford_mustang_v8/data/ford_mustang_v8.vdef" />
+        <vdef path="chevrolet_camaro_v8/data/chevrolet_camaro_v8.vdef" />
+        <vdef path="toyota_supra_v8/data/toyota_supra_v8.vdef" />
     </vehicles>
 
     <vehicleClass>
-		<class name="V8 Power" image="icons/classIcon_v8_supercars.png"/>
+		<class name="V8 Power" image="icons/classIcon_v8_power.png"/>
 	</vehicleClass>
 
     <!-- defines the mod author -->
