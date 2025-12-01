@@ -1,4 +1,4 @@
-#Camaro V8 Supercar
+#Ford Mustang V8 Supercar
 
 #   Hadron and ISO 8855
 #   +x = forward
@@ -64,7 +64,7 @@ UPRIGHT_INERTIA =			"0.310	0.310	0.290"
 UPRIGHT_LOCATION =		"1.360   $(LAT)0.831    0.0" #Center of upright , or Hub face ?
 
 WHEEL_MASS =				22.0   #Kg
-WHEEL_LOCATION =		"1.406   $(LAT)0.800    0.0" #should be 1/2 the wheel base (X) and 1/2 the track (Y).
+WHEEL_LOCATION =		"1.352   $(LAT)0.804    0.0" #should be 1/2 the wheel base (X) and 1/2 the track (Y).
 WHEEL_INERTIA =				"0.724	1.292	0.724"
 
 #############################################################
@@ -126,7 +126,7 @@ UPRIGHT_INERTIA =			"0.380	0.380	0.350"
 UPRIGHT_LOCATION =			"-1.360   $(LAT)0.825    0.0"
 
 WHEEL_MASS =				24.0
-WHEEL_LOCATION =			"-1.406   $(LAT)0.800    0.0"
+WHEEL_LOCATION =			"-1.352   $(LAT)0.809    0.0"
 WHEEL_INERTIA =				"0.875	1.446	0.875"
 
 #############################################################
