@@ -10,7 +10,7 @@
 		<parameter name="VehiclePath" type="string" value="Toyota_Supra_V8_Supercar"/>
 		<parameter name="Material_Body" type="string" value="toy_sup_gt4_evo_carbon_body_dam,toy_sup_gt4_evo_carbon_body"/>
 		<parameter name="Material_Glass" type="string" value="toy_sup_gt4_evo_windshield_glass_dam,toy_sup_gt4_evo_windshield_glass_dam"/>
-		<parameter name="VehicleClass" type="string" value="V8 Supercars"/>
+		<parameter name="VehicleClass" type="string" value="V8 Power"/>
         <parameter name="TorqueNM" type="number" value="585"/>
         <parameter name="WeightKG" type="number" value="1370"/>
         <parameter name="Transmission" type="string" value="6-Speed Paddle"/>

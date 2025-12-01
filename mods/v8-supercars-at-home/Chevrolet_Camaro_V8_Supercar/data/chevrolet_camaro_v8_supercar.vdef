@@ -11,7 +11,7 @@
 		<parameter name="Material_Body" type="string" value="che_cam_gt4_carbon_body,che_cam_gt4_plastic_body,che_cam_gt4_plastic2_body,che_cam_gt4_carbon_body_dam,che_cam_gt4_plastic_body_dam,che_cam_gt4_plastic2_body_dam"/>
 		<parameter name="Material_Glass" type="string" value="che_cam_gt4_windscreen_glass_dam,che_cam_gt4_windscreen_glass_dam"/>
 		<parameter name="Material_Glass_Interior" type="string" value="che_cam_gt4_windscreen_refl_glass_dam,che_cam_gt4_windscreen_refl_glass_dam"/>
-        <parameter name="VehicleClass" type="string" value="V8 Supercars"/>
+        <parameter name="VehicleClass" type="string" value="V8 Power"/>
         <parameter name="TorqueNM" type="number" value="575"/>
         <parameter name="WeightKG" type="number" value="1470"/>
         <parameter name="Transmission" type="string" value="6-Speed Paddle"/>

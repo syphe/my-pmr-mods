@@ -11,7 +11,7 @@
 		<parameter name="Material_Body" type="string" value="ford_mus_gt4_carbon_body,ford_mus_gt4_plastic_gloss_body,ford_mus_gt4_plastic_rough_body,ford_mus_gt4_carbon_body_dam,ford_mus_gt4_plastic_gloss_body_dam,ford_mus_gt4_plastic_rough_body_dam"/>
 		<parameter name="Material_Glass" type="string" value="ford_mus_gt4_windshield_glass_dam,ford_mus_gt4_windshield_glass_dam"/>
 		<parameter name="Material_Glass_Interior" type="string" value="ford_mus_gt4_windshield_int_refl_wsc_dam,ford_mus_gt4_windshield_int_refl_wsc_dam"/>
-        <parameter name="VehicleClass" type="string" value="V8 Supercars"/>
+        <parameter name="VehicleClass" type="string" value="V8 Power"/>
         <parameter name="TorqueNM" type="number" value="580"/>
         <parameter name="WeightKG" type="number" value="1390"/>
         <parameter name="Transmission" type="string" value="6-Speed Paddle"/>
