@@ -1,0 +1,113 @@
+INCLUDE "Tire/GT4_Tires.hadron"
+PRELOAD "Tire/linear.hadron"
+
+#Medium compound tire (default)
+Pattern T_F_TIRE_EVAL T_F_BASELINE_TIRE
+#	#asperity:scale "0.85 0.85 "
+	tire:width 0.305                # Tyre section width (m) (used by STM) - 0.021 shoulder in tire.rg gives 0.306m tread
+	tire:radius 0.330
+	tire:pressure $(DEFAULT_TIRE_PRESSURE_F,150000.0)
+	tire:model "GT4_Front_medium"
+	control:evaluate "
+		(grip_load_scale (lookup 'ArbitraryFalloff' Fz))
+		(Fx (* Fx grip_load_scale))
+		(Fy (* Fy grip_load_scale))
+
+		(speed_scale (lookup 'SpeedFalloff' (abs (get 'chassis:reference.spc:velocity[0]'))))
+	    (Fx (* Fx speed_scale))
+		(Fy (* Fy speed_scale))
+	"
+
+Pattern T_R_TIRE_EVAL T_R_BASELINE_TIRE
+#	#asperity:scale "1.53 1.53"
+	tire:width 0.325                # Tyre section width (m) (used by STM) - 0.037 shoulder in tire.rg gives 0.310m tread
+	tire:radius 0.340
+	tire:pressure $(DEFAULT_TIRE_PRESSURE_R,150000.0)
+	tire:model "GT4_Rear_medium"
+	control:evaluate "
+		(grip_load_scale (lookup 'ArbitraryFalloff' Fz))
+		(Fx (* Fx grip_load_scale))
+		(Fy (* Fy grip_load_scale))
+
+		(speed_scale (lookup 'SpeedFalloff' (abs (get 'chassis:reference.spc:velocity[0]'))))
+	    (Fx (* Fx speed_scale))
+		(Fy (* Fy speed_scale))
+	"
+
+#Soft Compound tire
+Pattern GT4_FRONT_SOFT T_F_TIRE_EVAL
+    tire:model "GT4_Front_soft"
+
+Pattern GT4_REAR_SOFT T_R_TIRE_EVAL
+	tire:model "GT4_Rear_soft"
+
+#Hard Compound tire
+Pattern GT4_FRONT_HARD T_F_TIRE_EVAL
+	tire:model "GT4_Front_hard"
+
+Pattern GT4_REAR_HARD T_R_TIRE_EVAL
+	tire:model "GT4_Rear_hard"
+
+#Wet Compound tire
+Pattern GT4_FRONT_WET T_F_TIRE_EVAL
+	tire:pressure 155000.0
+	tire:model "GT4_Front_wet"
+
+Pattern GT4_REAR_WET T_R_TIRE_EVAL
+	tire:pressure 155000.0
+	tire:model "GT4_Rear_wet"
+
+FL_PRESSURE_RANGE = "130000 220000"
+FR_PRESSURE_RANGE = "130000 220000"
+RL_PRESSURE_RANGE = "130000 220000"
+RR_PRESSURE_RANGE = "130000 220000"
+
+Entity FL:tire T_F_TIRE_EVAL
+Entity FR:tire T_F_TIRE_EVAL
+Entity RR:tire T_R_TIRE_EVAL
+Entity RL:tire T_R_TIRE_EVAL
+
+Entity FL:soft GT4_FRONT_SOFT
+Entity FR:soft GT4_FRONT_SOFT
+Entity RL:soft GT4_REAR_SOFT
+Entity RR:soft GT4_REAR_SOFT
+
+Entity FL:hard GT4_FRONT_HARD
+Entity FR:hard GT4_FRONT_HARD
+Entity RL:hard GT4_REAR_HARD
+Entity RR:hard GT4_REAR_HARD
+
+Entity FL:wet GT4_FRONT_WET
+Entity FR:wet GT4_FRONT_WET
+Entity RL:wet GT4_REAR_WET
+Entity RR:wet GT4_REAR_WET
+
+# TIRE_ENUM_NAMES and TIRE_ENUM_TIRES should have same count
+TIRE_DEFAULT=tire
+TIRE_ENUM_NAMES="medium, soft, hard, wet"
+TIRE_ENUM_TIRES='$(CORNER):$(TIRE_DEFAULT)' '$(CORNER):soft' '$(CORNER):hard' '$(CORNER):wet'
+
+#########falloff example########
+Archetype l_named_splat_real
+	name
+	splat:real
+
+Entity ArbitraryFalloff l_named_splat_real
+	splat:real "
+		0.0,	1.0
+		1000.0,	1.0
+		5000.0,	1.0
+		20000.0, 0.90
+	"
+
+#Speed sensitive grip falloff - inside of a tire eval:
+#		(speed_scale (lookup 'SpeedFalloff' (abs (get 'chassis:reference.spc:velocity[0]'))))
+#		(Fx (* Fx speed_scale))
+#		(Fy (* Fy speed_scale))
+
+Entity SpeedFalloff l_named_splat_real
+	splat:real "
+		0.0,	1.0
+		55.0,	1.0
+		85.0,	0.9
+	"
