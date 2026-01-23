@@ -3,20 +3,19 @@ INCLUDE "Tire_AI/GT4_Tires_AI.hadron"
 
 PRELOAD "Tire/linear.hadron"
 
-# Pirelli DH Sicks 305/660 R18 & 305/680 R18
-T#Hard compound tire (default)
+# V8 Supercar Medium compound (default)
 Pattern T_F_TIRE_EVAL T_F_BASELINE_TIRE
 	asperity:scale "3.0 3.0 "
-	tire:width 0.305                # Tyre section width (m) (used by STM) - 0.021 shoulder in tire.rg gives 0.306m tread
+	tire:width 0.280                # V8 Supercar spec: ~280mm section width
 	tire:radius 0.330
-	tire:pressure 145000.0
+	tire:pressure 220000.0
 	tire:model "GT4_Front_hard"
 
 Pattern T_R_TIRE_EVAL T_R_BASELINE_TIRE
 	asperity:scale "4.0 4.0"
-	tire:width 0.325                # Tyre section width (m) (used by STM) - 0.037 shoulder in tire.rg gives 0.310m tread
+	tire:width 0.280                # V8 Supercar spec: ~280mm section width
 	tire:radius 0.340
-	tire:pressure 145000.0
+	tire:pressure 234000.0
 	tire:model "GT4_Rear_hard"
 
 #Medium Compound tire
@@ -28,17 +27,17 @@ Pattern GT4_REAR_MEDIUM T_R_TIRE_EVAL
 
 #Wet Compound tire
 Pattern GT4_FRONT_WET T_F_TIRE_EVAL
-	tire:pressure 155000.0
+	tire:pressure 227000.0
 	tire:model "GT4_Front_wet"
 
 Pattern GT4_REAR_WET T_R_TIRE_EVAL
-	tire:pressure 155000.0
+	tire:pressure 241000.0
 	tire:model "GT4_Rear_wet"
 
-FL_PRESSURE_RANGE = "130000 220000"
-FR_PRESSURE_RANGE = "130000 220000"
-RL_PRESSURE_RANGE = "130000 220000"
-RR_PRESSURE_RANGE = "130000 220000"
+FL_PRESSURE_RANGE = "200000 250000"
+FR_PRESSURE_RANGE = "200000 250000"
+RL_PRESSURE_RANGE = "200000 260000"
+RR_PRESSURE_RANGE = "200000 260000"
 
 Entity FL:tire T_F_TIRE_EVAL
 Entity FR:tire T_F_TIRE_EVAL
@@ -69,8 +68,8 @@ Entity ArbitraryFalloff l_named_splat_real
 	splat:real "
 		0.0,	1.0
 		1000.0,	1.0
-		7000.0,	1.0
-		20000.0, 0.90
+		7500.0,	1.0
+		22000.0, 0.92
 	"
 
 Pattern T_F_TIRE_EVAL T_F_TIRE
