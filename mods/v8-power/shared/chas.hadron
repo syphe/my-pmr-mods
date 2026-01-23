@@ -1,7 +1,8 @@
 
 
 Entity chassis:root rbd_arbitrary
-	sim:mass 1210.0  #sprung mass only (1490kg min +80kg driver +35kg ballast -unsprung mass)
+	#sim:mass 1210.0  #sprung mass only (1490kg min +80kg driver +35kg ballast -unsprung mass)
+	sim:mass 1295.0  #sprung mass only (V8 Supercar: 1395kg min +80kg driver +35kg ballast -unsprung mass)
 	rigid:dynamic true
 	rigid:inertiaAxial	"365.0	1746.0	1903.0" #
 	frame:zyx "0 0 0"

@@ -42,7 +42,7 @@ Entity FORD_V8_morph_adapted_from_legacy l_splat_vec3
 	"
 
 Entity crank_shaft l_driveline_shaft_forced
-	sim:mass 0.20
+	sim:mass 0.07
 	sim:root true # engine easier to deal with if not reversed
 
 Entity cam_shaft l_driveline_shaft_forced
