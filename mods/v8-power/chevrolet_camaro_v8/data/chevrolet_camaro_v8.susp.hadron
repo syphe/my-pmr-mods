@@ -71,7 +71,7 @@ UPRIGHT_INERTIA =			"0.30	0.30	0.30"
 UPRIGHT_LOCATION =		"1.352   $(LAT)0.784    0.0" #Center of upright , or Hub face ?
 
 WHEEL_MASS =				14.0   #Kg - realistic wheel+tire mass
-WHEEL_LOCATION =		"1.406   $(LAT)0.800    0.0" #should be 1/2 the wheel base (X) and 1/2 the track (Y).
+WHEEL_LOCATION =		"1.352   $(LAT)0.804    0.0" #should be 1/2 the wheel base (X) and 1/2 the track (Y).
 WHEEL_INERTIA =				"0.8	1.9	0.8"
 
 #############################################################
@@ -133,7 +133,7 @@ UPRIGHT_INERTIA =			"0.30	0.30	0.30"
 UPRIGHT_LOCATION =			"-1.352   $(LAT)0.790    0.0"
 
 WHEEL_MASS =				16.0   #Kg - realistic rear wheel+tire mass (slightly heavier)
-WHEEL_LOCATION =			"-1.406   $(LAT)0.800    0.0"
+WHEEL_LOCATION =			"-1.352   $(LAT)0.809    0.0"
 WHEEL_INERTIA =				"0.90	1.9	0.9"
 
 #############################################################

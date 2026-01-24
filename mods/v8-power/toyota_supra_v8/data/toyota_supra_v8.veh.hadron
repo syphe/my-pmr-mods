@@ -27,7 +27,7 @@ VEHICLE_ENGINE="../../shared/engn.hadron"
 
 VEHICLE_GEARBOX="../../shared/gbox.hadron"
 
-VEHICLE_DIFF="Driveline/Diff/clutch_lsd_GT4.diff.hadron"
+VEHICLE_DIFF="Driveline/Diff/clutch_lsd.diff.hadron"
 
 VEHICLE_AXLE="Driveline/Axle/flex_shaft.axle.hadron"
 
@@ -36,6 +36,8 @@ VEHICLE_STEERING="Chassis/steering_rack.0.hadron"
 
 #VEHICLE_FFB="Chassis/ffb.tire.eval"
 VEHICLE_FFB="Chassis/ffb.rack.eval"
+
+#INCLUDE "Inspector/connect_to_dyno.hadron"
 
 #VEHICLE_BRAKES="Driveline/falloff_brakes.hadron"
 #VEHICLE_BRAKES="Driveline/falloff_brakes_on_stubs.hadron"
@@ -59,13 +61,13 @@ COLLISION_RSENSOR_L = 1.334
 
 #############################################################
 # TEMPORARY
-FFB_GAIN = 1.1
+FFB_GAIN = 1.00
 FFB_SMOOTHING = 0.1
 RACK_STIFFNESS = 3.0e7
 TIE_ROD_STIFFNESS = 8.0e7
 TIE_ROD_DAMPING = 2.0e5
 BRAKE_BIAS = 0.66
-MAX_BRAKE_PRESSURE=27000.0
+MAX_BRAKE_PRESSURE=30000.0
 HALF_RACK_STOP=0.05
 #DEFAULT_TIRE_PRESSURE_F=150000.0
 #DEFAULT_TIRE_PRESSURE_R=150000.0
