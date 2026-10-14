@@ -104,15 +104,14 @@ function draw()
         local w = 0.22
         local h = 0.17
 
-        -- 1. Darker MoTeC Bezel & Screen Panels
+        -- 1. Darker MoTeC Bezel & Screen Panels (Matched Uniform Dark)
         drawFilledRect(cx - w/2, cy - h/2, w, h, 0.01, 0.01, 0.01, 0.95)
-        drawFilledRect(cx - w/2 + 0.008, cy - h/2 + 0.008, w - 0.016, h - 0.016, 0.04, 0.04, 0.05, 0.98)
+        drawFilledRect(cx - w/2 + 0.008, cy - h/2 + 0.008, w - 0.016, h - 0.016, 0.01, 0.01, 0.01, 0.95)
 
-        -- 2. 8-LED Shift Lights with Threshold Scaling
-        local minRpm = 5500 -- LEDs start lighting up here
-        local maxRpm = 7500 -- Redline / max flash
+        -- 2. 8-LED Progressive Shift Lights (5500 to 7500 RPM)
+        local minRpm = 5500
+        local maxRpm = 7500
         
-        -- Normalize RPM percentage between minRpm and maxRpm
         local rpmPct = 0.0
         if teleState.rpm > minRpm then
             rpmPct = math.min(1.0, (teleState.rpm - minRpm) / (maxRpm - minRpm))
@@ -124,7 +123,10 @@ function draw()
         local ledY = cy + h/2 - 0.018
 
         local activeStages = math.floor(rpmPct * 4)
-        local isRedline = (teleState.rpm >= maxRpm - 100)
+        if teleState.rpm >= maxRpm - 150 then
+            activeStages = 4
+        end
+        local isRedline = (teleState.rpm >= maxRpm - 150)
 
         local ledStates = {false, false, false, false, false, false, false, false}
         if activeStages >= 1 then
@@ -166,62 +168,62 @@ function draw()
             drawFilledRect(ledX, ledY, ledWidth, 0.010, r, g, b, 1.0)
         end
 
-        -- 3. Top-Left: Session Status ("RACE") - Increased Font
+        -- 3. Top-Left: Session Status ("RACE") - Small Label
         setTextAlignment(RenderText.ALIGN_LEFT)
         setTextColor(0.95, 0.85, 0.1, 1.0)
-        renderText(cx - w/2 + 0.018, cy + 0.044, 0.017, "RACE")
+        renderText(cx - w/2 + 0.018, cy + 0.046, 0.014, "RACE")
 
-        -- 4. Middle-Left: Position & Lap - Increased Font
-        setTextColor(0.6, 0.6, 0.6, 1.0)
-        renderText(cx - w/2 + 0.018, cy + 0.012, 0.018, "P")
+        -- 4. Middle-Left: Position & Lap
+        setTextColor(0.5, 0.5, 0.5, 1.0)
+        renderText(cx - w/2 + 0.018, cy + 0.012, 0.011, "POS")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(cx - w/2 + 0.033, cy + 0.012, 0.022, tostring(teleState.position))
+        renderText(cx - w/2 + 0.018, cy - 0.010, 0.022, tostring(teleState.position))
 
-        setTextColor(0.6, 0.6, 0.6, 1.0)
-        renderText(cx - w/2 + 0.070, cy + 0.012, 0.018, "L")
+        setTextColor(0.5, 0.5, 0.5, 1.0)
+        renderText(cx - w/2 + 0.065, cy + 0.012, 0.011, "LAP")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(cx - w/2 + 0.085, cy + 0.012, 0.022, tostring(teleState.lap))
+        renderText(cx - w/2 + 0.065, cy - 0.010, 0.022, tostring(teleState.lap))
 
-        -- 5. Center: Giant Gear Indicator - Increased Font
+        -- 5. Center: Giant Gear Indicator
         setTextAlignment(RenderText.ALIGN_CENTER)
         setTextColor(1.0, 1.0, 1.0, 1.0)
         renderText(cx, cy - 0.030, 0.082, teleState.gear)
 
-        -- 6. Top-Right: Best Lap & Gain/Loss - Increased Font
+        -- 6. Top-Right: Best Lap & Gain/Loss
         setTextAlignment(RenderText.ALIGN_RIGHT)
-        setTextColor(0.6, 0.6, 0.6, 1.0)
-        renderText(cx + w/2 - 0.018, cy + 0.052, 0.014, "BEST LAP")
+        setTextColor(0.5, 0.5, 0.5, 1.0)
+        renderText(cx + w/2 - 0.018, cy + 0.052, 0.011, "BEST LAP")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(cx + w/2 - 0.018, cy + 0.028, 0.024, teleState.bestLapStr)
+        renderText(cx + w/2 - 0.018, cy + 0.030, 0.022, teleState.bestLapStr)
 
-        setTextColor(0.6, 0.6, 0.6, 1.0)
-        renderText(cx + w/2 - 0.018, cy + 0.008, 0.013, "GAIN LOSS -/+")
+        setTextColor(0.5, 0.5, 0.5, 1.0)
+        renderText(cx + w/2 - 0.018, cy + 0.008, 0.011, "GAIN / LOSS")
         setTextColor(0.1, 0.9, 0.1, 1.0)
-        renderText(cx + w/2 - 0.018, cy - 0.015, 0.022, teleState.gainLossVal)
+        renderText(cx + w/2 - 0.018, cy - 0.014, 0.022, teleState.gainLossVal)
 
-        -- 7. Bottom Row: ENG TEMP | B BIAS | MAP - Increased Font
+        -- 7. Bottom Row: ENG TEMP | B BIAS | MAP
         setTextAlignment(RenderText.ALIGN_CENTER)
         
         local col1X = cx - 0.062
-        setTextColor(0.6, 0.6, 0.6, 1.0)
-        renderText(col1X, cy - 0.045, 0.013, "ENG TEMP")
+        setTextColor(0.5, 0.5, 0.5, 1.0)
+        renderText(col1X, cy - 0.042, 0.011, "ENG TEMP")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(col1X, cy - 0.070, 0.022, string.format("%d", teleState.engTemp))
+        renderText(col1X, cy - 0.068, 0.024, string.format("%d", teleState.engTemp))
 
         local col2X = cx
-        setTextColor(0.6, 0.6, 0.6, 1.0)
-        renderText(col2X, cy - 0.045, 0.013, "B BIAS")
+        setTextColor(0.5, 0.5, 0.5, 1.0)
+        renderText(col2X, cy - 0.042, 0.011, "B BIAS")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(col2X, cy - 0.070, 0.022, string.format("%.1f", teleState.brakeBias))
+        renderText(col2X, cy - 0.068, 0.024, string.format("%.1f", teleState.brakeBias))
 
         local col3X = cx + 0.062
-        setTextColor(0.6, 0.6, 0.6, 1.0)
-        renderText(col3X, cy - 0.045, 0.013, "MAP")
+        setTextColor(0.5, 0.5, 0.5, 1.0)
+        renderText(col3X, cy - 0.042, 0.011, "MAP")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(col3X, cy - 0.070, 0.022, tostring(teleState.engineMap))
+        renderText(col3X, cy - 0.068, 0.024, tostring(teleState.engineMap))
 
         setTextAlignment(RenderText.ALIGN_LEFT)
     end)
 end
 
-print('[CUSTOM_HUD] MoTeC Dash with Custom RPM Shift Threshold loaded!')
+print('[CUSTOM_HUD] Synchronized Shift Light Dash loaded!')
