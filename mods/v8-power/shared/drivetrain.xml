@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<vehicleDrivetrainData>
+
+	<drivetrain>
+		<fuelCapacity value="111"/>
+		<thermalEfficiency value="0.36"/>
+		<richness value="1.00"/>
+		<simpleFuelUsage value="false"/>
+		<batteryCapacity value="0"/>
+		<batteryUsageFactor value="0"/>
+		<batteryRegenFactor value="0"/>
+		<pureElectricMode value="false"/>
+		<throttleMaxRiseRate value="7.0"/>
+		<throttleMaxFallRate value="12.0"/>
+		<throttleMaxSaturation value="0.0"/>
+		<throttleSaturationPower value="1.0"/>
+		<throttleSlowShaping value="0.2"/>
+		<throttleFastShaping value="-0.2"/>
+		<engineDamageMinRevRatio value="0.96"/>
+		<engineDamageRateScale value="0.01"/>
+		<minDamageForAccelScale value="0.8"/>
+		<maxDamageMinAccelScale value="0.6"/>
+		
+		<thermal>
+			<exhaustLoss value="0.45"/>
+			<blockMass value="155"/>
+			<oilVolume value="9"/>
+			<oilCoolerMass value="4"/>
+			<oilCoolerIntArea value="0.5"/>
+			<oilCoolerExtArea value="2.0"/>
+			<hasOilCooler value="false"/>
+			<coolantVolume value="16"/>
+			<coolantMix value="0.7"/>
+			<coolantToAirArea value="0.036"/>
+			<coolantAirVolume value="2.2"/>
+			<coolantColdPressure value="0"/>
+			<coolantPressureLimit value="400000"/>
+			<radiatorMass value="10"/>
+			<blockExtArea value="3.0"/>
+			<blockToOilArea value="0.8"/>
+			<blockToCoolantArea value="1.6"/>
+			<oilToCoolantArea value="2.5"/>
+			<coolantToRadiatorArea value="3.3"/>
+			<radiatorExtArea value="5.3"/>
+			<exhaustLength value="3.0"/>
+			<exhaustDiameter value="0.0762"/>
+			<numExhausts value="2"/>
+			<tempThermostatClosed value="90"/>
+			<tempThermostatOpen value="100"/>
+			<tempFanOff value="100"/>
+			<tempFanOn value="105"/>
+			<fanAirSpeed value="10"/>
+			<bayAirSpeed value="0.25"/>
+			<blockOverheatTempStart value="280"/>
+			<blockOverheatTempZone value="50"/>
+			<minOverheatAccelScale value="0.75"/>
+			<maxOverheatDamageRate value="0.1"/>
+			
+			<gearboxEfficency value="0.95"/>
+			<gearboxDryMass value="75.0"/>
+			<gearboxOilVolume value="4.5"/>
+			<gearboxExtArea value="0.4"/>
+			<gearboxOilArea value="0.8"/>
+			<gearboxMatingArea value="0.2"/>
+		
+			<diffEfficency value="0.97"/>
+			<diffDryMass value="45.0"/>
+			<diffOilVolume value="3.5"/>
+			<diffExtArea value="0.4"/>
+			<diffOilArea value="0.6"/>
+		</thermal>
+	</drivetrain>
+	
+	<speedoMode value="gps"/>
+	
+	<gauge value="speedometer">
+		<scale value="1.0"/>
+	</gauge>
+	<gauge value="tachometer">
+		<scale value="1.0"/>
+		<stiffness value="500.0"/>
+		<dampingRatio value="0.85"/>
+	</gauge>
+	<gauge value="oilManometer">
+		<scale value="1.0"/>
+		<stiffness value="250.0"/>
+		<dampingRatio value="0.85"/>
+	</gauge>
+	<gauge value="fuel">
+		<scale value="1.0"/>
+		<maxRateOfChange value="20.0"/>
+	</gauge>
+
+</vehicleDrivetrainData>

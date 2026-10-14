@@ -71,7 +71,7 @@ UPRIGHT_INERTIA =			"0.30	0.30	0.30"
 UPRIGHT_LOCATION =		"1.352   $(LAT)0.784    0.0" #Center of upright , or Hub face ?
 
 WHEEL_MASS =				14.0   #Kg - realistic wheel+tire mass
-WHEEL_LOCATION =		"1.235   $(LAT)0.753    0.0" #should be 1/2 the wheel base (X) and 1/2 the track (Y).
+WHEEL_LOCATION =		"1.352   $(LAT)0.753    0.0" #X matched to other cars for FFB, Y kept at 0.753 for Supra body width
 WHEEL_INERTIA =				"0.8	1.9	0.8"
 
 #############################################################
