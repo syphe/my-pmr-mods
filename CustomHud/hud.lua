@@ -26,14 +26,24 @@ local teleState = {
     engTemp = 101,
     brakeBias = 65.0,
     engineMap = 3,
-    bestLapStr = "0:00.0",
-    gainLossVal = "0.00",
+    bestLapStr = "--:--.--",
+    gainLossVal = "+0.00",
     active = false,
     
     -- Flashing Timer State
     flashTimer = 0,
     flashOn = true
 }
+
+-- Helper function to convert seconds into M:SS.ff format
+local function formatLapTime(seconds)
+    if type(seconds) ~= "number" or seconds <= 0 or seconds >= 3600 then
+        return "--:--.--"
+    end
+    local mins = math.floor(seconds / 60)
+    local secs = seconds % 60
+    return string.format("%d:%05.2f", mins, secs)
+end
 
 function update(dt)
     if CustomHudMod.stockUpdate ~= nil then
@@ -66,16 +76,28 @@ function update(dt)
         teleState.active = true
         teleState.position = pData.raceEventPosition or 1
 
+        local bestValidLapTime = pData.bestValidLapTime
+        if bestValidLapTime and not bestValidLapTime.invalid and bestValidLapTime.timeSeconds and bestValidLapTime.timeSeconds > 0 then
+            teleState.bestLapStr = formatLapTime(bestValidLapTime.timeSeconds)
+        else
+            -- Handled when sitting in the pits, on an out-lap, or after an off-track/penalty invalidation
+            teleState.bestLapStr = "--:--.--"
+        end
+
+        -- DEBUG LOGGING FOR GAIN/LOSS USING STANDARD PRINT
+        local dVal = pData.lastLapDelta or pData.lapDelta or pData.currentLapDelta or pData.delta
+        if type(dVal) == "number" then
+            teleState.gainLossVal = string.format("%+.2f", dVal)
+        end
+
         local tMan = actor.telemetryManager
         local tItem = tMan.items and tMan.items[actor.telemetryIndex or 1]
         
         if tItem ~= nil then
-            -- RPM from Drivetrain table
             if tItem.drivetrain ~= nil then
                 teleState.rpm = tItem.drivetrain[1] or 0
             end
 
-            -- Gear from Input table (0 = N, <0 = R, >0 = Gear)
             if tItem.input ~= nil then
                 local rawGear = tItem.input[6] or 0
                 if rawGear == 0 then
@@ -98,13 +120,12 @@ function draw()
     if not teleState.active then return end
 
     pcall(function()
-        -- Narrower Width, Preserved Height Layout
         local cx = 0.5
         local cy = 0.13
         local w = 0.22
         local h = 0.17
 
-        -- 1. Darker MoTeC Bezel & Screen Panels (Matched Uniform Dark)
+        -- 1. Darker MoTeC Bezel & Screen Panels
         drawFilledRect(cx - w/2, cy - h/2, w, h, 0.01, 0.01, 0.01, 0.95)
         drawFilledRect(cx - w/2 + 0.008, cy - h/2 + 0.008, w - 0.016, h - 0.016, 0.01, 0.01, 0.01, 0.95)
 
@@ -129,22 +150,10 @@ function draw()
         local isRedline = (teleState.rpm >= maxRpm - 150)
 
         local ledStates = {false, false, false, false, false, false, false, false}
-        if activeStages >= 1 then
-            ledStates[1] = true
-            ledStates[8] = true
-        end
-        if activeStages >= 2 then
-            ledStates[2] = true
-            ledStates[7] = true
-        end
-        if activeStages >= 3 then
-            ledStates[3] = true
-            ledStates[6] = true
-        end
-        if activeStages >= 4 then
-            ledStates[4] = true
-            ledStates[5] = true
-        end
+        if activeStages >= 1 then ledStates[1] = true; ledStates[8] = true end
+        if activeStages >= 2 then ledStates[2] = true; ledStates[7] = true end
+        if activeStages >= 3 then ledStates[3] = true; ledStates[6] = true end
+        if activeStages >= 4 then ledStates[4] = true; ledStates[5] = true end
 
         for i = 1, 8 do
             local ledX = startX + (i - 1) * ledSpacing
@@ -152,23 +161,15 @@ function draw()
             
             if ledStates[i] then
                 if isRedline then
-                    if teleState.flashOn then
-                        r, g, b = 1.0, 0.1, 0.1
-                    else
-                        r, g, b = 0.1, 0.0, 0.0
-                    end
+                    if teleState.flashOn then r, g, b = 1.0, 0.1, 0.1 else r, g, b = 0.1, 0.0, 0.0 end
                 else
-                    if i == 4 or i == 5 then
-                        r, g, b = 1.0, 0.1, 0.1
-                    else
-                        r, g, b = 0.1, 0.9, 0.2
-                    end
+                    if i == 4 or i == 5 then r, g, b = 1.0, 0.1, 0.1 else r, g, b = 0.1, 0.9, 0.2 end
                 end
             end
             drawFilledRect(ledX, ledY, ledWidth, 0.010, r, g, b, 1.0)
         end
 
-        -- 3. Top-Left: Session Status ("RACE") - Small Label
+        -- 3. Top-Left: Session Status ("RACE")
         setTextAlignment(RenderText.ALIGN_LEFT)
         setTextColor(0.95, 0.85, 0.1, 1.0)
         renderText(cx - w/2 + 0.018, cy + 0.046, 0.014, "RACE")
@@ -226,4 +227,4 @@ function draw()
     end)
 end
 
-print('[CUSTOM_HUD] Synchronized Shift Light Dash loaded!')
+print('[CUSTOM_HUD] Debug Logger Loaded!')
