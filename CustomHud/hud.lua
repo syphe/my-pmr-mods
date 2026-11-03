@@ -54,6 +54,9 @@ local teleState = {
     bestLapStr = "--:--.--",
     gainLossVal = "+0.00",
     active = false,
+    shiftLightsStartRpm = 6000,
+    shiftLightsMaxRpm = 7500,
+    shiftLightsShiftRpm = 7350,
     
     -- Flashing Timer State
     flashTimer = 0,
@@ -101,6 +104,15 @@ function update(dt)
         teleState.active = true
         teleState.position = pData.raceEventPosition or 1
         teleState.engTemp = pData.engTemp -- Linking engTemp from pData to teleState
+
+        if type(actor.getShiftLightsRange) == "function" then
+            local maxRpm, startRpm, shiftRpm = actor:getShiftLightsRange()
+            if type(maxRpm) == "number" and type(startRpm) == "number" and type(shiftRpm) == "number" then
+                teleState.shiftLightsMaxRpm = maxRpm
+                teleState.shiftLightsStartRpm = startRpm
+                teleState.shiftLightsShiftRpm = shiftRpm
+            end
+        end
 
         local bestValidLapTime = pData.bestValidLapTime
         if bestValidLapTime and not bestValidLapTime.invalid and bestValidLapTime.timeSeconds and bestValidLapTime.timeSeconds > 0 then
@@ -165,9 +177,10 @@ function draw()
         drawFilledRect(cx - w/2, cy - h/2, w, h, 0.01, 0.01, 0.01, 0.95)
         drawFilledRect(cx - w/2 + 0.008, cy - h/2 + 0.008, w - 0.016, h - 0.016, 0.01, 0.01, 0.01, 0.95)
 
-        -- 2. 8-LED Progressive Shift Lights (5500 to 7500 RPM)
-        local minRpm = 5500
-        local maxRpm = 7500
+        -- 2. 8-LED Progressive Shift Lights
+        local minRpm = teleState.shiftLightsStartRpm
+        local maxRpm = teleState.shiftLightsMaxRpm
+        local shiftRpm = teleState.shiftLightsShiftRpm
         
         local rpmPct = 0.0
         if teleState.rpm > minRpm then
@@ -180,10 +193,10 @@ function draw()
         local ledY = cy + h/2 - 0.018
 
         local activeStages = math.floor(rpmPct * 4)
-        if teleState.rpm >= maxRpm - 150 then
+        if teleState.rpm >= shiftRpm then
             activeStages = 4
         end
-        local isRedline = (teleState.rpm >= maxRpm - 150)
+        local isRedline = (teleState.rpm >= shiftRpm)
 
         local ledStates = {false, false, false, false, false, false, false, false}
         if activeStages >= 1 then ledStates[1] = true; ledStates[8] = true end
