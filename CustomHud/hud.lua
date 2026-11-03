@@ -63,6 +63,34 @@ local teleState = {
     flashOn = true
 }
 
+local shiftLightOverlays = nil
+
+local function getShiftLightOverlays()
+    if shiftLightOverlays ~= nil then
+        return shiftLightOverlays
+    end
+
+    if g_overlayManager == nil or type(g_overlayManager.getSliceInfoById) ~= "function" or type(Overlay) ~= "table" or type(Overlay.new) ~= "function" then
+        return nil
+    end
+
+    local inactiveSlice = g_overlayManager:getSliceInfoById("ui_elements.dotSmall")
+    local activeSlice = g_overlayManager:getSliceInfoById("ui_elements.shiftLight")
+    if inactiveSlice == nil or activeSlice == nil then
+        return nil
+    end
+
+    local inactiveOverlay = Overlay.new(inactiveSlice.filename, 0, 0, 0, 0)
+    local activeOverlay = Overlay.new(activeSlice.filename, 0, 0, 0, 0)
+    inactiveOverlay:setSliceId(inactiveSlice.sliceId)
+    activeOverlay:setSliceId(activeSlice.sliceId)
+    shiftLightOverlays = {
+        inactive = inactiveOverlay,
+        active = activeOverlay
+    }
+    return shiftLightOverlays
+end
+
 -- Helper function to convert seconds into M:SS.ff format
 local function formatLapTime(seconds)
     if type(seconds) ~= "number" or seconds <= 0 or seconds >= 3600 then
@@ -191,6 +219,10 @@ function draw()
         local ledSpacing = 0.018
         local startX = cx - (4 * ledSpacing) + (ledSpacing / 2) + 0.001
         local ledY = cy + h/2 - 0.018
+        local screenAspectRatio = g_screenAspectRatio or 1.7777777777777777
+        local circleWidth = 0.010 / screenAspectRatio
+        local circleHeight = 0.010
+        local shiftLightCircleOverlays = getShiftLightOverlays()
 
         local activeStages = math.floor(rpmPct * 4)
         if teleState.rpm >= shiftRpm then
@@ -215,7 +247,21 @@ function draw()
                     if i == 4 or i == 5 then r, g, b = 1.0, 0.1, 0.1 else r, g, b = 0.1, 0.9, 0.2 end
                 end
             end
-            drawFilledRect(ledX, ledY, ledWidth, 0.010, r, g, b, 1.0)
+
+            local circleX = ledX + (ledWidth - circleWidth) / 2
+            local circleOverlay = nil
+            if shiftLightCircleOverlays ~= nil then
+                circleOverlay = ledStates[i] and shiftLightCircleOverlays.active or shiftLightCircleOverlays.inactive
+            end
+
+            if circleOverlay ~= nil then
+                circleOverlay:setPosition(circleX, ledY)
+                circleOverlay:setDimension(circleWidth, circleHeight)
+                circleOverlay:setColor(r, g, b, 1.0)
+                circleOverlay:render()
+            else
+                drawFilledRect(ledX, ledY, ledWidth, circleHeight, r, g, b, 1.0)
+            end
         end
 
         -- 3. Top-Left: Session Status ("RACE")
