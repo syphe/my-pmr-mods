@@ -17,6 +17,31 @@ function init(...)
     end
 end
 
+-- Properties available in g_racingManager.playerVehicleData
+-- bestValidLapTime (table):
+--   - invalid (boolean)
+--   - timeSeconds (number)
+-- brakeBias (number)
+-- currentLapDelta (number)
+-- delta (number)
+-- engineMap (number)
+-- engTemp (number)
+-- gear (string)
+-- lastLapDelta (number)
+-- lapDelta (number)
+-- position (number)
+-- raceEventPosition (number)
+-- rpm (number)
+-- vehicleActor (table):
+--   - telemetryIndex (number)
+--   - telemetryManager (table):
+--     - items (table):
+--       - (indexed by telemetryIndex) (table):
+--         - drivetrain (table):
+--           - (indexed by 1) (number) - RPM
+--         - input (table):
+--           - (indexed by 6) (number) - Gear
+
 -- Shared state for telemetry and shift light animation
 local teleState = {
     rpm = 0,
@@ -75,6 +100,7 @@ function update(dt)
 
         teleState.active = true
         teleState.position = pData.raceEventPosition or 1
+        teleState.engTemp = pData.engTemp -- Linking engTemp from pData to teleState
 
         local bestValidLapTime = pData.bestValidLapTime
         if bestValidLapTime and not bestValidLapTime.invalid and bestValidLapTime.timeSeconds and bestValidLapTime.timeSeconds > 0 then
@@ -106,6 +132,16 @@ function update(dt)
                     teleState.gear = "R"
                 else
                     teleState.gear = tostring(rawGear)
+                end
+            end
+        end
+
+        -- Debug logging to print the structure of g_racingManager.playerVehicleData
+        for key, value in pairs(pData) do
+            print('[DEBUG] playerVehicleData.' .. key, type(value))
+            if type(value) == "table" then
+                for subKey, subValue in pairs(value) do
+                    print('[DEBUG] playerVehicleData.' .. key .. '.' .. subKey, type(subValue))
                 end
             end
         end
