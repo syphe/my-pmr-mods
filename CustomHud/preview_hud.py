@@ -48,7 +48,14 @@ class HudPreview:
         lua = LuaRuntime(unpack_returned_tuples=True)
 
         render_text = lua.globals().renderText
-        lua.globals()["source"] = lambda *_: None
+        def source(path):
+            if path == "dataS/s4sGame/scripts/main.lua":
+                return
+            # Resolve mod scripts beside the selected HUD instead of its game install.
+            script = self.args.lua_file.parent / Path(path).name
+            lua.execute(script.read_text(encoding="utf-8"))
+
+        lua.globals()["source"] = source
         lua.globals()["print"] = lambda *values: print(*values) if False else None
         lua.globals()["g_screenAspectRatio"] = WIDTH / HEIGHT
         lua.globals()["g_screenWidth"] = WIDTH
