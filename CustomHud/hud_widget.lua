@@ -61,6 +61,21 @@ local function addWidget(target, editor)
     if widget.size[1] ~= bounds.width or widget.size[2] ~= bounds.height then
         widget:setSize(bounds.width, bounds.height)
     end
+    if not widget.customHudUpdateInstalled then
+        widget.update = function(self, dt, ...)
+            GuiElement.update(self, dt, ...)
+            local currentBounds = CustomHudMod.defaultHudBounds()
+            if self.size[1] ~= currentBounds.width or self.size[2] ~= currentBounds.height then
+                self:setSize(currentBounds.width, currentBounds.height)
+            end
+            if not editor then applySavedPosition(self) end
+            local editing = CustomHudMod.isHudLayoutEditorOpen()
+            if editor == editing and CustomHudMod.updateHud then
+                CustomHudMod.updateHud(dt)
+            end
+        end
+        widget.customHudUpdateInstalled = true
+    end
     if editor and not widget.customHudDrawInstalled then
         -- Draw within the GUI tree so selection outlines, menu buttons and
         -- dialogs are composited above the preview by the stock renderer.
@@ -80,6 +95,7 @@ local function addWidget(target, editor)
             if entry == widget then found = true break end
         end
         if not found then widgets[#widgets + 1] = widget end
+        widget.customHudMovableWidgets = widgets
         -- Stock reset indexes this table by ID for every movable widget.
         local originals = MovableWidgetsPage.originalPositions
         if type(originals) == 'table' and originals[widgetId] == nil then
@@ -110,14 +126,14 @@ function CustomHudMod.registerHudWidget()
         local target, isEditor = entry[1], entry[2]
         if target and not state.failedTargets[target]
             and (not isEditor or type(target.movableWidgets) == 'table') then
-            local ok, err = pcall(addWidget, target, isEditor)
-            if not ok then
-                state.failedTargets[target] = true
-                print('[CUSTOM_HUD] Widget registration failed: ' .. tostring(err))
-            elseif not isEditor then
-                -- Save updates loadedPositions immediately, but the game does
-                -- not re-run applyWidgetPlacements on the live HUD on exit.
-                applySavedPosition(target[widgetId])
+            local widget = target[widgetId]
+            if widget == nil or not widget.customHudUpdateInstalled
+                or (isEditor and widget.customHudMovableWidgets ~= target.movableWidgets) then
+                local ok, err = pcall(addWidget, target, isEditor)
+                if not ok then
+                    state.failedTargets[target] = true
+                    print('[CUSTOM_HUD] Widget registration failed: ' .. tostring(err))
+                end
             end
         end
     end

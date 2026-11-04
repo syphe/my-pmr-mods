@@ -410,3 +410,35 @@ for session completion, multiplayer completion, a new unfinished session, all
 eight stock hide reasons, pause and missing/inactive player data. The predicate
 was reloaded in the running game and reported `sessionFinished=true` with
 `customVisible=false`. See [inspection/finish-runtime.txt](inspection/finish-runtime.txt).
+
+## Native widget updates: implemented and verified, 4 November 2026
+
+The registered `customHudBox` element can supply its own `update(self, dt)`.
+A bounded live probe received 60 calls through `GuiElement.update`,
+`FrameElement.update`, `ScreenElement.update`, `HudOverlay.update`, `Gui.update`
+and the race phase's `threaded_update`. Native GUI `dt` is in milliseconds.
+The game must be focused and resumed to exercise this path; alt-tab pauses it.
+
+Each custom element now delegates to `GuiElement.update` and calls
+`CustomHudMod.updateHud(dt)`. The editor copy owns telemetry while the layout
+editor is open; otherwise the live copy owns it, avoiding duplicate updates.
+The live callback also synchronizes saved placement and aspect-dependent size.
+Global `update` retains the stock update and bootstraps recreated GUI controllers.
+Registration work runs only when the custom element or editor list needs it.
+
+Removed the broad telemetry and drawing `pcall` wrappers. Narrow guards remain
+around optional native getters and initial widget registration. Missing raw
+telemetry clears RPM/gear, and a failed optional getter cannot suppress the rest
+of the HUD. Flash timing converts all native `dt` values from milliseconds,
+including values below one millisecond.
+
+After live reload, the focused game drew current telemetry and completed another
+60 native telemetry callbacks (`dt=8.343999862670898` on the final call). Both
+bounded verification wrappers restored themselves. Alt-tab then showed the pause
+menu with the custom HUD hidden. Evidence is in
+[inspection/update-runtime.txt](inspection/update-runtime.txt).
+
+Lua regression checks passed for callback ownership, telemetry and optional getter
+failures, millisecond timing, pause/finish visibility, registration idempotency,
+module reload/controller recreation, saved placement and aspect synchronization,
+and drawing error propagation. The Python preview also rendered successfully.

@@ -107,114 +107,110 @@ function update(dt)
     if CustomHudMod.stockUpdate ~= nil then
         CustomHudMod.stockUpdate(dt)
     end
-    
     if g_pendingExit then return end
 
-    -- GUI controllers can be created again when entering a session or editor.
+    -- Bootstrap recreated GUI controllers; the registered element owns telemetry.
     CustomHudMod.registerHudWidget()
+end
 
-    local deltaSec = (dt ~= nil and dt > 0) and ((dt > 1) and (dt / 1000) or dt) or 0.016
+function CustomHudMod.updateHud(dt)
+    teleState.active = false
+    if g_pendingExit then return end
+
+    -- Native GuiElement:update supplies milliseconds, including sub-ms frames.
+    local deltaSec = isFiniteNumber(dt) and math.max(dt, 0) / 1000 or 0
     teleState.flashTimer = teleState.flashTimer + deltaSec
     if teleState.flashTimer >= 0.125 then
         teleState.flashTimer = 0
         teleState.flashOn = not teleState.flashOn
     end
 
-    pcall(function()
-        if g_racingManager == nil or g_racingManager.playerVehicleData == nil then
-            teleState.active = false
-            return
+    if g_racingManager == nil or g_racingManager.playerVehicleData == nil then
+        teleState.active = false
+        return
+    end
+
+    local pData = g_racingManager.playerVehicleData
+    local actor = pData.vehicleActor
+
+    if actor == nil or actor.telemetryManager == nil then
+        teleState.active = false
+        return
+    end
+
+    teleState.position = pData.raceEventPosition or 1
+    teleState.lap = pData.lap or teleState.lap
+    teleState.engTemp = getVehicleNumber(actor, "engine_temp", pData.engTemp)
+    teleState.brakeBias = getVehicleNumber(actor, "brakebias", pData.brakeBias)
+    teleState.engineMap = isFiniteNumber(pData.engineMap) and pData.engineMap or nil
+    local speedKph = getActorNumber(actor, "getForwardSpeedKPH")
+    teleState.speedKph = speedKph and math.abs(speedKph) or nil
+    teleState.tcLevel = getActorNumber(actor, "getTCLevel")
+    teleState.absLevel = getActorNumber(actor, "getABSLevel")
+    teleState.fuelLitres = getActorNumber(actor, "getCurrentFuelRemainingLitres")
+    local maxFuelLitres = getActorNumber(actor, "getMaxFuelLitres")
+    teleState.fuelPercent = nil
+    if teleState.fuelLitres ~= nil and maxFuelLitres ~= nil and maxFuelLitres > 0 then
+        teleState.fuelPercent = teleState.fuelLitres / maxFuelLitres * 100
+    end
+    -- Named wheel getters avoid assuming the raw wheel-array layout.
+    for wheel = 1, 4 do
+        teleState.tyreTemps[wheel] = getVehicleNumber(actor, "wheel" .. wheel .. ".tyre_temp_avg")
+    end
+
+    if type(actor.getShiftLightsRange) == "function" then
+        local ok, maxRpm, startRpm, shiftRpm = pcall(actor.getShiftLightsRange, actor)
+        if ok and isFiniteNumber(maxRpm) and isFiniteNumber(startRpm) and isFiniteNumber(shiftRpm) then
+            teleState.shiftLightsMaxRpm = maxRpm
+            teleState.shiftLightsStartRpm = startRpm
+            teleState.shiftLightsShiftRpm = shiftRpm
+        end
+    end
+
+    local bestValidLapTime = pData.bestValidLapTime
+    local hasBestLap = type(bestValidLapTime) == "table" and not bestValidLapTime.invalid
+        and isFiniteNumber(bestValidLapTime.timeSeconds) and bestValidLapTime.timeSeconds > 0
+    if hasBestLap then
+        teleState.bestLapStr = formatLapTime(bestValidLapTime.timeSeconds)
+    else
+        -- Handled when sitting in the pits, on an out-lap, or after an off-track/penalty invalidation
+        teleState.bestLapStr = "--:--.--"
+    end
+
+    -- DeltaWidget's Player_Best mode uses this live getter, not lastLapDelta.
+    -- Refresh in the stock GUI update cycle, clearing unavailable readings.
+    local currentDelta = nil
+    if hasBestLap and type(pData.getCurrentLapDelta) == "function" then
+        local ok, value = pcall(pData.getCurrentLapDelta, pData)
+        if ok and isFiniteNumber(value) then
+            currentDelta = value
+        end
+    end
+    teleState.gainLossVal = currentDelta ~= nil and string.format("%+.2f", currentDelta) or "--"
+
+    local tMan = actor.telemetryManager
+    local tItem = type(tMan.items) == "table" and tMan.items[actor.telemetryIndex or 1]
+    teleState.rpm = 0
+    teleState.gear = "N"
+    if type(tItem) == "table" then
+        if type(tItem.drivetrain) == "table" then
+            local rpm = tItem.drivetrain[1]
+            teleState.rpm = isFiniteNumber(rpm) and rpm or 0
         end
 
-        local pData = g_racingManager.playerVehicleData
-        local actor = pData.vehicleActor
-
-        if actor == nil or actor.telemetryManager == nil then
-            teleState.active = false
-            return
-        end
-
-        teleState.active = true
-        teleState.position = pData.raceEventPosition or 1
-        teleState.lap = pData.lap or teleState.lap
-        teleState.engTemp = getVehicleNumber(actor, "engine_temp", pData.engTemp)
-        teleState.brakeBias = getVehicleNumber(actor, "brakebias", pData.brakeBias)
-        teleState.engineMap = isFiniteNumber(pData.engineMap) and pData.engineMap or nil
-        local speedKph = getActorNumber(actor, "getForwardSpeedKPH")
-        teleState.speedKph = speedKph and math.abs(speedKph) or nil
-        teleState.tcLevel = getActorNumber(actor, "getTCLevel")
-        teleState.absLevel = getActorNumber(actor, "getABSLevel")
-        teleState.fuelLitres = getActorNumber(actor, "getCurrentFuelRemainingLitres")
-        local maxFuelLitres = getActorNumber(actor, "getMaxFuelLitres")
-        teleState.fuelPercent = nil
-        if teleState.fuelLitres ~= nil and maxFuelLitres ~= nil and maxFuelLitres > 0 then
-            teleState.fuelPercent = teleState.fuelLitres / maxFuelLitres * 100
-        end
-        -- Named wheel getters avoid assuming the raw wheel-array layout.
-        for wheel = 1, 4 do
-            teleState.tyreTemps[wheel] = getVehicleNumber(actor, "wheel" .. wheel .. ".tyre_temp_avg")
-        end
-
-        if type(actor.getShiftLightsRange) == "function" then
-            local maxRpm, startRpm, shiftRpm = actor:getShiftLightsRange()
-            if type(maxRpm) == "number" and type(startRpm) == "number" and type(shiftRpm) == "number" then
-                teleState.shiftLightsMaxRpm = maxRpm
-                teleState.shiftLightsStartRpm = startRpm
-                teleState.shiftLightsShiftRpm = shiftRpm
+        if type(tItem.input) == "table" then
+            local value = tItem.input[6]
+            local rawGear = isFiniteNumber(value) and value or 0
+            if rawGear == 0 then
+                teleState.gear = "N"
+            elseif rawGear < 0 then
+                teleState.gear = "R"
+            else
+                teleState.gear = tostring(rawGear)
             end
         end
-
-        local bestValidLapTime = pData.bestValidLapTime
-        local hasBestLap = type(bestValidLapTime) == "table" and not bestValidLapTime.invalid
-            and isFiniteNumber(bestValidLapTime.timeSeconds) and bestValidLapTime.timeSeconds > 0
-        if hasBestLap then
-            teleState.bestLapStr = formatLapTime(bestValidLapTime.timeSeconds)
-        else
-            -- Handled when sitting in the pits, on an out-lap, or after an off-track/penalty invalidation
-            teleState.bestLapStr = "--:--.--"
-        end
-
-        -- DeltaWidget's Player_Best mode uses this live getter, not lastLapDelta.
-        -- Refresh after the stock update every frame, clearing unavailable readings.
-        local currentDelta = nil
-        if hasBestLap and type(pData.getCurrentLapDelta) == "function" then
-            local ok, value = pcall(pData.getCurrentLapDelta, pData)
-            if ok and isFiniteNumber(value) then
-                currentDelta = value
-            end
-        end
-        teleState.gainLossVal = currentDelta ~= nil and string.format("%+.2f", currentDelta) or "--"
-
-        local tMan = actor.telemetryManager
-        local tItem = tMan.items and tMan.items[actor.telemetryIndex or 1]
-        
-        if tItem ~= nil then
-            if tItem.drivetrain ~= nil then
-                teleState.rpm = tItem.drivetrain[1] or 0
-            end
-
-            if tItem.input ~= nil then
-                local rawGear = tItem.input[6] or 0
-                if rawGear == 0 then
-                    teleState.gear = "N"
-                elseif rawGear < 0 then
-                    teleState.gear = "R"
-                else
-                    teleState.gear = tostring(rawGear)
-                end
-            end
-        end
-
-        -- Debug logging to print the structure of g_racingManager.playerVehicleData
-        -- for key, value in pairs(pData) do
-        --     print('[DEBUG] playerVehicleData.' .. key, type(value))
-        --     if type(value) == "table" then
-        --         for subKey, subValue in pairs(value) do
-        --             print('[DEBUG] playerVehicleData.' .. key .. '.' .. subKey, type(subValue))
-        --         end
-        --     end
-        -- end
-    end)
+    end
+    teleState.active = true
 end
 
 function CustomHudMod.shouldDrawHud()
@@ -257,15 +253,10 @@ function CustomHudMod.shouldDrawHud()
 end
 
 function CustomHudMod.drawHudWidget()
-    pcall(function()
-        -- This calculation sizes the whole HUD, including its shift-light bezel.
-        -- draw_hud.lua lays out the lights and telemetry inside these bounds.
-        local bounds = CustomHudMod.getHudBounds()
-
-        -- The whole surrounding bezel, including behind the LEDs, stays black.
-        drawFilledRect(bounds.left, bounds.bottom, bounds.width, bounds.height, 0, 0, 0, 0.8)
-        CustomHudMod.drawHud(teleState, bounds)
-    end)
+    -- draw_hud.lua lays out the lights and telemetry inside these bounds.
+    local bounds = CustomHudMod.getHudBounds()
+    drawFilledRect(bounds.left, bounds.bottom, bounds.width, bounds.height, 0, 0, 0, 0.8)
+    CustomHudMod.drawHud(teleState, bounds)
 end
 
 function draw()

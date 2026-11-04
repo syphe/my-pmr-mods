@@ -156,6 +156,8 @@ class HudPreview:
         lua.globals()["g_pendingExit"] = False
 
         lua.globals()["update"](0.016)
+        # The game dispatches this through the registered GuiElement in ms.
+        lua.globals()["CustomHudMod"]["updateHud"](16)
         lua.globals()["draw"]()
 
     def draw_filled_rect(self, x, y, width, height, r, g, b, a=1.0):
