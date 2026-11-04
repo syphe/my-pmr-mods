@@ -275,7 +275,7 @@ These were called as `actor:method()` with no extra arguments. Values are a sing
 | `getTCLevel()` | `0` |
 | `getABSLevel()` | `0` |
 
-The speed values agree with the expected KPH/MPH conversion. `getShiftLightsRange` is a better lead for car-specific RPM thresholds than the HUD's fixed 5500–7500 range. Its three return values plausibly represent a maximum, illumination start and upper illumination/shift threshold, but the semantic ordering was not established from stock source. Do not assign those meanings solely from numerical order. TC/ABS zero does not by itself establish whether an assist is disabled, unsupported, or at its lowest setting.
+The speed values agree with the expected KPH/MPH conversion. `getShiftLightsRange` is a better lead for car-specific RPM thresholds than the HUD's fixed 5500â€“7500 range. Its three return values plausibly represent a maximum, illumination start and upper illumination/shift threshold, but the semantic ordering was not established from stock source. Do not assign those meanings solely from numerical order. TC/ABS zero does not by itself establish whether an assist is disabled, unsupported, or at its lowest setting.
 
 Drawing follow-up also confirmed circle, outline, line and point argument conventions by tracing their lower-level drawing calls, and captured all 253 UI atlas slices. See [DRAWING_API.md](DRAWING_API.md). The game remains paused at the original breakpoint; temporary drawing substitutions were restored, and no drawing callback was installed.
 
@@ -354,3 +354,59 @@ pause/resume without intervening updates, all eight hide reasons, session exit,
 missing/failed accessors, and preservation of stock UI drawing. The game was not
 unpaused to perform those checks. Raw evidence is in
 [inspection/pause-runtime.txt](inspection/pause-runtime.txt).
+## Custom HUD registration: implemented and tested, 4 November 2026
+
+`hud_widget.lua` creates separate `GuiElement` containers with ID `customHudBox`
+on `HudOverlay.target` and `MovableWidgetsPage.target`, and appends only the editor
+copy to `movableWidgets`. It was selected successfully as widget 19 in this game
+session. Registration runs after the stock update and tolerates controller/list
+recreation without adding duplicates. Script reload retains the registration state.
+
+Dynamic elements must assign `id` directly: `setId` expects XML identity metadata
+and failed with a nil concatenation. XML loading also normally supplies
+`frameThickness`, `focusedOffset` and `frameOverlayVisible`; these need defaults
+for stock `selectWidget` / `updateFramePosition` to work.
+
+The editor copy draws the paused preview through its own GUI `draw` callback.
+Gameplay continues to draw after the stock HUD, using the live element's absolute
+position. This preserves pause/menu hiding and lets stock dialogs dim and cover
+the editor preview correctly. The user's whole-HUD aspect calculation and colours
+are preserved.
+
+Mouse dragging updates `MovableWidgetsPage.loadedPositions.customHudBox`. The
+stock Save action serialized this entry to `savegame1/widgetPlacements.xml`:
+the test move produced `{0.250625, 0.18761110448837282}` and survived closing and
+reopening the editor. The HUD was then dragged back and saved at approximately
+`{0.36, 0.014}`. The game does not reapply placements to the live custom container
+on editor exit, so registration synchronizes that container from the saved entry
+when its coordinates change. Editor dragging is never overwritten by that sync.
+
+Stock placement loading explicitly enumerates stock controls. A single wrapper
+extends `applyWidgetPlacements` for our ID. The custom default is also added to
+`originalPositions` for the stock reset path. A full game restart and the complete
+Reset UI action have not been exercised; mocked controller recreation/reload and
+saved-position loading passed.
+
+An exploratory placement call on a shallow controller copy also moved its shared
+stock children. The later native Save exposed the difference against the pre-test
+placement-file backup. All 18 stock GUI positions and `loadedPositions` entries
+were restored, and the file's 18 stock entries were restored exactly from the
+backup while retaining `customHudBox`. The unsafe exploratory probe was removed.
+Do not invoke stock placement methods on shallow copies of real GUI controllers.
+
+## Finished-session visibility: fixed, 4 November 2026
+
+The completed race still had an active manager and actor, with all stock HUD hide
+reasons (including `POST_RACE`) false. Player data had `sessionFinished=true` and
+`chequeredFlagTriggered=true`; the actor had `chequeredFlag=true`.
+`playerData:getSessionFinished()` returned true. A read-only local mock trace
+confirmed this getter reads `sessionFinished`; `getMPSessionComplete()` reads
+`mpSessionComplete` (false in this session).
+
+`shouldDrawHud` now checks either completion field directly at draw time before
+the pause and stock hide checks. It does not latch completion across sessions.
+The layout editor keeps its intentional paused preview. Lua regressions passed
+for session completion, multiplayer completion, a new unfinished session, all
+eight stock hide reasons, pause and missing/inactive player data. The predicate
+was reloaded in the running game and reported `sessionFinished=true` with
+`customVisible=false`. See [inspection/finish-runtime.txt](inspection/finish-runtime.txt).

@@ -5,6 +5,7 @@ source('dataS/s4sGame/scripts/main.lua')
 CustomHudMod = CustomHudMod or {}
 
 source(CustomHudRoot .. 'draw_hud.lua')
+source(CustomHudRoot .. 'hud_widget.lua')
 
 if not CustomHudMod.installed then
     CustomHudMod.stockInit = init
@@ -108,6 +109,9 @@ function update(dt)
     end
     
     if g_pendingExit then return end
+
+    -- GUI controllers can be created again when entering a session or editor.
+    CustomHudMod.registerHudWidget()
 
     local deltaSec = (dt ~= nil and dt > 0) and ((dt > 1) and (dt / 1000) or dt) or 0.016
     teleState.flashTimer = teleState.flashTimer + deltaSec
@@ -219,6 +223,10 @@ function CustomHudMod.shouldDrawHud()
         return false
     end
     local pData = manager.playerVehicleData
+    -- The player can finish before the stock POST_RACE hide reason is set.
+    if pData and (pData.sessionFinished == true or pData.mpSessionComplete == true) then
+        return false
+    end
     local actor = pData and pData.vehicleActor
     if actor == nil or actor.active ~= true or actor.timePaused == true then
         return false
@@ -248,33 +256,27 @@ function CustomHudMod.shouldDrawHud()
     return true
 end
 
-function draw()
-    if CustomHudMod.stockDraw ~= nil then
-        CustomHudMod.stockDraw()
-    end
-
-
-    -- Check at draw time so pausing hides the HUD even without another update.
-    if not teleState.active or not CustomHudMod.shouldDrawHud() then return end
-
+function CustomHudMod.drawHudWidget()
     pcall(function()
         -- This calculation sizes the whole HUD, including its shift-light bezel.
         -- draw_hud.lua lays out the lights and telemetry inside these bounds.
-        local bounds = {
-            centerX = 0.5,
-            bottom = 0.014,
-            width = 0.28
-        }
-        local screenAspectRatio = g_screenAspectRatio or 1.7777777777777777
-        bounds.height = bounds.width * screenAspectRatio * 9 / 16
-        bounds.left = bounds.centerX - bounds.width / 2
-        bounds.right = bounds.centerX + bounds.width / 2
-        bounds.top = bounds.bottom + bounds.height
+        local bounds = CustomHudMod.getHudBounds()
 
         -- The whole surrounding bezel, including behind the LEDs, stays black.
         drawFilledRect(bounds.left, bounds.bottom, bounds.width, bounds.height, 0, 0, 0, 0.8)
         CustomHudMod.drawHud(teleState, bounds)
     end)
+end
+
+function draw()
+    if CustomHudMod.stockDraw ~= nil then
+        CustomHudMod.stockDraw()
+    end
+
+    -- In the editor, its registered GUI element draws the paused preview.
+    if CustomHudMod.isHudLayoutEditorOpen() then return end
+    if not teleState.active or not CustomHudMod.shouldDrawHud() then return end
+    CustomHudMod.drawHudWidget()
 end
 
 

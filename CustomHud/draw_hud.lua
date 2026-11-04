@@ -195,7 +195,17 @@ function CustomHudMod.drawHud(teleState, bounds)
 
     -- Right column: a full-width delta above six half-width cells.
     local deltaCell = cell(rightLeft, screen.top - sideRowHeight, sideWidth, sideRowHeight)
-    drawCell(deltaCell, "GAIN / LOSS", teleState.gainLossVal, 0.030, 0.1, 0.9, 0.1)
+    local delta = tonumber(teleState.gainLossVal)
+    local deltaR, deltaG, deltaB = 1.0, 1.0, 1.0
+    -- Keep the near-zero band and unavailable readings neutral.
+    if delta ~= nil and math.abs(delta) >= 0.1 then
+        if delta < 0 then
+            deltaR, deltaG, deltaB = 0.1, 0.9, 0.1
+        else
+            deltaR, deltaG, deltaB = 0.9, 0.1, 0.1
+        end
+    end
+    drawCell(deltaCell, "GAIN / LOSS", teleState.gainLossVal, 0.030, deltaR, deltaG, deltaB)
     local tyres = teleState.tyreTemps or {}
     local rightCells = {
         {"TYRE 1", formatNumber(tyres[1], "%.0f")},
