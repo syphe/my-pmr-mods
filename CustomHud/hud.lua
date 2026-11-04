@@ -131,6 +131,7 @@ function update(dt)
 
         teleState.active = true
         teleState.position = pData.raceEventPosition or 1
+        teleState.lap = pData.lap or teleState.lap
         teleState.engTemp = pData.engTemp -- Linking engTemp from pData to teleState
 
         if type(actor.getShiftLightsRange) == "function" then
@@ -177,14 +178,14 @@ function update(dt)
         end
 
         -- Debug logging to print the structure of g_racingManager.playerVehicleData
-        for key, value in pairs(pData) do
-            print('[DEBUG] playerVehicleData.' .. key, type(value))
-            if type(value) == "table" then
-                for subKey, subValue in pairs(value) do
-                    print('[DEBUG] playerVehicleData.' .. key .. '.' .. subKey, type(subValue))
-                end
-            end
-        end
+        -- for key, value in pairs(pData) do
+        --     print('[DEBUG] playerVehicleData.' .. key, type(value))
+        --     if type(value) == "table" then
+        --         for subKey, subValue in pairs(value) do
+        --             print('[DEBUG] playerVehicleData.' .. key .. '.' .. subKey, type(subValue))
+        --         end
+        --     end
+        -- end
     end)
 end
 
@@ -198,14 +199,19 @@ function draw()
     pcall(function()
         local cx = 0.5
         local cy = 0.13
-        local w = 0.22
-        local h = 0.17
+        local w = 0.34
+        local h = 0.19
+        local left = cx - w/2
+        local right = cx + w/2
+        local bottom = cy - h/2
+        local top = cy + h/2
+        local borderThicknessX = 0.001
+        local borderThicknessY = 0.001
+        local borderR, borderG, borderB = 0.92, 0.92, 0.92
 
-        -- 1. Darker MoTeC Bezel & Screen Panels
-        drawFilledRect(cx - w/2, cy - h/2, w, h, 0.01, 0.01, 0.01, 0.95)
-        drawFilledRect(cx - w/2 + 0.008, cy - h/2 + 0.008, w - 0.016, h - 0.016, 0.01, 0.01, 0.01, 0.95)
+        drawFilledRect(left, bottom, w, h, 0.025, 0.025, 0.025, 0.96)
 
-        -- 2. 8-LED Progressive Shift Lights
+        -- 8-LED circular shift-light strip
         local minRpm = teleState.shiftLightsStartRpm
         local maxRpm = teleState.shiftLightsMaxRpm
         local shiftRpm = teleState.shiftLightsShiftRpm
@@ -217,8 +223,8 @@ function draw()
         
         local ledWidth = 0.012
         local ledSpacing = 0.018
-        local startX = cx - (4 * ledSpacing) + (ledSpacing / 2) + 0.001
-        local ledY = cy + h/2 - 0.018
+        local startX = cx - (4 * ledSpacing) + (ledSpacing / 2)
+        local ledY = top - 0.025
         local screenAspectRatio = g_screenAspectRatio or 1.7777777777777777
         local circleWidth = 0.010 / screenAspectRatio
         local circleHeight = 0.010
@@ -264,59 +270,75 @@ function draw()
             end
         end
 
-        -- 3. Top-Left: Session Status ("RACE")
+        -- Bordered instrument layout
+        local upperTop = ledY - 0.012
+        local upperBottom = bottom + 0.058
+        local leftWidth = w * 0.29
+        local bottomColumnWidth = (w - 0.018) / 3
+        local centeredInstrumentLeft = left + 0.009 + bottomColumnWidth
+        local rightLeft = centeredInstrumentLeft + bottomColumnWidth
+        local bottomTop = upperBottom
+
+        drawOutlineRect(left + 0.009, upperBottom, w - 0.018, upperTop - upperBottom, borderThicknessX, borderThicknessY, borderR, borderG, borderB, 1.0)
+        drawFilledRect(left + 0.011, upperBottom + 0.002, leftWidth - 0.004, upperTop - upperBottom - 0.004, 0.02, 0.02, 0.02, 1.0)
+        drawOutlineRect(centeredInstrumentLeft, upperBottom, bottomColumnWidth, upperTop - upperBottom, borderThicknessX, borderThicknessY, borderR, borderG, borderB, 1.0)
+        drawOutlineRect(rightLeft, upperBottom, right - rightLeft - 0.009, upperTop - upperBottom, borderThicknessX, borderThicknessY, borderR, borderG, borderB, 1.0)
+
+        local bottomHeight = upperBottom - bottom - 0.010
+        for column = 0, 2 do
+            local columnLeft = left + 0.009 + bottomColumnWidth * column
+            drawOutlineRect(columnLeft, bottom + 0.008, bottomColumnWidth, bottomHeight, borderThicknessX, borderThicknessY, borderR, borderG, borderB, 1.0)
+        end
+
+        -- Upper left: race status, position and lap
         setTextAlignment(RenderText.ALIGN_LEFT)
         setTextColor(0.95, 0.85, 0.1, 1.0)
-        renderText(cx - w/2 + 0.018, cy + 0.046, 0.014, "RACE")
-
-        -- 4. Middle-Left: Position & Lap
+        renderText(left + 0.019, upperTop - 0.016, 0.010, "RACE")
         setTextColor(0.5, 0.5, 0.5, 1.0)
-        renderText(cx - w/2 + 0.018, cy + 0.012, 0.011, "POS")
+        renderText(left + 0.019, upperTop - 0.034, 0.008, "POS")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(cx - w/2 + 0.018, cy - 0.010, 0.022, tostring(teleState.position))
-
+        renderText(left + 0.019, upperTop - 0.054, 0.016, tostring(teleState.position))
         setTextColor(0.5, 0.5, 0.5, 1.0)
-        renderText(cx - w/2 + 0.065, cy + 0.012, 0.011, "LAP")
+        renderText(left + 0.072, upperTop - 0.034, 0.008, "LAP")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(cx - w/2 + 0.065, cy - 0.010, 0.022, tostring(teleState.lap))
+        renderText(left + 0.072, upperTop - 0.054, 0.016, tostring(teleState.lap))
 
-        -- 5. Center: Giant Gear Indicator
+        -- Center: giant gear
         setTextAlignment(RenderText.ALIGN_CENTER)
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(cx, cy - 0.030, 0.082, teleState.gear)
+        local gearCenterX = left + 0.009 + bottomColumnWidth * 1.5
+        renderText(gearCenterX, upperTop - 0.057, 0.050, teleState.gear)
 
-        -- 6. Top-Right: Best Lap & Gain/Loss
+        -- Upper right: best lap and gain/loss
         setTextAlignment(RenderText.ALIGN_RIGHT)
         setTextColor(0.5, 0.5, 0.5, 1.0)
-        renderText(cx + w/2 - 0.018, cy + 0.052, 0.011, "BEST LAP")
+        renderText(right - 0.019, upperTop - 0.016, 0.008, "BEST LAP")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(cx + w/2 - 0.018, cy + 0.030, 0.022, teleState.bestLapStr)
-
+        renderText(right - 0.019, upperTop - 0.034, 0.013, teleState.bestLapStr)
         setTextColor(0.5, 0.5, 0.5, 1.0)
-        renderText(cx + w/2 - 0.018, cy + 0.008, 0.011, "GAIN / LOSS")
+        renderText(right - 0.019, upperTop - 0.046, 0.008, "GAIN / LOSS")
         setTextColor(0.1, 0.9, 0.1, 1.0)
-        renderText(cx + w/2 - 0.018, cy - 0.014, 0.022, teleState.gainLossVal)
+        renderText(right - 0.019, upperTop - 0.060, 0.013, teleState.gainLossVal)
 
-        -- 7. Bottom Row: ENG TEMP | B BIAS | MAP
+        -- Lower row: engine temperature, brake bias and engine map
         setTextAlignment(RenderText.ALIGN_CENTER)
-        
-        local col1X = cx - 0.062
+        local col1X = left + 0.009 + bottomColumnWidth/2
         setTextColor(0.5, 0.5, 0.5, 1.0)
-        renderText(col1X, cy - 0.042, 0.011, "ENG TEMP")
+        renderText(col1X, bottomTop - 0.016, 0.008, "ENG TEMP")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(col1X, cy - 0.068, 0.024, string.format("%d", teleState.engTemp))
+        renderText(col1X, bottomTop - 0.042, 0.014, string.format("%d", teleState.engTemp))
 
-        local col2X = cx
+        local col2X = left + 0.009 + bottomColumnWidth * 1.5
         setTextColor(0.5, 0.5, 0.5, 1.0)
-        renderText(col2X, cy - 0.042, 0.011, "B BIAS")
+        renderText(col2X, bottomTop - 0.016, 0.008, "B BIAS")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(col2X, cy - 0.068, 0.024, string.format("%.1f", teleState.brakeBias))
+        renderText(col2X, bottomTop - 0.042, 0.014, string.format("%.1f", teleState.brakeBias))
 
-        local col3X = cx + 0.062
+        local col3X = left + 0.009 + bottomColumnWidth * 2.5
         setTextColor(0.5, 0.5, 0.5, 1.0)
-        renderText(col3X, cy - 0.042, 0.011, "MAP")
+        renderText(col3X, bottomTop - 0.016, 0.008, "MAP")
         setTextColor(1.0, 1.0, 1.0, 1.0)
-        renderText(col3X, cy - 0.068, 0.024, tostring(teleState.engineMap))
+        renderText(col3X, bottomTop - 0.042, 0.014, tostring(teleState.engineMap))
 
         setTextAlignment(RenderText.ALIGN_LEFT)
     end)
