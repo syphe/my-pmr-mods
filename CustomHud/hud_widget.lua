@@ -46,6 +46,18 @@ local function addWidget(target, editor)
         widget:setSize(bounds.width, bounds.height)
         widget:setAbsolutePosition(bounds.left, bounds.bottom)
         widget.handleFocus = false
+        widget.update = function(self, dt, ...)
+            GuiElement.update(self, dt, ...)
+            local currentBounds = CustomHudMod.defaultHudBounds()
+            if self.size[1] ~= currentBounds.width or self.size[2] ~= currentBounds.height then
+                self:setSize(currentBounds.width, currentBounds.height)
+            end
+            if not editor then applySavedPosition(self) end
+            local editing = CustomHudMod.isHudLayoutEditorOpen()
+            if editor == editing and CustomHudMod.updateHud then
+                CustomHudMod.updateHud(dt)
+            end
+        end
         target:addElement(widget)
         target[widgetId] = widget
         applySavedPosition(widget)
@@ -60,21 +72,6 @@ local function addWidget(target, editor)
     widget.frameOverlayVisible = widget.frameOverlayVisible or {true, true, true, true}
     if widget.size[1] ~= bounds.width or widget.size[2] ~= bounds.height then
         widget:setSize(bounds.width, bounds.height)
-    end
-    if not widget.customHudUpdateInstalled then
-        widget.update = function(self, dt, ...)
-            GuiElement.update(self, dt, ...)
-            local currentBounds = CustomHudMod.defaultHudBounds()
-            if self.size[1] ~= currentBounds.width or self.size[2] ~= currentBounds.height then
-                self:setSize(currentBounds.width, currentBounds.height)
-            end
-            if not editor then applySavedPosition(self) end
-            local editing = CustomHudMod.isHudLayoutEditorOpen()
-            if editor == editing and CustomHudMod.updateHud then
-                CustomHudMod.updateHud(dt)
-            end
-        end
-        widget.customHudUpdateInstalled = true
     end
     if editor and not widget.customHudDrawInstalled then
         -- Draw within the GUI tree so selection outlines, menu buttons and
@@ -127,8 +124,7 @@ function CustomHudMod.registerHudWidget()
         if target and not state.failedTargets[target]
             and (not isEditor or type(target.movableWidgets) == 'table') then
             local widget = target[widgetId]
-            if widget == nil or not widget.customHudUpdateInstalled
-                or (isEditor and widget.customHudMovableWidgets ~= target.movableWidgets) then
+            if widget == nil or (isEditor and widget.customHudMovableWidgets ~= target.movableWidgets) then
                 local ok, err = pcall(addWidget, target, isEditor)
                 if not ok then
                     state.failedTargets[target] = true
