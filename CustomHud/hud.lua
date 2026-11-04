@@ -212,6 +212,7 @@ function draw()
         CustomHudMod.stockDraw()
     end
 
+
     if not teleState.active then return end
 
     pcall(function()
@@ -219,7 +220,7 @@ function draw()
         -- draw_hud.lua lays out the lights and telemetry inside these bounds.
         local bounds = {
             centerX = 0.5,
-            bottom = 0.046,
+            bottom = 0.014,
             width = 0.28
         }
         local screenAspectRatio = g_screenAspectRatio or 1.7777777777777777
@@ -229,7 +230,7 @@ function draw()
         bounds.top = bounds.bottom + bounds.height
 
         -- The whole surrounding bezel, including behind the LEDs, stays black.
-        drawFilledRect(bounds.left, bounds.bottom, bounds.width, bounds.height, 0, 0, 0, 1.0)
+        drawFilledRect(bounds.left, bounds.bottom, bounds.width, bounds.height, 0, 0, 0, 0.8)
         CustomHudMod.drawHud(teleState, bounds)
     end)
 end

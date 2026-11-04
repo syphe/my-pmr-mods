@@ -52,9 +52,8 @@ function CustomHudMod.drawHud(teleState, bounds)
     local borderR, borderG, borderB = 0.92, 0.92, 0.92
 
     -- Only the telemetry screen is lighter; the LED strip keeps the black bezel.
-    drawFilledRect(screen.left, screen.bottom, screen.width, screen.height, 0.01, 0.01, 0.01, 1.0)
+    drawFilledRect(screen.left, screen.bottom, screen.width, screen.height, 0.0, 0.0, 0.0, 1.0)
 
-    
     -- 8-LED circular shift-light strip
     local minRpm = teleState.shiftLightsStartRpm
     local maxRpm = teleState.shiftLightsMaxRpm
@@ -153,10 +152,10 @@ function CustomHudMod.drawHud(teleState, bounds)
         drawOutlineRect(bounds.left, bounds.bottom, bounds.width, bounds.height,
             borderThicknessX, borderThicknessY, borderR, borderG, borderB, 1.0)
         local centerX = bounds.left + bounds.width / 2
-        local labelSize = fittedSize(label, math.min(0.0075, bounds.height * 0.18), bounds.width * 0.88)
+        local labelSize = fittedSize(label, math.min(0.0105, bounds.height * 0.24), bounds.width * 0.88)
         local size = fittedSize(value, math.min(valueSize, bounds.height * 0.48), bounds.width * 0.86)
         setTextColor(0.65, 0.65, 0.65, 1.0)
-        renderText(centerX, bounds.bottom + bounds.height * 0.78, labelSize, label)
+        renderText(centerX, bounds.bottom + bounds.height * 0.84, labelSize, label)
         setTextColor(r or 1.0, g or 1.0, b or 1.0, 1.0)
         renderText(centerX, bounds.bottom + bounds.height * 0.34, size, value)
     end
@@ -178,14 +177,13 @@ function CustomHudMod.drawHud(teleState, bounds)
         drawCell(sideCell(screen.left, column, row), field[1], field[2], field[3])
     end
 
-    -- Middle column: small RPM panel, large gear panel, then speed in km/h.
-    local centerHeight = screen.height - gapY * 2
-    local rpmHeight = centerHeight * 0.22
-    local gearHeight = centerHeight * 0.53
-    local speedHeight = centerHeight * 0.25
-    local rpmCell = cell(centerLeft, screen.top - rpmHeight, centerWidth, rpmHeight)
-    local gearCell = cell(centerLeft, rpmCell.bottom - gapY - gearHeight, centerWidth, gearHeight)
-    local speedCell = cell(centerLeft, screen.bottom, centerWidth, speedHeight)
+    -- Use the side-panel row heights so the center borders align with the grid.
+    -- The gear spans the two middle rows, including their internal gutter.
+    local rpmCell = cell(centerLeft, screen.top - sideRowHeight, centerWidth, sideRowHeight)
+    local speedCell = cell(centerLeft, screen.bottom, centerWidth, sideRowHeight)
+    local gearBottom = speedCell.bottom + speedCell.height + gapY
+    local gearTop = rpmCell.bottom - gapY
+    local gearCell = cell(centerLeft, gearBottom, centerWidth, gearTop - gearBottom)
     drawCell(rpmCell, "RPM", formatNumber(teleState.rpm, "%.0f"), 0.030)
     drawOutlineRect(gearCell.left, gearCell.bottom, gearCell.width, gearCell.height,
         borderThicknessX, borderThicknessY, borderR, borderG, borderB, 1.0)
