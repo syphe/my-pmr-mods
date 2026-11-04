@@ -1,4 +1,4 @@
-CustomHudRoot = 'C:/Modding/PMR_Hud/'
+CustomHudRoot = 'C:/Users/syphe/source/repos/my-pmr-mods/CustomHud/'
 
 source('dataS/s4sGame/scripts/main.lua')
 
@@ -23,11 +23,11 @@ end
 -- bestValidLapTime (table):
 --   - invalid (boolean)
 --   - timeSeconds (number)
--- brakeBias (number)
+-- brakeBias (optional number; prefer vehicleActor:getVehicleParamValue("brakebias"))
 -- currentLapDelta (number)
 -- delta (number)
--- engineMap (number)
--- engTemp (number)
+-- engineMap (optional number; no verified vehicle getter)
+-- engTemp (optional number; prefer vehicleActor:getVehicleParamValue("engine_temp"))
 -- gear (string)
 -- lastLapDelta (number)
 -- lapDelta (number)
@@ -50,11 +50,9 @@ local teleState = {
     gear = "N",
     position = 1,
     lap = 1,
-    engTemp = 101,
-    brakeBias = 65.0,
-    engineMap = 3,
     bestLapStr = "--:--.--",
     gainLossVal = "+0.00",
+    tyreTemps = {},
     active = false,
     shiftLightsStartRpm = 6000,
     shiftLightsMaxRpm = 7500,
@@ -73,6 +71,35 @@ local function formatLapTime(seconds)
     local mins = math.floor(seconds / 60)
     local secs = seconds % 60
     return string.format("%d:%05.2f", mins, secs)
+end
+
+-- A missing or unsupported parameter must not interrupt the rest of the HUD.
+local function isFiniteNumber(value)
+    return type(value) == "number" and value == value and value > -math.huge and value < math.huge
+end
+
+local function getVehicleNumber(actor, name, fallback)
+    if type(actor.getVehicleParamValue) == "function" then
+        local ok, found, value = pcall(actor.getVehicleParamValue, actor, name)
+        if ok and found and isFiniteNumber(value) then
+            return value
+        end
+    end
+    if isFiniteNumber(fallback) then
+        return fallback
+    end
+    return nil
+end
+
+local function getActorNumber(actor, methodName)
+    local method = actor[methodName]
+    if type(method) == "function" then
+        local ok, value = pcall(method, actor)
+        if ok and isFiniteNumber(value) then
+            return value
+        end
+    end
+    return nil
 end
 
 function update(dt)
@@ -106,7 +133,23 @@ function update(dt)
         teleState.active = true
         teleState.position = pData.raceEventPosition or 1
         teleState.lap = pData.lap or teleState.lap
-        teleState.engTemp = pData.engTemp -- Linking engTemp from pData to teleState
+        teleState.engTemp = getVehicleNumber(actor, "engine_temp", pData.engTemp)
+        teleState.brakeBias = getVehicleNumber(actor, "brakebias", pData.brakeBias)
+        teleState.engineMap = isFiniteNumber(pData.engineMap) and pData.engineMap or nil
+        local speedKph = getActorNumber(actor, "getForwardSpeedKPH")
+        teleState.speedKph = speedKph and math.abs(speedKph) or nil
+        teleState.tcLevel = getActorNumber(actor, "getTCLevel")
+        teleState.absLevel = getActorNumber(actor, "getABSLevel")
+        teleState.fuelLitres = getActorNumber(actor, "getCurrentFuelRemainingLitres")
+        local maxFuelLitres = getActorNumber(actor, "getMaxFuelLitres")
+        teleState.fuelPercent = nil
+        if teleState.fuelLitres ~= nil and maxFuelLitres ~= nil and maxFuelLitres > 0 then
+            teleState.fuelPercent = teleState.fuelLitres / maxFuelLitres * 100
+        end
+        -- Named wheel getters avoid assuming the raw wheel-array layout.
+        for wheel = 1, 4 do
+            teleState.tyreTemps[wheel] = getVehicleNumber(actor, "wheel" .. wheel .. ".tyre_temp_avg")
+        end
 
         if type(actor.getShiftLightsRange) == "function" then
             local maxRpm, startRpm, shiftRpm = actor:getShiftLightsRange()
@@ -163,6 +206,7 @@ function update(dt)
     end)
 end
 
+
 function draw()
     if CustomHudMod.stockDraw ~= nil then
         CustomHudMod.stockDraw()
@@ -171,21 +215,25 @@ function draw()
     if not teleState.active then return end
 
     pcall(function()
-        -- Draw the whole HUD first, then let draw_hud.lua fill its bounds.
+        -- This calculation sizes the whole HUD, including its shift-light bezel.
+        -- draw_hud.lua lays out the lights and telemetry inside these bounds.
         local bounds = {
             centerX = 0.5,
-            centerY = 0.13,
+            bottom = 0.046,
             width = 0.28
         }
-        bounds.height = bounds.width * 3 / 5
+        local screenAspectRatio = g_screenAspectRatio or 1.7777777777777777
+        bounds.height = bounds.width * screenAspectRatio * 9 / 16
         bounds.left = bounds.centerX - bounds.width / 2
         bounds.right = bounds.centerX + bounds.width / 2
-        bounds.bottom = bounds.centerY - bounds.height / 2
-        bounds.top = bounds.centerY + bounds.height / 2
+        bounds.top = bounds.bottom + bounds.height
 
-        drawFilledRect(bounds.left, bounds.bottom, bounds.width, bounds.height, 0.025, 0.025, 0.025, 0.96)
+        -- The whole surrounding bezel, including behind the LEDs, stays black.
+        drawFilledRect(bounds.left, bounds.bottom, bounds.width, bounds.height, 0, 0, 0, 1.0)
         CustomHudMod.drawHud(teleState, bounds)
     end)
 end
+
+
 
 print('[CUSTOM_HUD] Debug Logger Loaded!')

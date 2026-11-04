@@ -42,12 +42,12 @@ class HudPreview:
         self.image = Image.new("RGB", (WIDTH, HEIGHT), (12, 15, 18))
         self.draw = ImageDraw.Draw(self.image)
         self.text_alignment = "left"
+        self.text_vertical_alignment = "baseline"
         self.text_color = (1, 1, 1, 1)
 
     def execute(self):
         lua = LuaRuntime(unpack_returned_tuples=True)
 
-        render_text = lua.globals().renderText
         def source(path):
             if path == "dataS/s4sGame/scripts/main.lua":
                 return
@@ -61,42 +61,78 @@ class HudPreview:
         lua.globals()["g_screenWidth"] = WIDTH
         lua.globals()["g_screenHeight"] = HEIGHT
 
-        render_text_align = lua.table_from({
-            "ALIGN_LEFT": 1,
-            "ALIGN_CENTER": 2,
-            "ALIGN_RIGHT": 3,
+        lua.globals()["RenderText"] = lua.table_from({
+            "ALIGN_LEFT": 0, "ALIGN_CENTER": 1, "ALIGN_RIGHT": 2,
+            "VERTICAL_ALIGN_BASELINE": 0, "VERTICAL_ALIGN_TOP": 1,
+            "VERTICAL_ALIGN_MIDDLE": 2, "VERTICAL_ALIGN_BOTTOM": 3,
         })
-        lua.globals()["RenderText"] = lua.table_from({"ALIGN_LEFT": 1, "ALIGN_CENTER": 2, "ALIGN_RIGHT": 3})
 
         lua.globals()["drawFilledRect"] = self.draw_filled_rect
         lua.globals()["drawOutlineRect"] = self.draw_outline_rect
         lua.globals()["drawLine2D"] = self.draw_line
         lua.globals()["setTextAlignment"] = lambda alignment: setattr(
-            self, "text_alignment", {1: "left", 2: "center", 3: "right"}.get(alignment, "left")
+            self, "text_alignment", {0: "left", 1: "center", 2: "right"}.get(alignment, "left")
+        )
+        lua.globals()["setTextVerticalAlignment"] = lambda alignment: setattr(
+            self, "text_vertical_alignment",
+            {0: "baseline", 1: "top", 2: "middle", 3: "bottom"}.get(alignment, "baseline")
         )
         lua.globals()["setTextColor"] = self.set_text_color
         lua.globals()["renderText"] = self.render_text
+        lua.globals()["getTextWidth"] = lua.eval(
+            "function(callback) return function(size, text) return callback(size, text) end end"
+        )(self.measure_text)
 
         lua.execute(self.args.lua_file.read_text(encoding="utf-8"))
 
+        gear = str(self.args.gear).upper()
+        raw_gear = -1 if gear == "R" else int(gear) if gear.isdigit() else 0
         telemetry = lua.table_from({
             "drivetrain": lua.table_from({1: self.args.rpm}),
-            "input": lua.table_from({6: int(self.args.gear) if str(self.args.gear).isdigit() else 0}),
+            "input": lua.table_from({6: raw_gear}),
         })
         actor = lua.table_from({
             "telemetryManager": lua.table_from({"items": lua.table_from({1: telemetry})}),
             "telemetryIndex": 1,
+            "previewParameters": lua.table_from({
+                "engine_temp": self.args.engine_temp,
+                "brakebias": self.args.brake_bias,
+                **{f"wheel{index}.tyre_temp_avg": value for index, value in enumerate(self.args.tyre_temps, 1)},
+            }),
+            "previewMethods": lua.table_from({
+                "getForwardSpeedKPH": self.args.speed_kph,
+                "getTCLevel": self.args.tc,
+                "getABSLevel": self.args.abs,
+                "getCurrentFuelRemainingLitres": self.args.fuel,
+                "getMaxFuelLitres": self.args.fuel_capacity,
+            }),
         })
+        actor["getVehicleParamValue"] = lua.eval("""
+            function(self, name)
+                local value = self.previewParameters[name]
+                return value ~= nil, value
+            end
+        """)
+        make_method = lua.eval("""
+            function(name)
+                return function(self) return self.previewMethods[name] end
+            end
+        """)
+        for name in actor["previewMethods"]:
+            actor[name] = make_method(name)
 
         def get_shift_lights_range(_actor):
             return self.args.max_rpm, self.args.start_rpm, self.args.shift_rpm
 
-        actor["getShiftLightsRange"] = get_shift_lights_range
+        # PMR checks type(method) == "function"; wrap the Python callback in Lua.
+        actor["getShiftLightsRange"] = lua.eval(
+            "function(callback) return function(self) return callback(self) end end"
+        )(get_shift_lights_range)
         player_data = lua.table_from({
             "vehicleActor": actor,
             "raceEventPosition": self.args.position,
             "lap": self.args.lap,
-            "engTemp": self.args.engine_temp,
+            "engineMap": self.args.engine_map,
             "bestValidLapTime": lua.table_from({"invalid": False, "timeSeconds": 102.86}),
             "lapDelta": float(self.args.delta),
         })
@@ -132,6 +168,11 @@ class HudPreview:
     def set_text_color(self, r, g, b, a=1.0):
         self.text_color = (r, g, b, a)
 
+    def measure_text(self, size, text):
+        text = str(text)
+        text_font = font(max(8, int(size * HEIGHT)), bold=len(text) <= 2)
+        return self.draw.textlength(text, font=text_font) / WIDTH
+
     def render_text(self, x, y, size, text):
         text = str(text)
         pixel_size = max(8, int(size * HEIGHT))
@@ -140,22 +181,20 @@ class HudPreview:
         pixel_y = sy(y)
         bbox = self.draw.textbbox((0, 0), text, font=text_font)
         text_height = bbox[3] - bbox[1]
-        if self.text_alignment == "center":
-            anchor_x = pixel_x
-        elif self.text_alignment == "right":
-            anchor_x = pixel_x
-        else:
-            anchor_x = pixel_x
         text_width = self.draw.textlength(text, font=text_font)
         if self.text_alignment == "center":
             pixel_x -= text_width / 2
         elif self.text_alignment == "right":
             pixel_x -= text_width
+        anchor = {"baseline": "ls", "top": "lt", "middle": "lt", "bottom": "lb"}[self.text_vertical_alignment]
+        if self.text_vertical_alignment == "middle":
+            pixel_y -= text_height / 2
         self.draw.text(
-            (pixel_x, pixel_y - text_height / 2),
+            (pixel_x, pixel_y),
             text,
             font=text_font,
             fill=rgba(*self.text_color),
+            anchor=anchor,
         )
 
     def save(self):
@@ -171,6 +210,12 @@ def parse_args():
     parser.add_argument("--max-rpm", type=float, default=7500)
     parser.add_argument("--shift-rpm", type=float, default=7350)
     parser.add_argument("--gear", default="4")
+    parser.add_argument("--speed-kph", type=float, default=176)
+    parser.add_argument("--tc", type=int, default=3)
+    parser.add_argument("--abs", type=int, default=2)
+    parser.add_argument("--tyre-temps", type=float, nargs=4, default=[91, 93, 89, 90])
+    parser.add_argument("--fuel", type=float, default=53.7)
+    parser.add_argument("--fuel-capacity", type=float, default=134.1)
     parser.add_argument("--position", type=int, default=3)
     parser.add_argument("--lap", type=int, default=7)
     parser.add_argument("--delta", default="+0.24")
