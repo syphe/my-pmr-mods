@@ -82,6 +82,17 @@ class HudPreview:
         lua.globals()["getTextWidth"] = lua.eval(
             "function(callback) return function(size, text) return callback(size, text) end end"
         )(self.measure_text)
+        lua.execute("""
+            PauseManager = {gamePausedReasons = 0}
+            function PauseManager:isPaused() return self.gamePausedReasons ~= 0 end
+            HudOverlay = {HideReasons = {
+                GAME=0, PAUSE=1, PRE_RACE=2, PRERACE_FLYTHROUGH=3,
+                POST_RACE=4, PHOTO_MODE=5, DMCC=6, DEBUG=7
+            }}
+            local hud = {hiddenReasons = {}}
+            function hud:isHudVisibleReasonSet(reason) return self.hiddenReasons[reason] == true end
+            g_gui = {guis = {HudOverlay = {target = hud}}}
+        """)
 
         lua.execute(self.args.lua_file.read_text(encoding="utf-8"))
 
@@ -94,6 +105,8 @@ class HudPreview:
         actor = lua.table_from({
             "telemetryManager": lua.table_from({"items": lua.table_from({1: telemetry})}),
             "telemetryIndex": 1,
+            "active": True,
+            "timePaused": False,
             "previewParameters": lua.table_from({
                 "engine_temp": self.args.engine_temp,
                 "brakebias": self.args.brake_bias,
@@ -134,9 +147,12 @@ class HudPreview:
             "lap": self.args.lap,
             "engineMap": self.args.engine_map,
             "bestValidLapTime": lua.table_from({"invalid": False, "timeSeconds": 102.86}),
-            "lapDelta": float(self.args.delta),
+            "previewCurrentLapDelta": float(self.args.delta),
         })
-        lua.globals()["g_racingManager"] = lua.table_from({"playerVehicleData": player_data})
+        player_data["getCurrentLapDelta"] = lua.eval(
+            "function(self) return self.previewCurrentLapDelta end"
+        )
+        lua.globals()["g_racingManager"] = lua.table_from({"active": True, "playerVehicleData": player_data})
         lua.globals()["g_pendingExit"] = False
 
         lua.globals()["update"](0.016)

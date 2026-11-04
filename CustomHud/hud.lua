@@ -51,7 +51,7 @@ local teleState = {
     position = 1,
     lap = 1,
     bestLapStr = "--:--.--",
-    gainLossVal = "+0.00",
+    gainLossVal = "--",
     tyreTemps = {},
     active = false,
     shiftLightsStartRpm = 6000,
@@ -161,18 +161,25 @@ function update(dt)
         end
 
         local bestValidLapTime = pData.bestValidLapTime
-        if bestValidLapTime and not bestValidLapTime.invalid and bestValidLapTime.timeSeconds and bestValidLapTime.timeSeconds > 0 then
+        local hasBestLap = type(bestValidLapTime) == "table" and not bestValidLapTime.invalid
+            and isFiniteNumber(bestValidLapTime.timeSeconds) and bestValidLapTime.timeSeconds > 0
+        if hasBestLap then
             teleState.bestLapStr = formatLapTime(bestValidLapTime.timeSeconds)
         else
             -- Handled when sitting in the pits, on an out-lap, or after an off-track/penalty invalidation
             teleState.bestLapStr = "--:--.--"
         end
 
-        -- DEBUG LOGGING FOR GAIN/LOSS USING STANDARD PRINT
-        local dVal = pData.lastLapDelta or pData.lapDelta or pData.currentLapDelta or pData.delta
-        if type(dVal) == "number" then
-            teleState.gainLossVal = string.format("%+.2f", dVal)
+        -- DeltaWidget's Player_Best mode uses this live getter, not lastLapDelta.
+        -- Refresh after the stock update every frame, clearing unavailable readings.
+        local currentDelta = nil
+        if hasBestLap and type(pData.getCurrentLapDelta) == "function" then
+            local ok, value = pcall(pData.getCurrentLapDelta, pData)
+            if ok and isFiniteNumber(value) then
+                currentDelta = value
+            end
         end
+        teleState.gainLossVal = currentDelta ~= nil and string.format("%+.2f", currentDelta) or "--"
 
         local tMan = actor.telemetryManager
         local tItem = tMan.items and tMan.items[actor.telemetryIndex or 1]
@@ -206,6 +213,40 @@ function update(dt)
     end)
 end
 
+function CustomHudMod.shouldDrawHud()
+    local manager = g_racingManager
+    if g_pendingExit or manager == nil or manager.active ~= true then
+        return false
+    end
+    local pData = manager.playerVehicleData
+    local actor = pData and pData.vehicleActor
+    if actor == nil or actor.active ~= true or actor.timePaused == true then
+        return false
+    end
+
+    if type(PauseManager) ~= "table" or type(PauseManager.isPaused) ~= "function" then
+        return false
+    end
+    local ok, paused = pcall(PauseManager.isPaused, PauseManager)
+    if not ok or paused ~= false then
+        return false
+    end
+
+    -- Stock hide reasons also cover menus/pre-race, even if simulation is running.
+    local gui = g_gui and g_gui.guis and g_gui.guis.HudOverlay
+    local hud = gui and gui.target
+    if hud == nil or type(hud.isHudVisibleReasonSet) ~= "function"
+        or type(HudOverlay) ~= "table" or type(HudOverlay.HideReasons) ~= "table" then
+        return false
+    end
+    for _, reason in pairs(HudOverlay.HideReasons) do
+        local success, hidden = pcall(hud.isHudVisibleReasonSet, hud, reason)
+        if not success or hidden ~= false then
+            return false
+        end
+    end
+    return true
+end
 
 function draw()
     if CustomHudMod.stockDraw ~= nil then
@@ -213,7 +254,8 @@ function draw()
     end
 
 
-    if not teleState.active then return end
+    -- Check at draw time so pausing hides the HUD even without another update.
+    if not teleState.active or not CustomHudMod.shouldDrawHud() then return end
 
     pcall(function()
         -- This calculation sizes the whole HUD, including its shift-light bezel.

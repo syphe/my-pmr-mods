@@ -280,3 +280,77 @@ The speed values agree with the expected KPH/MPH conversion. `getShiftLightsRang
 Drawing follow-up also confirmed circle, outline, line and point argument conventions by tracing their lower-level drawing calls, and captured all 253 UI atlas slices. See [DRAWING_API.md](DRAWING_API.md). The game remains paused at the original breakpoint; temporary drawing substitutions were restored, and no drawing callback was installed.
 
 `hud.lua` remained unchanged (SHA-256 `B03A39B504E5ED58C6675BFB322E0D19222312C9B6BA41FDC93A7A8A7583731E`).
+
+## Live delta against the player's best lap: verified and fixed
+
+Inspected later on 4 November 2026 through the connected Debug Console while the
+game was not stopped at a breakpoint. Evidence is in
+[inspection/delta-runtime.txt](inspection/delta-runtime.txt); the bounded probe is
+[inspection/delta-probe.lua](inspection/delta-probe.lua).
+
+`DeltaWidget.ComparisonMode` contains `Player_Best = 1`, `Car_Best = 2`, and
+`Class_Best = 3`. A controlled call to the actual `DeltaWidget.getCurrentDelta`
+function using local mock objects confirmed that **Player_Best calls
+`self.playerData:getCurrentLapDelta()` with no additional arguments**, forwarding
+the returned number. No stock widget mode or vehicle data was modified by that
+trace.
+
+`debug.info` located the functions at:
+
+- `DeltaWidget.getCurrentDelta`: `dataS/s4sGame/scripts/hud/DeltaWidget.lua:155`;
+  one parameter (`self`).
+- `playerData.getCurrentLapDelta`: `dataS/s4sGame/scripts/racingManager/vehicleData.lua:1479`;
+  one parameter (`self`).
+- `playerData.getLastLapDelta`: the same vehicle-data file, line 1475.
+
+In the live snapshot, `pData.lastLapDelta` was `0.7205801327020964`, while
+`pData:getCurrentLapDelta()` returned `0`. The verified named lookup
+`actor:getVehicleParamValue("lapDelta")` also returned `true, 0`. Direct fields
+`pData.lapDelta`, `pData.currentLapDelta`, and `pData.delta` were nil. The reference
+best lap was valid at `82.93333333297505` seconds.
+
+The earlier `lastLapDelta or ...` lookup therefore selected a completed-lap
+result permanently. `hud.lua` now reads `getCurrentLapDelta()` after the stock
+update on each frame, formats it to two decimal places, and displays `--` if
+there is no valid best lap or the getter fails/returns a nonfinite value. It does
+not fall back to historical lap fields. The preview now models the same getter.
+
+After reloading the corrected `hud.lua`, a one-frame renderer wrapper recorded
+`displayed=+0.00 live=0 lastLap=0.7205801327020964`, then restored itself before
+rendering the HUD. Local regression checks verified changing values across
+updates, stock-update ordering, zero/sign formatting, invalid/missing readings,
+getter failures, and best-lap resets. Continued visual comparison during a
+driving lap was not performed during this inspection.
+
+Do not read `g_gui.frames.DeltaWidget.target.deltaText.text` as live telemetry:
+the template in this session still contained `-0.123`, and its `playerData` was
+nil. Calling that unbound template's getter failed. Reading vehicle data directly
+avoids reliance on a particular stock widget's visibility or initialization.
+
+## Pause and gameplay HUD visibility
+
+Later read-only console inspection confirmed `PauseManager:isPaused()` takes
+`self` and returns a boolean. Calling it without `self` fails. Stock HUD hide
+reasons are queried through
+`g_gui.guis.HudOverlay.target:isHudVisibleReasonSet(reason)`; a true result means
+that hide reason is set. `HudOverlay.HideReasons` contains `GAME=0`, `PAUSE=1`,
+`PRE_RACE=2`, `PRERACE_FLYTHROUGH=3`, `POST_RACE=4`, `PHOTO_MODE=5`, `DMCC=6`, and
+`DEBUG=7`.
+
+The inspected menu state was `g_gui.currentGuiName = "DMCCMenu"`, with
+`PauseManager:isPaused() == false`, `actor.timePaused == false`, and the stock
+`PRE_RACE` hide reason true. Simulation pause alone therefore does not cover all
+non-driving screens. The stock HUD wrapper's alpha was zero in that snapshot.
+
+`hud.lua` now checks `CustomHudMod.shouldDrawHud()` at draw time, after drawing the
+stock UI. It requires an active racing manager/player actor, no actor/simulation
+pause, and no stock HUD hide reason. Missing or failing visibility accessors hide
+the custom HUD. The guard suppresses both the bezel and all custom contents and
+does not rely on another telemetry update after a pause transition.
+
+After live reload, the console recorded
+`custom HUD visible=false currentGui=DMCCMenu`. Regression checks exercised
+pause/resume without intervening updates, all eight hide reasons, session exit,
+missing/failed accessors, and preservation of stock UI drawing. The game was not
+unpaused to perform those checks. Raw evidence is in
+[inspection/pause-runtime.txt](inspection/pause-runtime.txt).

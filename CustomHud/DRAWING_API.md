@@ -201,6 +201,67 @@ Captured member catalogs include `GuiElement`, `TextElement`, `RenderElement`, `
 
 ## Reuse and remaining limits
 
+### Native HUD layout editor: live inspection, 4 November 2026
+
+Read-only queries worked in VS Code's connected Debug Console while the game was
+running, without a breakpoint. Evidence is saved in
+[inspection/hud-widgets-runtime.txt](inspection/hud-widgets-runtime.txt); the
+bounded inspection code is [inspection/hud-widget-probe.lua](inspection/hud-widget-probe.lua).
+No stock widget or saved position was changed.
+
+The editor controller is `g_gui.guis.MovableWidgetsPage.target`, and the live HUD
+controller is `g_gui.guis.HudOverlay.target`. `g_gui.guis[name]` itself is a GUI
+wrapper; inspect `.target` for controller fields and its metatable for methods.
+
+The editor's `.movableWidgets` is an array of 18 GUI elements in this session.
+Entries expose `id`, `position`, `absPosition`, `size`, `parent`, and `target`.
+Their `typeName` values include `GuiElement`, `BoxLayout`, and `Bitmap`. The
+`HUDElement` class also exists, but it is not the type of the inspected editor
+entries. There is not yet evidence that constructing a `HUDElement` alone adds
+anything to the layout editor.
+
+Editor and live-HUD widgets are separate objects with matching IDs. For example,
+both `.deltaWidgetBox` elements had `id = "deltaWidgetBox"`, absolute position
+`{0.41927083393481246, 0.8814814814814815}`, and size
+`{0.16145833213037503, 0.044444444444444446}`. Their local position was instead
+`{0, -0.07407407407407407}`: drawing must account for parent transforms rather
+than interpreting local `position` directly as screen coordinates.
+
+`MovableWidgetsPage.loadedPositions` maps widget IDs to two-number coordinate
+arrays. Its `deltaWidgetBox` entry matched the absolute position above. The
+read-only check of `savegame1/widgetPlacements.xml` confirmed matching persisted
+IDs and coordinates. `MovableWidgetsPage.saveFileName` is `widgetPlacements.xml`.
+The controller exposes dragging, gamepad movement, snap-to-grid, selection, reset,
+placement application, and save/load methods.
+
+This runtime exposes **`debug.info`**, although `debug.getinfo` and
+`debug.getlocal` were absent in the earlier inspection. Guarded calls with a
+function and options `"a"`, `"s"`, `"l"`, and `"n"` returned arity/variadic flag,
+source path, line, and name. Observed definitions:
+
+| Function | Parameter count, including self when applicable | Source / line |
+| --- | ---: | --- |
+| `HudOverlay.registerHudWidgets` | 1 | `dataS/s4sGame/scripts/hud/HudOverlay.lua:254` |
+| `MovableWidgetsPage.register` | 0 | `dataS/s4sGame/scripts/hud/MovableWidgetsPage.lua:226` |
+| `MovableWidgetsPage.applyWidgetPlacements` | 1 | Same file, line 100 |
+| `MovableWidgetsPage.mouseEvent` | 7 | Same file, line 259 |
+| `MovableWidgetsPage.writeSaveData` | 3 | Same file, line 473 |
+| `GuiElement.new` | 2 | `dataS/scripts/gui/elements/GuiElement.lua:150` |
+| `GuiElement.setPosition` | 3 | Same file, line 1248 |
+
+None were variadic. Arity does not identify argument semantics.
+`MovableWidgetsPage.register()` takes no parameters; do not assume it is a
+per-widget registration call. The body of `registerHudWidgets` remains unread.
+Opening the stock Lua file through `io.open` did not yield a readable file.
+
+**Implementation inference, not yet tested:** create corresponding custom GUI
+containers with the same stable ID in the editor and live HUD, make the editor
+container participate in `.movableWidgets`, and drive the custom renderer from
+the applicable container's absolute bounds. Editor selection, save/reset, live
+placement application, screen lifecycle, and reload handling still need actual
+custom-widget validation. No custom registration or drag behavior was installed
+during this inspection.
+
 The saved catalog records 3,231 global name/type pairs, 432 graphics class members, 8 screen values and 1,369 selected gameplay object/class entries. It includes discovered setters and lifecycle methods as names only; these were not called. Search it before attaching again.
 
 Ordinary changes to HUD layout, colors, labels, RPM thresholds, flashing, bars, text alignment, outlines, stock icon selection and circles built from rectangles can be planned from these notes. New native signatures, font selection, custom asset loading, masks, VR/triple-screen behavior, final visual appearance and values after completing laps may still require a focused runtime check.
