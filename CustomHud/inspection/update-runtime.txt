@@ -1,0 +1,3 @@
+2026-11-04 21:42:59 [HUD_UPDATE_VERIFY] installed and armed
+2026-11-04 21:43:13 [HUD_UPDATE_VERIFY] drawn rpm=1475.0548095703125 gear=1 active=true speed=26.188378143310548
+2026-11-04 21:43:14 [HUD_UPDATE_VERIFY] completed 60 native telemetry callbacks; dt=8.343999862670898; restored

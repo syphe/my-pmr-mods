@@ -1,0 +1,24 @@
+2026-11-04 21:18:31 [HUD_FINISH] gui=PauseMenu visible=false alpha=1
+2026-11-04 21:18:31 [HUD_FINISH] player.sessionFinished=true
+2026-11-04 21:18:31 [HUD_FINISH] player.mpSessionComplete=false
+2026-11-04 21:18:31 [HUD_FINISH] player.chequeredFlagTriggered=true
+2026-11-04 21:18:31 [HUD_FINISH] actor.limiterActive=false
+2026-11-04 21:18:31 [HUD_FINISH] actor.chequeredFlag=true
+2026-11-04 21:18:31 [HUD_FINISH] actor.active=true
+2026-11-04 21:18:31 [HUD_FINISH] actor.limiterActiveTimer=-5.911660050372802e-13
+2026-11-04 21:18:31 [HUD_FINISH] manager.active=true
+2026-11-04 21:18:31 [HUD_FINISH] getSessionFinished=true,true
+2026-11-04 21:18:31 [HUD_FINISH] getSessionFinished reads sessionFinished
+2026-11-04 21:18:31 [HUD_FINISH] mock getSessionFinished=true,false
+2026-11-04 21:18:31 [HUD_FINISH] getMPSessionComplete=true,false
+2026-11-04 21:18:31 [HUD_FINISH] getMPSessionComplete reads mpSessionComplete
+2026-11-04 21:18:31 [HUD_FINISH] mock getMPSessionComplete=true,false
+2026-11-04 21:18:31 [HUD_FINISH] hide DMCC=false
+2026-11-04 21:18:31 [HUD_FINISH] hide GAME=false
+2026-11-04 21:18:31 [HUD_FINISH] hide DEBUG=false
+2026-11-04 21:18:31 [HUD_FINISH] hide PRERACE_FLYTHROUGH=false
+2026-11-04 21:18:31 [HUD_FINISH] hide PHOTO_MODE=false
+2026-11-04 21:18:31 [HUD_FINISH] hide POST_RACE=false
+2026-11-04 21:18:31 [HUD_FINISH] hide PAUSE=false
+2026-11-04 21:18:31 [HUD_FINISH] hide PRE_RACE=false
+2026-11-04 21:20:06 [HUD_FINISH_VERIFY] sessionFinished=true customVisible=false

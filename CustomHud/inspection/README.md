@@ -2,6 +2,10 @@
 
 Start with [../RUNTIME_NOTES.md](../RUNTIME_NOTES.md) and [../DRAWING_API.md](../DRAWING_API.md).
 
+`delta-runtime.txt` captures the later live best-lap delta inspection and the
+rendered-frame verification after fixing the historical-delta lookup.
+`delta-probe.lua` is the corresponding bounded read-only console probe.
+
 `runtime-catalog.txt` is a filtered copy of our read-only debugger reflection output, captured on 4 November 2026 while driving and paused in `hud.lua:122`. It contains only the prefixed inspection output, not the full game log.
 
 Record format:

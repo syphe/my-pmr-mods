@@ -1,0 +1,28 @@
+Read-only pause/visibility inspection and post-reload verification, 4 November 2026.
+2026-11-04 18:42:49 [HUD_PAUSE] PauseManager DEBUG_disableFocusPause=boolean:false; ImguiDebug=function; ImguiDebugPauseReasons=function; PauseReasonsStrings=table; REASON_DEBUG=number:4; REASON_GAME_FORCED=number:1; REASON_PHOTO_MODE=number:3; REASON_PLAYER=number:0; REASON_UI_FORCED=number:2; allowGamePause=function; deinit=function; gamePausedReasons=number:0; init=function; isPaused=function; pause=function; private_pauseSystems=function; shouldPauseForLackOfFocus=function
+2026-11-04 18:42:49 [HUD_PAUSE] HideReasons DEBUG=number:7; DMCC=number:6; GAME=number:0; PAUSE=number:1; PHOTO_MODE=number:5; POST_RACE=number:4; PRERACE_FLYTHROUGH=number:3; PRE_RACE=number:2
+2026-11-04 18:42:49 [HUD_PAUSE] currentGui=DMCCMenu dialog=nil
+2026-11-04 18:42:49 [HUD_PAUSE] actor.timePaused=false active=true
+2026-11-04 18:42:49 [HUD_PAUSE] racingManager.unpauseTimer=0
+2026-11-04 18:43:33 [HUD_PAUSE] isPaused arity=1
+2026-11-04 18:43:33 [HUD_PAUSE] isPaused()=false dataS/s4sGame/scripts/managers/pauseManager.lua:77: attempt to index nil with 'gamePausedReasons'
+2026-11-04 18:43:33 [HUD_PAUSE] HudOverlay.alpha=1
+2026-11-04 18:43:33 [HUD_PAUSE] HudOverlay.visible=true
+2026-11-04 18:43:33 [HUD_PAUSE] HudOverlay wrapper visible=true alpha=0
+2026-11-04 18:43:33 [HUD_PAUSE] currentGui name=DMCCMenu active.name=DMCCMenu
+2026-11-04 18:43:33 [HUD_PAUSE] reason 1=PLAYER
+2026-11-04 18:43:33 [HUD_PAUSE] reason 2=GAME_FORCED
+2026-11-04 18:43:33 [HUD_PAUSE] reason 3=UI_FORCED
+2026-11-04 18:43:33 [HUD_PAUSE] reason 4=PHOTO_MODE
+2026-11-04 18:43:33 [HUD_PAUSE] reason 5=DEBUG
+2026-11-04 18:44:04 [HUD_PAUSE] PauseManager:isPaused()=true false
+2026-11-04 18:44:04 [HUD_PAUSE] isHudVisibleReasonSet arity=2
+2026-11-04 18:44:04 [HUD_PAUSE] visibility reason DMCC=true false
+2026-11-04 18:44:04 [HUD_PAUSE] visibility reason GAME=true false
+2026-11-04 18:44:04 [HUD_PAUSE] visibility reason DEBUG=true false
+2026-11-04 18:44:04 [HUD_PAUSE] visibility reason PRERACE_FLYTHROUGH=true false
+2026-11-04 18:44:04 [HUD_PAUSE] visibility reason PHOTO_MODE=true false
+2026-11-04 18:44:04 [HUD_PAUSE] visibility reason POST_RACE=true false
+2026-11-04 18:44:04 [HUD_PAUSE] visibility reason PAUSE=true false
+2026-11-04 18:44:04 [HUD_PAUSE] visibility reason PRE_RACE=true true
+2026-11-04 18:46:47 [HUD_PAUSE_VERIFY] custom HUD visible=false currentGui=DMCCMenu
